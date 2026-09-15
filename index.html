@@ -60,6 +60,14 @@
 
         <!-- Right: Utility Actions (Account, Wishlist, Cart) -->
         <div class="header-actions">
+          <!-- Mobile: Search icon trigger -->
+          <button class="icon-btn" id="mobile-search-trigger" onclick="openMobileSearch()" title="Buscar" aria-label="Abrir busca">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span class="icon-label">Buscar</span>
+          </button>
           <button class="icon-btn" onclick="showToast('Área exclusiva do cliente Infinity.');" title="Minha Conta">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -319,6 +327,56 @@
 
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toast-container"></div>
+
+  <!-- Mobile Search Overlay -->
+  <div class="mobile-search-overlay" id="mobile-search-overlay" onclick="closeMobileSearch(event)">
+    <div class="mobile-search-bar" onclick="event.stopPropagation()">
+      <input
+        type="text"
+        id="mobile-search-input"
+        placeholder="Buscar joias..."
+        autocomplete="off"
+        aria-label="Buscar produtos"
+        oninput="handleMobileSearch(this.value)"
+      >
+      <button onclick="closeMobileSearch()" aria-label="Fechar busca">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+  </div>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="mobile-bottom-nav" aria-label="Navegação principal mobile">
+    <ul>
+      <li>
+        <button class="mobile-bottom-nav-btn active" id="mob-nav-home" onclick="showImmersiveHome(); setMobileActiveNav('mob-nav-home')" aria-label="Início">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          Início
+        </button>
+      </li>
+      <li>
+        <button class="mobile-bottom-nav-btn" id="mob-nav-search" onclick="openMobileSearch(); setMobileActiveNav('mob-nav-search')" aria-label="Buscar">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          Buscar
+        </button>
+      </li>
+      <li>
+        <button class="mobile-bottom-nav-btn" id="mob-nav-wish" onclick="openWishlistDrawer(); setMobileActiveNav('mob-nav-wish')" aria-label="Favoritos">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span class="mobile-badge mob-wish-count">0</span>
+          Favoritos
+        </button>
+      </li>
+      <li>
+        <button class="mobile-bottom-nav-btn" id="mob-nav-bag" onclick="openBagDrawer(); setMobileActiveNav('mob-nav-bag')" aria-label="Sacola">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span class="mobile-badge mob-bag-count">0</span>
+          Sacola
+        </button>
+      </li>
+    </ul>
+  </nav>
 
   <!-- Application Logic -->
   <script src="app.js"></script>

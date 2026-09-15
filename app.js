@@ -959,6 +959,11 @@ function updateCartBadges() {
     b.textContent = total;
     b.style.display = total > 0 ? 'flex' : 'none';
   });
+  // Sync mobile bottom nav badge
+  document.querySelectorAll('.mob-bag-count').forEach(b => {
+    b.textContent = total;
+    b.style.display = total > 0 ? 'flex' : 'none';
+  });
 }
 
 // Favoritos
@@ -1033,6 +1038,11 @@ function updateWishlistBadges() {
     b.textContent = count;
     b.style.display = count > 0 ? 'flex' : 'none';
   });
+  // Sync mobile bottom nav badge
+  document.querySelectorAll('.mob-wish-count').forEach(b => {
+    b.textContent = count;
+    b.style.display = count > 0 ? 'flex' : 'none';
+  });
 }
 
 function closeAllDrawers() {
@@ -1094,8 +1104,102 @@ function setupStoryScroll() {
     }
   }, { passive: false });
 
-  // Botões de navegação lateral
-  vDots.forEach((dot, index) => {
-    dot.addEventListener('click', () => goToScene(index));
+  // Swipe gestures for mobile carousel
+  let touchStartY = 0;
+  let touchEndY = 0;
+
+  const swipeArea = document.getElementById('immersive-view');
+  if (swipeArea) {
+    swipeArea.addEventListener('touchstart', (e) => {
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    swipeArea.addEventListener('touchend', (e) => {
+      if (STATE.activeView !== 'immersive') return;
+      touchEndY = e.changedTouches[0].screenY;
+      const diff = touchStartY - touchEndY;
+      if (Math.abs(diff) < 40) return; // ignore small swipes
+      if (diff > 0) {
+        goToScene(currentScene + 1);
+      } else {
+        goToScene(currentScene - 1);
+      }
+    }, { passive: true });
+  }
+}
+
+// ==========================================================================
+// MOBILE-SPECIFIC FUNCTIONS
+// ==========================================================================
+
+/** Open the mobile full-screen search overlay */
+function openMobileSearch() {
+  const overlay = document.getElementById('mobile-search-overlay');
+  const input = document.getElementById('mobile-search-input');
+  if (!overlay) return;
+  overlay.classList.add('active');
+  document.body.classList.add('no-scroll');
+  setTimeout(() => input && input.focus(), 100);
+}
+
+/** Close the mobile search overlay */
+function closeMobileSearch(event) {
+  // If called from the backdrop click, only close when clicking the backdrop itself
+  if (event && event.target !== document.getElementById('mobile-search-overlay')) return;
+  const overlay = document.getElementById('mobile-search-overlay');
+  if (!overlay) return;
+  overlay.classList.remove('active');
+  document.body.classList.remove('no-scroll');
+  // Reset
+  const input = document.getElementById('mobile-search-input');
+  const results = document.getElementById('mobile-search-results');
+  if (input) input.value = '';
+  if (results) results.innerHTML = '';
+}
+
+/** Handle mobile search input — reuse catalog data */
+function handleMobileSearch(query) {
+  const results = document.getElementById('mobile-search-results');
+  if (!results) return;
+
+  if (!query || query.trim().length < 2) {
+    results.innerHTML = '';
+    return;
+  }
+
+  const q = query.toLowerCase();
+  const matches = CATALOG.filter(p =>
+    p.name.toLowerCase().includes(q) ||
+    p.categoryName.toLowerCase().includes(q) ||
+    p.collection.toLowerCase().includes(q)
+  ).slice(0, 8);
+
+  if (matches.length === 0) {
+    results.innerHTML = `<div style="padding:20px;text-align:center;color:var(--color-text-muted);font-size:0.85rem;">Nenhum resultado encontrado.</div>`;
+    return;
+  }
+
+  results.innerHTML = matches.map(p => `
+    <div class="search-item" onclick="closeMobileSearch(); showCategoryPage('${p.category}');" style="padding:12px 16px;">
+      <img src="${p.imgPrimary}" alt="${p.name}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;">
+      <div class="search-item-info">
+        <div class="search-item-title">${p.name}</div>
+        <div class="search-item-cat">${p.categoryName} &bull; ${p.collection}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/** Set the active state on the mobile bottom nav */
+function setMobileActiveNav(activeId) {
+  document.querySelectorAll('.mobile-bottom-nav-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.id === activeId);
   });
 }
+
+// Also set home active when returning to immersive
+const _origShowImmersiveHome = window.showImmersiveHome;
+window.showImmersiveHome = function() {
+  if (typeof _origShowImmersiveHome === 'function') _origShowImmersiveHome();
+  setMobileActiveNav('mob-nav-home');
+};
