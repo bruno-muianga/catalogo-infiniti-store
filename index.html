@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infinity Store &bull; Alta Joalheria &bull; Coleções Exclusivas</title>
+  <meta name="description" content="Explore as coleções de alta joalheria da Infinity Store. Pulseiras, Anéis, Colares, Brincos e Pingentes em Prata de Lei 925 e Ouro Rosé.">
+  
+  <!-- Google Fonts: Montserrat & Cormorant Garamond -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="immersive-mode">
+
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-to-content">Pular para o conteúdo principal</a>
+
+  <!-- ==========================================
+       HEADER FIXO COM 2 NÍVEIS
+       Nível 1: Logo à Esquerda | Busca Centralizada | Ações à Direita
+       Nível 2: Barra de Categorias Centralizada
+       ========================================== -->
+  <header class="site-header" id="site-header" role="banner">
+    <div class="container">
+      
+      <!-- Top Row: Logo, Search, Actions -->
+      <div class="header-top-row">
+        
+        <!-- Left: Logo from user attachment -->
+        <a href="#" class="header-brand" aria-label="Infinity Store Home">
+          <img src="assets/logo.png" alt="Infinity Store" class="brand-logo-img">
+        </a>
+
+        <!-- Center: Search Bar Slightly Above Categories -->
+        <div class="header-search-wrap">
+          <form class="search-form" onsubmit="event.preventDefault();">
+            <input 
+              type="text" 
+              id="search-input" 
+              class="search-input" 
+              placeholder="Buscar pulseiras, anéis, colares, brincos, pingentes..." 
+              autocomplete="off"
+              aria-label="Buscar produtos"
+            >
+            <button type="submit" class="search-btn" aria-label="Buscar">
+              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+          </form>
+
+          <!-- Predictive Results Dropdown -->
+          <div class="search-results-dropdown" id="search-dropdown"></div>
+        </div>
+
+        <!-- Right: Utility Actions (Account, Wishlist, Cart) -->
+        <div class="header-actions">
+          <button class="icon-btn" onclick="showToast('Área exclusiva do cliente Infinity.');" title="Minha Conta">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="icon-label">Conta</span>
+          </button>
+
+          <button class="icon-btn" onclick="openWishlistDrawer()" title="Lista de Desejos">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <span class="badge-count wishlist-count-badge">0</span>
+            <span class="icon-label">Favoritos</span>
+          </button>
+
+          <button class="icon-btn" onclick="openBagDrawer()" title="Sacola de Compras">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span class="badge-count bag-count-badge">0</span>
+            <span class="icon-label">Sacola</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Bottom Row: Categories Bar (Pulseiras, Anéis, Colares, Brincos, Pingentes) -->
+      <div class="header-nav-row">
+        <nav class="nav-categories-bar" aria-label="Categorias de Joias">
+          <ul class="nav-categories-list">
+            <li>
+              <a href="#pulseiras" class="nav-category-link" data-category="pulseiras">
+                Pulseiras
+              </a>
+            </li>
+            <li>
+              <a href="#aneis" class="nav-category-link" data-category="aneis">
+                Anéis
+              </a>
+            </li>
+            <li>
+              <a href="#colares" class="nav-category-link" data-category="colares">
+                Colares
+              </a>
+            </li>
+            <li>
+              <a href="#brincos" class="nav-category-link" data-category="brincos">
+                Brincos
+              </a>
+            </li>
+            <li>
+              <a href="#pingentes" class="nav-category-link" data-category="pingentes">
+                Pingentes
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==========================================
+       VIEW 1: IMMERSIVE SCROLL-DRIVEN CAROUSELS (HOME)
+       ========================================== -->
+  <main id="immersive-view">
+    
+    <!-- Vertical Tracker -->
+    <aside class="vertical-story-nav" aria-label="Navegador de Carrosséis">
+      <div class="vertical-counter" id="story-counter">01 / 05</div>
+      <div class="v-track-line">
+        <div class="v-track-fill" id="v-track-fill"></div>
+      </div>
+      <div class="v-nav-dots" role="tablist">
+        <button class="v-dot-btn is-current" role="tab" aria-label="Cena 1: Ouro Rosé">
+          <span class="v-dot-tooltip">Ouro Rosé 14k</span>
+        </button>
+        <button class="v-dot-btn" role="tab" aria-label="Cena 2: Coleção Pulseiras">
+          <span class="v-dot-tooltip">Pulseiras &amp; Elos</span>
+        </button>
+        <button class="v-dot-btn" role="tab" aria-label="Cena 3: Coleção Anéis">
+          <span class="v-dot-tooltip">Anéis &amp; Solitários</span>
+        </button>
+        <button class="v-dot-btn" role="tab" aria-label="Cena 4: Coleção Colares">
+          <span class="v-dot-tooltip">Colares &amp; Luz</span>
+        </button>
+        <button class="v-dot-btn" role="tab" aria-label="Cena 5: Coleção Pingentes">
+          <span class="v-dot-tooltip">Pingentes &amp; Charms</span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="scroll-story-wrapper">
+      
+      <!-- Cena 1: Ouro Rosé -->
+      <section class="story-scene is-active-scene" id="scene-1">
+        <div class="scene-carousel">
+          <div class="carousel-slide is-active-slide">
+            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=1920&auto=format&fit=crop" alt="Infinity Store Joias" class="carousel-img">
+            <div class="carousel-overlay"></div>
+            <div class="carousel-content">
+              <span class="carousel-eyebrow">Assinatura Exclusiva</span>
+              <h1 class="carousel-title">Elegância em <em>Ouro Rosé</em></h1>
+              <p class="carousel-subtitle">Joias esculpidas com rigor técnico e zircônias de lapidação suíça para eternizar seus momentos.</p>
+              <div class="carousel-actions">
+                <button class="btn-luxury btn-luxury-primary" onclick="showCategoryPage('aneis')">Ver Anéis Solitários</button>
+                <button class="btn-luxury btn-luxury-outline" onclick="showCategoryPage('pulseiras')">Explorar Pulseiras</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cena 2: Pulseiras -->
+      <section class="story-scene" id="scene-2">
+        <div class="scene-carousel">
+          <div class="carousel-slide is-active-slide">
+            <img src="https://images.unsplash.com/photo-1611591475824-2c7c569f1064?q=80&w=1920&auto=format&fit=crop" alt="Coleção Pulseiras" class="carousel-img">
+            <div class="carousel-overlay"></div>
+            <div class="carousel-content">
+              <span class="carousel-eyebrow">Prata de Lei 925 &bull; Ouro 14k</span>
+              <h2 class="carousel-title">Braceletes <em>&amp; Malhas de Elos</em></h2>
+              <p class="carousel-subtitle">Estruturas modulares e acabamentos espelhados para criar combinações únicas.</p>
+              <div class="carousel-actions">
+                <button class="btn-luxury btn-luxury-primary" onclick="showCategoryPage('pulseiras')">Abrir Catálogo de Pulseiras</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cena 3: Anéis -->
+      <section class="story-scene" id="scene-3">
+        <div class="scene-carousel">
+          <div class="carousel-slide is-active-slide">
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=1920&auto=format&fit=crop" alt="Coleção Anéis" class="carousel-img">
+            <div class="carousel-overlay"></div>
+            <div class="carousel-content">
+              <span class="carousel-eyebrow">Compromisso &amp; Sofisticação</span>
+              <h2 class="carousel-title">Solitários <em>&amp; Alianças Pavé</em></h2>
+              <p class="carousel-subtitle">Cravação precisa de 4 garras e anéis de sobreposição pensados para encaixes harmônicos.</p>
+              <div class="carousel-actions">
+                <button class="btn-luxury btn-luxury-primary" onclick="showCategoryPage('aneis')">Ver Todos os Anéis</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cena 4: Colares -->
+      <section class="story-scene" id="scene-4">
+        <div class="scene-carousel">
+          <div class="carousel-slide is-active-slide">
+            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1920&auto=format&fit=crop" alt="Coleção Colares" class="carousel-img">
+            <div class="carousel-overlay"></div>
+            <div class="carousel-content">
+              <span class="carousel-eyebrow">Sutileza &amp; Brilho</span>
+              <h2 class="carousel-title">Gargantilhas <em>&amp; Pontos de Luz</em></h2>
+              <p class="carousel-subtitle">Correntes venezianas ajustáveis com pingentes solitários de luminosidade pura.</p>
+              <div class="carousel-actions">
+                <button class="btn-luxury btn-luxury-primary" onclick="showCategoryPage('colares')">Explorar Colares</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cena 5: Pingentes -->
+      <section class="story-scene" id="scene-5">
+        <div class="scene-carousel">
+          <div class="carousel-slide is-active-slide">
+            <img src="https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=1920&auto=format&fit=crop" alt="Coleção Pingentes" class="carousel-img">
+            <div class="carousel-overlay"></div>
+            <div class="carousel-content">
+              <span class="carousel-eyebrow">Memórias Eternizadas</span>
+              <h2 class="carousel-title">Pingentes <em>&amp; Berloques</em></h2>
+              <p class="carousel-subtitle">Símbolos de afeto, Murano italiano e pedras cravejadas para contar a sua história.</p>
+              <div class="carousel-actions">
+                <button class="btn-luxury btn-luxury-primary" onclick="showCategoryPage('pingentes')">Ver Coleção de Pingentes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================
+       VIEW 2: DEDICATED CATEGORY PRODUCTS PAGE
+       (Mostrada automaticamente ao clicar em cada categoria)
+       ========================================== -->
+  <main id="category-page-view" class="container" role="main">
+    
+    <!-- Category Banner -->
+    <div class="category-page-banner">
+      <div class="breadcrumbs">
+        <a href="#" onclick="showImmersiveHome(); event.preventDefault();">Início</a>
+        <span>/</span>
+        <span id="breadcrumb-current">PULSEIRAS</span>
+      </div>
+      <h1 class="category-banner-title" id="cat-banner-title">Coleção Pulseiras</h1>
+      <p class="category-banner-desc" id="cat-banner-desc">Bases estruturadas em prata 925 e ouro rosé, perfeitas para expressar sua essência.</p>
+    </div>
+
+    <!-- Category Products Grid -->
+    <div class="products-catalog-grid" id="products-catalog-grid">
+      <!-- Populated dynamically by app.js -->
+    </div>
+
+  </main>
+
+  <!-- ==========================================
+       DRAWERS & MODALS (CART, WISHLIST, QUICK VIEW)
+       ========================================== -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+
+  <!-- Shopping Bag Drawer -->
+  <aside class="side-drawer" id="bag-drawer" aria-label="Sacola de Compras">
+    <div class="drawer-header">
+      <h3 class="drawer-title">Sua Sacola</h3>
+      <button class="drawer-close-btn" onclick="closeBagDrawer()" aria-label="Fechar Sacola">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="bag-drawer-body"></div>
+    <div class="drawer-footer">
+      <button class="btn-luxury btn-luxury-primary" style="width: 100%;" onclick="showToast('Pedido concluído com sucesso!'); closeBagDrawer();">
+        Finalizar Pedido
+      </button>
+    </div>
+  </aside>
+
+  <!-- Wishlist Drawer -->
+  <aside class="side-drawer" id="wishlist-drawer" aria-label="Lista de Desejos">
+    <div class="drawer-header">
+      <h3 class="drawer-title">Meus Favoritos</h3>
+      <button class="drawer-close-btn" onclick="closeWishlistDrawer()" aria-label="Fechar Favoritos">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="wishlist-drawer-body"></div>
+  </aside>
+
+  <!-- Quick View Modal -->
+  <div class="modal-wrapper" id="quick-view-modal">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeQuickView()" aria-label="Fechar Detalhes">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div id="quick-view-content"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
