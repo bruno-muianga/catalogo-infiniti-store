@@ -8,6 +8,33 @@
 
 'use strict';
 
+/**
+ * Função inteligente de fallback e resolução de imagens:
+ * Suporta automaticamente .jpg, .png, .jpeg e .webp quando o usuário coloca fotos
+ */
+window.handleImgError = function(img) {
+  const currentSrc = img.getAttribute('src') || '';
+  const retry = parseInt(img.dataset.retry || '0', 10);
+  img.dataset.retry = (retry + 1).toString();
+
+  if (retry === 0 && currentSrc.endsWith('.jpg')) {
+    img.src = currentSrc.slice(0, -4) + '.png';
+    return;
+  }
+  if (retry === 1 && currentSrc.endsWith('.png')) {
+    img.src = currentSrc.slice(0, -4) + '.jpeg';
+    return;
+  }
+  if (retry === 2 && currentSrc.endsWith('.jpeg')) {
+    img.src = currentSrc.slice(0, -5) + '.webp';
+    return;
+  }
+
+  // Fallback seguro de alta qualidade
+  img.onerror = null;
+  img.src = 'assets/ring_pink_heart.jpg';
+};
+
 // 1. CATÁLOGO DE JOIAS PANDORA (Sem Exibição de Preços)
 const CATALOG = [
   // --------------------------------------------------------------------------
@@ -30,8 +57,8 @@ const CATALOG = [
       "Fecho: Esférico com Infinito em Relevo",
       "Tamanhos: 16cm, 17cm, 18cm, 19cm, 20cm, 21cm"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1611591475824-2c7c569f1064?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pulseiras/pulseira-studded.jpg",
+    imgAlt: "assets/pulseiras/pulseira-1.jpg"
   },
   {
     id: 102,
@@ -49,8 +76,8 @@ const CATALOG = [
       "Fecho: Sistema de Encaixe com Nó Esculpido",
       "Compatibilidade: Todas as contas Moments"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1611591475824-2c7c569f1064?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pulseiras/pulseira-infinity-knots.jpg",
+    imgAlt: "assets/pulseiras/pulseira-2.jpg"
   },
   {
     id: 103,
@@ -68,8 +95,8 @@ const CATALOG = [
       "Fecho: Deslizante Ajustável",
       "Comprimento: Até 25cm"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pulseiras/pulseira-coracao-pedra-tripla.jpg",
+    imgAlt: "assets/pulseiras/pulseira-3.jpg"
   },
   {
     id: 104,
@@ -87,8 +114,8 @@ const CATALOG = [
       "Fecho: Coração de Pressão Seguro",
       "Tamanhos: 17cm, 18cm, 19cm, 20cm"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pulseiras/pulseira-ouro-fecho-coracao.jpg",
+    imgAlt: "assets/pulseiras/pulseira-4.jpg"
   },
   {
     id: 105,
@@ -106,8 +133,8 @@ const CATALOG = [
       "Ajuste: Deslizante tipo macramé",
       "Capacidade: Até 6 contas Moments"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pulseiras/pulseira-corrente-caixa.jpg",
+    imgAlt: "assets/pulseiras/pulseira-5.jpg"
   },
   {
     id: 106,
@@ -124,8 +151,8 @@ const CATALOG = [
       "Fecho: Esfera em Prata 925 de Encaixe",
       "Uso Duplo: Pulseira de 2 voltas ou Colar Choker"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1611591475824-2c7c569f1064?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pulseiras/pulseira-couro-trancado.jpg",
+    imgAlt: "assets/pulseiras/pulseira-6.jpg"
   },
   {
     id: 107,
@@ -142,8 +169,8 @@ const CATALOG = [
       "Detalhes: Esmalte Azul Noite Aplicado à Mão",
       "Fecho: Borboleta Articulada com Trava"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pulseiras/pulseira-borboleta-azul.jpg",
+    imgAlt: "assets/pulseiras/pulseira-7.jpg"
   },
   {
     id: 108,
@@ -160,8 +187,8 @@ const CATALOG = [
       "Símbolo: Coroa O Pandora Cravejada",
       "Metal: Prata de Lei 925"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1611591475824-2c7c569f1064?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pulseiras/pulseira-coroa-signature.jpg",
+    imgAlt: "assets/pulseiras/pulseira-8.jpg"
   },
   {
     id: 109,
@@ -178,8 +205,8 @@ const CATALOG = [
       "Metal: Prata de Lei 925 Maciça",
       "Fecho: Coração de Pressão Seguro"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1611591475824-2c7c569f1064?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pulseiras/pulseira-moments-fecho-coracao.jpg",
+    imgAlt: "assets/pulseiras/pulseira-9.jpg"
   },
   {
     id: 110,
@@ -196,8 +223,8 @@ const CATALOG = [
       "Design: Estrutura Rígida com Terminais Fixos",
       "Fecho: Barril de Pressão"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1611591475824-2c7c569f1064?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pulseiras/bracelete-rigido-barril.jpg",
+    imgAlt: "assets/pulseiras/pulseira-10.jpg"
   },
   {
     id: 111,
@@ -214,8 +241,8 @@ const CATALOG = [
       "Metal: Revestimento de Ouro Rosa 14k",
       "Malha: Snake Articulada"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1611591475824-2c7c569f1064?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pulseiras/pulseira-ouro-rosa.jpg",
+    imgAlt: "assets/pulseiras/pulseira-11.jpg"
   },
   {
     id: 112,
@@ -232,13 +259,118 @@ const CATALOG = [
       "Metal: Prata de Lei 925",
       "Fecho: Mosquetão estilizado"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pulseiras/pulseira-elos-pandora-me.jpg",
+    imgAlt: "assets/pulseiras/pulseira-12.jpg"
   },
 
   // --------------------------------------------------------------------------
   // 2. ANÉIS (PANDORA TIMELESS, MOMENTS, SIGNATURE)
   // --------------------------------------------------------------------------
+  {
+    id: 206,
+    name: "Anel Coração Elevado Rosa Pandora Timeless",
+    category: "aneis",
+    categoryName: "Anéis",
+    collection: "Pandora Timeless",
+    material: "prata-925",
+    materialLabel: "Prata de Lei 925",
+    badge: "Novo",
+    price: 2500,
+    description: "Anel de coração elevado em prata de lei 925 com uma zircónia rosa em corte coração no centro, rodeada por um halo de zircónias brancas cintilantes. O aro fino é pavimentado com cristais que refletem luz em todos os ângulos.",
+    specs: [
+      "Coleção: Pandora Timeless Heart",
+      "Metal: Prata de Lei 925",
+      "Pedra Central: Zircónia Rosa Corte Coração",
+      "Cravação: Halo de Zircónias Brancas",
+      "Aros Disponíveis: 48, 50, 52, 54, 56, 58"
+    ],
+    imgPrimary: "assets/aneis/anel-coracao-rosa.jpg",
+    imgAlt: "assets/aneis/anel-1.jpg"
+  },
+  {
+    id: 207,
+    name: "Anel Coração Elevado Rosa Pavê Pandora Timeless",
+    category: "aneis",
+    categoryName: "Anéis",
+    collection: "Pandora Timeless",
+    material: "cristais",
+    materialLabel: "Prata 925 & Zircónia Rosa",
+    badge: "Amor Radiante",
+    price: 2550,
+    description: "Variante premium do anel de coração Pandora com acabamento pavê completo no aro e pedra central rosa mais intensa. Ideal para momentos especiais e presentes de amor inesquecíveis.",
+    specs: [
+      "Coleção: Pandora Timeless Heart Pavê",
+      "Metal: Prata de Lei 925",
+      "Pedra: Zircónia Rosa Intenso em Coração",
+      "Aro: Cravejado em Pavê Total",
+      "Gravação: S925 ALE Pandora"
+    ],
+    imgPrimary: "assets/aneis/anel-coracao-rosa-pave.jpg",
+    imgAlt: "assets/aneis/anel-2.jpg"
+  },
+  {
+    id: 208,
+    name: "Anel Coração Elevado Azul Pandora Timeless",
+    category: "aneis",
+    categoryName: "Anéis",
+    collection: "Pandora Timeless",
+    material: "cristais",
+    materialLabel: "Prata 925 & Zircónia Azul",
+    badge: "Edição Especial",
+    price: 2600,
+    description: "Anel de coração azul profundo em prata de lei 925. A zircónia central em azul oceano intenso é rodeada por um halo de diamantes CZ brancos e o aro é finamente adornado com cristais pavê para um brilho total.",
+    specs: [
+      "Coleção: Pandora Timeless Blue Heart",
+      "Metal: Prata de Lei 925",
+      "Pedra Central: Zircónia Azul Oceano Corte Coração",
+      "Cravação: Halo + Pavê no Aro",
+      "Aros Disponíveis: 48, 50, 52, 54, 56, 58"
+    ],
+    imgPrimary: "assets/aneis/anel-coracao-azul.jpg",
+    imgAlt: "assets/aneis/anel-3.jpg"
+  },
+  {
+    id: 209,
+    name: "Anel Sol & Lua Bicolor Pandora Celestial",
+    category: "aneis",
+    categoryName: "Anéis",
+    collection: "Pandora Celestial",
+    material: "ouro-amarelo",
+    materialLabel: "Bicolor (Ouro 14k & Prata 925)",
+    badge: "Celestial",
+    price: 2700,
+    description: "Um anel de design único e audacioso que une dois mundos: o sol dourado e a lua prateada num mesmo medalhão circular estilo yin-yang. A metade em ouro 14k traz o sol gravado com raios detalhados; a metade em prata 925 apresenta a lua crescente e estrelas cintilantes.",
+    specs: [
+      "Coleção: Pandora Celestial",
+      "Metal: Revestimento de Ouro 14k + Prata de Lei 925",
+      "Design: Bicolor Sol & Lua Yin-Yang",
+      "Gravação: Pandora + S925 ALE",
+      "Símbolo: Equilíbrio Dia & Noite"
+    ],
+    imgPrimary: "assets/aneis/anel-sol-lua.jpg",
+    imgAlt: "assets/aneis/anel-4.jpg"
+  },
+  {
+    id: 210,
+    name: "Anel Floco de Neve Cintilante Pandora Sparkling",
+    category: "aneis",
+    categoryName: "Anéis",
+    collection: "Pandora Sparkling",
+    material: "cristais",
+    materialLabel: "Prata 925 & Cristais Marquise",
+    badge: "Exclusivo",
+    price: 2650,
+    description: "Um anel que celebra a magia do inverno com um floco de neve esculpido em cristais marquise brancos ao redor de um cristal azul central. Oito pétalas de cristal em corte marquise irradiam luz em todas as direções, criando um efeito deslumbrante como neve ao sol.",
+    specs: [
+      "Coleção: Pandora Sparkling Snowflake",
+      "Metal: Prata de Lei 925",
+      "Pedra Central: Cristal Azul Redondo",
+      "Pétalas: 8 Cristais Marquise Brancos",
+      "Aro: Micro Pavê de Zircónias"
+    ],
+    imgPrimary: "assets/aneis/anel-floco-neve.jpg",
+    imgAlt: "assets/aneis/anel-5.jpg"
+  },
   {
     id: 201,
     name: "Anel Coroa Tiara de Princesa Brilhante",
@@ -255,8 +387,8 @@ const CATALOG = [
       "Pedras: Micro Zircónias Cúbicas",
       "Aros Disponíveis: 48, 50, 52, 54, 56, 58, 60"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/aneis/anel-tiara-princesa.jpg",
+    imgAlt: "assets/aneis/anel-6.jpg"
   },
   {
     id: 202,
@@ -274,8 +406,8 @@ const CATALOG = [
       "Pedra Central: Zircónia 6mm Lapidação Redonda",
       "Cravação: 4 Garras Elevadas"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/aneis/anel-solitario-rosa.jpg",
+    imgAlt: "assets/aneis/anel-7.jpg"
   },
   {
     id: 203,
@@ -292,8 +424,8 @@ const CATALOG = [
       "Cravação: Pavé Frontal",
       "Ideal para: Empilhar com outros anéis de onda"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/aneis/anel-onda-pave.jpg",
+    imgAlt: "assets/aneis/anel-8.jpg"
   },
   {
     id: 204,
@@ -310,8 +442,8 @@ const CATALOG = [
       "Metal: Prata 925 Maciça",
       "Acabamento: Polido e Hipoalergénico"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/aneis/anel-infinito.jpg",
+    imgAlt: "assets/aneis/anel-9.jpg"
   },
   {
     id: 205,
@@ -328,8 +460,8 @@ const CATALOG = [
       "Estilo: Bicolor Crossover",
       "Pedras: Zircónias Cúbicas Transparentes"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/aneis/anel-tres-aros.jpg",
+    imgAlt: "assets/aneis/anel-10.jpg"
   },
 
   // --------------------------------------------------------------------------
@@ -351,8 +483,8 @@ const CATALOG = [
       "Pedras: Zircónia Cúbica Micro Pavé",
       "Metal: Prata de Lei 925"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/colares/colar-circulo-pave.jpg",
+    imgAlt: "assets/colares/colar-1.jpg"
   },
   {
     id: 302,
@@ -369,8 +501,8 @@ const CATALOG = [
       "Corrente: Veneziana Fina 45cm",
       "Fecho: Mosquetão com pingente de coroa Pandora"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/colares/colar-ponto-de-luz.jpg",
+    imgAlt: "assets/colares/colar-2.jpg"
   },
   {
     id: 303,
@@ -387,8 +519,8 @@ const CATALOG = [
       "Metal: Combinação Bicolor Prata 925 e Ouro Rosa 14k",
       "Diâmetro do Pendente: 18mm"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/colares/colar-arvore-familia.jpg",
+    imgAlt: "assets/colares/colar-3.jpg"
   },
   {
     id: 304,
@@ -405,8 +537,117 @@ const CATALOG = [
       "Metal: Prata de Lei 925",
       "Comprimento: 45cm regulável"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/colares/colar-halo-quadrado.jpg",
+    imgAlt: "assets/colares/colar-4.jpg"
+  },
+  {
+    id: 305,
+    name: "Colar Coração Elevado Pandora Timeless",
+    category: "colares",
+    categoryName: "Colares",
+    collection: "Pandora Timeless",
+    material: "cristais",
+    materialLabel: "Prata 925 & Zircónias",
+    badge: "Romântico",
+    description: "Pendente em formato de coração elevado cravado com zircónia cintilante e aro pavé em prata de lei 925 com corrente ajustável.",
+    specs: [
+      "Coleção: Pandora Timeless Heart",
+      "Metal: Prata de Lei 925",
+      "Pedras: Zircónias Cúbicas de Lapidação Coração",
+      "Comprimento: 45cm regulável"
+    ],
+    imgPrimary: "assets/colares/colar-coracao-elevado.jpg",
+    imgAlt: "assets/colares/colar-5.jpg"
+  },
+  {
+    id: 306,
+    name: "Colar com Pendente Infinito Brilhante",
+    category: "colares",
+    categoryName: "Colares",
+    collection: "Pandora Moments",
+    material: "prata-925",
+    materialLabel: "Prata de Lei 925",
+    badge: "Amor Eterno",
+    description: "Símbolo do infinito com metade cravada em zircónias transparentes e metade em prata polida, simbolizando laços indestrutíveis.",
+    specs: [
+      "Símbolo: Nó do Infinito",
+      "Metal: Prata de Lei 925",
+      "Comprimento: Ajustável em 3 níveis (38cm, 42cm, 45cm)"
+    ],
+    imgPrimary: "assets/colares/colar-infinito.jpg",
+    imgAlt: "assets/colares/colar-6.jpg"
+  },
+  {
+    id: 307,
+    name: "Colar com Pendente Pavé em Ouro Rosa 14k",
+    category: "colares",
+    categoryName: "Colares",
+    collection: "Pandora Moments",
+    material: "ouro-rose",
+    materialLabel: "Ouro Rosa 14k",
+    badge: "Dourado Nobre",
+    description: "Pendente requintado em revestimento de ouro rosa 14k cravejado com pavé reluzente e corrente de elos finos com fecho mosquetão.",
+    specs: [
+      "Metal: Revestimento de Ouro Rosa 14k",
+      "Pedras: Zircónias Cúbicas Micro Pavé",
+      "Comprimento: 45cm regulável"
+    ],
+    imgPrimary: "assets/colares/colar-circulo-ouro-rose.jpg",
+    imgAlt: "assets/colares/colar-7.jpg"
+  },
+  {
+    id: 308,
+    name: "Colar de Corrente de Elos Pandora ME",
+    category: "colares",
+    categoryName: "Colares",
+    collection: "Pandora ME",
+    material: "prata-925",
+    materialLabel: "Prata de Lei 925",
+    badge: "Urbano & Trendy",
+    description: "Corrente de elos grossos em prata de lei 925 com elos de abrir para personalizar com mini pendentes e medalhões Pandora ME.",
+    specs: [
+      "Coleção: Pandora ME",
+      "Metal: Prata de Lei 925",
+      "Comprimento: 45cm com elos personalizáveis"
+    ],
+    imgPrimary: "assets/colares/colar-elos-pandora-me.jpg",
+    imgAlt: "assets/colares/colar-8.jpg"
+  },
+  {
+    id: 309,
+    name: "Colar Gota Radiante Pandora Timeless",
+    category: "colares",
+    categoryName: "Colares",
+    collection: "Pandora Timeless",
+    material: "cristais",
+    materialLabel: "Prata 925 & Zircónias",
+    badge: "Elegância Clássica",
+    description: "Pendente de gota facetada cercado por uma auréola de micro zircónias brilhantes, refletindo luz a cada movimento.",
+    specs: [
+      "Pedra: Gota Facetada (Pear Cut)",
+      "Metal: Prata de Lei 925",
+      "Comprimento: 45cm ajustável"
+    ],
+    imgPrimary: "assets/colares/colar-gota-radiante.jpg",
+    imgAlt: "assets/colares/colar-9.jpg"
+  },
+  {
+    id: 310,
+    name: "Colar com Pérola Barroca de Cultura Pandora",
+    category: "colares",
+    categoryName: "Colares",
+    collection: "Pandora Moments",
+    material: "prata-925",
+    materialLabel: "Prata 925 & Pérola",
+    badge: "Alta Joalharia",
+    description: "Pérola de cultura de água doce natural suspensa num pendente delicado em prata de lei 925 polida.",
+    specs: [
+      "Pérola: Pérola Natural de Cultura de Água Doce",
+      "Metal: Prata de Lei 925",
+      "Comprimento: 45cm regulável"
+    ],
+    imgPrimary: "assets/colares/colar-perola-cultura.jpg",
+    imgAlt: "assets/colares/colar-10.jpg"
   },
 
   // --------------------------------------------------------------------------
@@ -428,8 +669,8 @@ const CATALOG = [
       "Fecho: Espigão com Tarracha Anatómica",
       "Dimensões: 6mm x 6mm"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/brincos/brinco-1.jpg",
+    imgAlt: "assets/brincos/brinco-1.jpg"
   },
   {
     id: 402,
@@ -446,8 +687,8 @@ const CATALOG = [
       "Metal: Revestimento de Ouro Rosa 14k",
       "Fecho: Click Invisível com Mola Segura"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/brincos/brinco-2.jpg",
+    imgAlt: "assets/brincos/brinco-2.jpg"
   },
   {
     id: 403,
@@ -464,8 +705,8 @@ const CATALOG = [
       "Metal: Prata 925",
       "Estilo: Círculos Entrelaçados"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/brincos/brinco-3.jpg",
+    imgAlt: "assets/brincos/brinco-3.jpg"
   },
   {
     id: 404,
@@ -482,8 +723,116 @@ const CATALOG = [
       "Metal: Prata de Lei 925",
       "Comprimento Total: 28mm"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/brincos/brinco-4.jpg",
+    imgAlt: "assets/brincos/brinco-4.jpg"
+  },
+  {
+    id: 405,
+    name: "Brincos de Argola Infinito Pandora Moments",
+    category: "brincos",
+    categoryName: "Brincos",
+    collection: "Pandora Moments",
+    material: "prata-925",
+    materialLabel: "Prata de Lei 925",
+    badge: "Amor Eterno",
+    description: "Argolas assimétricas com o formato do símbolo infinito esculpido em prata de lei 925 polida com fecho articulado seguro.",
+    specs: [
+      "Símbolo: Nó do Infinito",
+      "Metal: Prata de Lei 925",
+      "Fecho: Articulado Seguro"
+    ],
+    imgPrimary: "assets/brincos/brinco-5.jpg",
+    imgAlt: "assets/brincos/brinco-5.jpg"
+  },
+  {
+    id: 406,
+    name: "Brincos de Espigão Ponto de Luz Solitário",
+    category: "brincos",
+    categoryName: "Brincos",
+    collection: "Pandora Timeless",
+    material: "cristais",
+    materialLabel: "Prata 925 & Zircónias",
+    badge: "Brilho Puro",
+    description: "Clássicos brincos solitários com cravação em 4 garras segurando zircónias cúbicas de lapidação brilhante.",
+    specs: [
+      "Pedra: Zircónia Cúbica Lapidação Redonda",
+      "Metal: Prata de Lei 925",
+      "Fecho: Espigão com Tarracha"
+    ],
+    imgPrimary: "assets/brincos/brinco-6.jpg",
+    imgAlt: "assets/brincos/brinco-6.jpg"
+  },
+  {
+    id: 407,
+    name: "Brincos de Argola Pequena com Pavé em Prata 925",
+    category: "brincos",
+    categoryName: "Brincos",
+    collection: "Pandora Timeless",
+    material: "prata-925",
+    materialLabel: "Prata de Lei 925",
+    badge: "Delicado",
+    description: "Argolas compactas huggie com fileira frontal de micro zircónias cravadas em pavé, ideais para o dia a dia ou segundo furo.",
+    specs: [
+      "Diâmetro: 11mm",
+      "Metal: Prata de Lei 925",
+      "Pedras: Micro Pavé de Zircónias"
+    ],
+    imgPrimary: "assets/brincos/brinco-7.jpg",
+    imgAlt: "assets/brincos/brinco-7.jpg"
+  },
+  {
+    id: 408,
+    name: "Brincos Pendentes Halo Redondo Timeless",
+    category: "brincos",
+    categoryName: "Brincos",
+    collection: "Pandora Timeless",
+    material: "cristais",
+    materialLabel: "Prata 925 & Zircónias",
+    badge: "Elegância Clássica",
+    description: "Pendente circular de zircónia facetada envolvida por auréola brilhante em base de prata de lei 925.",
+    specs: [
+      "Lapidação: Brilliant Cut com Halo",
+      "Metal: Prata de Lei 925",
+      "Fecho: Gancho com Trava"
+    ],
+    imgPrimary: "assets/brincos/brinco-8.jpg",
+    imgAlt: "assets/brincos/brinco-8.jpg"
+  },
+  {
+    id: 409,
+    name: "Brincos de Espigão Nó do Infinito em Prata",
+    category: "brincos",
+    categoryName: "Brincos",
+    collection: "Pandora Moments",
+    material: "prata-925",
+    materialLabel: "Prata de Lei 925",
+    badge: "Símbolos",
+    description: "Design moderno em espigão com entrelaçamento do infinito em prata polida, simbolizando conexão e afeto.",
+    specs: [
+      "Símbolo: Nó do Infinito",
+      "Metal: Prata de Lei 925",
+      "Dimensões: 7mm x 4mm"
+    ],
+    imgPrimary: "assets/brincos/brinco-9.jpg",
+    imgAlt: "assets/brincos/brinco-9.jpg"
+  },
+  {
+    id: 410,
+    name: "Brincos de Argola com Revestimento em Ouro 14k",
+    category: "brincos",
+    categoryName: "Brincos",
+    collection: "Pandora Moments",
+    material: "ouro-amarelo",
+    materialLabel: "Revestimento de Ouro 14k",
+    badge: "Ouro Radiante",
+    description: "Argolas clássicas e elegantes com acabamento espelhado em revestimento de ouro 14k de alta durabilidade.",
+    specs: [
+      "Metal: Revestimento de Ouro 14k",
+      "Diâmetro: 16mm",
+      "Fecho: Click Articulado"
+    ],
+    imgPrimary: "assets/brincos/brinco-10.jpg",
+    imgAlt: "assets/brincos/brinco-10.jpg"
   },
 
   // --------------------------------------------------------------------------
@@ -505,8 +854,8 @@ const CATALOG = [
       "Função: Pendente Divisível em 2 Peças",
       "Compatibilidade: Pulseiras e colares Moments"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pingentes/pingente-coracao-mae.jpg",
+    imgAlt: "assets/pingentes/pingente-1.jpg"
   },
   {
     id: 502,
@@ -523,8 +872,8 @@ const CATALOG = [
       "Núcleo: Prata de Lei 925",
       "Efeito: Reflexos Iridiscentes em Tom Rosa"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pingentes/pingente-murano-rosa.jpg",
+    imgAlt: "assets/pingentes/pingente-2.jpg"
   },
   {
     id: 503,
@@ -541,8 +890,8 @@ const CATALOG = [
       "Metal: Prata de Lei 925 e Ouro Rosa 14k",
       "Gravação: 'Love is the Key'"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pingentes/pingente-cadeado-chave.jpg",
+    imgAlt: "assets/pingentes/pingente-3.jpg"
   },
   {
     id: 504,
@@ -559,8 +908,8 @@ const CATALOG = [
       "Pedras: Cristais Lapidados em Tons Oceano e Celeste",
       "Metal: Prata de Lei 925"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pingentes/pingente-separador-azul.jpg",
+    imgAlt: "assets/pingentes/pingente-4.jpg"
   },
   {
     id: 505,
@@ -577,8 +926,8 @@ const CATALOG = [
       "Metal: Ouro Rosa 14k",
       "Pedras: Zircónias Verdes e Transparentes"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pingentes/pingente-trevo-sorte.jpg",
+    imgAlt: "assets/pingentes/pingente-5.jpg"
   },
   {
     id: 506,
@@ -595,8 +944,80 @@ const CATALOG = [
       "Metal: Prata 925 e Esmalte Vermelho",
       "Gravação: Símbolo Disney"
     ],
-    imgPrimary: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop",
-    imgAlt: "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=800&auto=format&fit=crop"
+    imgPrimary: "assets/pingentes/pingente-disney-mickey.jpg",
+    imgAlt: "assets/pingentes/pingente-6.jpg"
+  },
+  {
+    id: 507,
+    name: "Conta Pendente Asas de Anjo e Coração de Proteção",
+    category: "pingentes",
+    categoryName: "Pingentes",
+    collection: "Pandora Moments",
+    material: "prata-925",
+    materialLabel: "Prata de Lei 925",
+    badge: "Proteção & Fé",
+    description: "Asas de anjo esculpidas em prata de lei 925 abraçando um coração central cravado com pavé de zircónias cintilantes.",
+    specs: [
+      "Símbolo: Asas de Anjo e Coração",
+      "Metal: Prata de Lei 925",
+      "Pedras: Zircónias Cúbicas Micro Pavé"
+    ],
+    imgPrimary: "assets/pingentes/pingente-asas-anjo.jpg",
+    imgAlt: "assets/pingentes/pingente-7.jpg"
+  },
+  {
+    id: 508,
+    name: "Conta Esfera Rendada Árvore da Vida em Prata",
+    category: "pingentes",
+    categoryName: "Pingentes",
+    collection: "Pandora Moments",
+    material: "prata-925",
+    materialLabel: "Prata de Lei 925",
+    badge: "Família & Raízes",
+    description: "Conta esférica aberta com padrão rendado de ramos e folhas da árvore genealógica em filigrana de prata polida.",
+    specs: [
+      "Símbolo: Árvore da Vida e Genealogia",
+      "Metal: Prata de Lei 925",
+      "Design: Vazado Rendado"
+    ],
+    imgPrimary: "assets/pingentes/pingente-arvore-vida.jpg",
+    imgAlt: "assets/pingentes/pingente-8.jpg"
+  },
+  {
+    id: 509,
+    name: "Conta Pendente Coroa Real Princesa em Ouro Rosa",
+    category: "pingentes",
+    categoryName: "Pingentes",
+    collection: "Pandora Moments",
+    material: "ouro-rose",
+    materialLabel: "Ouro Rosa 14k & Cristais",
+    badge: "Real & Nobre",
+    description: "Coroa majestosa esculpida com revestimento a ouro rosa 14k e detalhes em zircónias na base e pontas.",
+    specs: [
+      "Símbolo: Coroa Real de Princesa",
+      "Metal: Revestimento de Ouro Rosa 14k",
+      "Pedras: Zircónias Cúbicas Facetadas"
+    ],
+    imgPrimary: "assets/pingentes/pingente-coroa-real.jpg",
+    imgAlt: "assets/pingentes/pingente-9.jpg"
+  },
+  {
+    id: 510,
+    name: "Conta Sol & Lua Crescente com Zircónias Azuis",
+    category: "pingentes",
+    categoryName: "Pingentes",
+    collection: "Pandora Moments",
+    material: "cristais",
+    materialLabel: "Prata 925 & Cristais",
+    badge: "Místico & Céu",
+    description: "Conta dupla articulada com sol radiante em relevo e lua crescente cravada com pedras azuis e gravura 'You are my sunshine'.",
+    specs: [
+      "Símbolo: Sol e Lua Crescente",
+      "Metal: Prata de Lei 925",
+      "Gravação: 'You are my sunshine'"
+    ],
+    imgPrimary: "assets/pingentes/pingente-sol-lua.jpg",
+    imgAlt: "assets/pingentes/pingente-10.jpg"
   }
 ];
 
@@ -750,8 +1171,8 @@ function renderCategoryView() {
             </svg>
           </button>
           
-          <img src="${product.imgPrimary}" alt="${product.name}" class="product-img primary-img" loading="lazy">
-          <img src="${product.imgAlt}" alt="${product.name}" class="product-img alt-img" loading="lazy">
+          <img src="${product.imgPrimary}" alt="${product.name}" class="product-img primary-img" loading="lazy" onerror="handleImgError(this)">
+          <img src="${product.imgAlt}" alt="${product.name}" class="product-img alt-img" loading="lazy" onerror="handleImgError(this)">
           
           <button class="product-quick-view-btn" onclick="openQuickView(${product.id})">
             Espiar Detalhes
@@ -762,6 +1183,7 @@ function renderCategoryView() {
           <span class="product-cat-tag">${product.collection} &bull; ${product.materialLabel}</span>
           <h3 class="product-title" onclick="openQuickView(${product.id})">${product.name}</h3>
           <p class="product-material-text">${product.specs[0] || ''}</p>
+          ${product.price ? `<p class="product-price">${product.price.toLocaleString('pt-MZ')} MT</p>` : ''}
 
           <div class="product-card-actions">
             <button class="product-whatsapp-btn" onclick="buyProductViaWhatsApp(${product.id})" title="Finalizar compra no WhatsApp">
@@ -806,7 +1228,7 @@ function setupSearch() {
         <div class="search-results-header">Produtos Pandora Encontrados (${matches.length})</div>
         ${matches.map(p => `
           <div class="search-item" onclick="openQuickView(${p.id}); document.getElementById('search-dropdown').classList.remove('active');">
-            <img src="${p.imgPrimary}" alt="${p.name}">
+            <img src="${p.imgPrimary}" alt="${p.name}" onerror="handleImgError(this)">
             <div class="search-item-info">
               <div class="search-item-title">${p.name}</div>
               <div class="search-item-cat">${p.collection} &bull; ${p.categoryName}</div>
@@ -844,11 +1266,12 @@ function openQuickView(productId) {
   content.innerHTML = `
     <div class="quick-view-grid">
       <div>
-        <img src="${product.imgPrimary}" alt="${product.name}" class="qv-img">
+        <img src="${product.imgPrimary}" alt="${product.name}" class="qv-img" onerror="handleImgError(this)">
       </div>
       <div class="qv-details">
         <span class="qv-tag">${product.collection} &bull; ${product.badge}</span>
         <h2 class="qv-title">${product.name}</h2>
+        ${product.price ? `<p class="qv-price">${product.price.toLocaleString('pt-MZ')} MT</p>` : ''}
         <p class="qv-desc">${product.description}</p>
         
         <div class="qv-specs">
@@ -1015,7 +1438,7 @@ function renderWishlistItems() {
 
   body.innerHTML = favs.map(product => `
     <div class="drawer-item">
-      <img src="${product.imgPrimary}" alt="${product.name}">
+      <img src="${product.imgPrimary}" alt="${product.name}" onerror="handleImgError(this)">
       <div class="drawer-item-info">
         <h4 class="drawer-item-title">${product.name}</h4>
         <span class="drawer-item-meta">${product.categoryName} &bull; ${product.materialLabel}</span>
@@ -1092,6 +1515,11 @@ function setupStoryScroll() {
     if (counterEl) counterEl.textContent = `0${idx + 1} / 0${scenes.length}`;
     if (trackFill) trackFill.style.top = `${(idx / (scenes.length - 1)) * 80}%`;
   }
+
+  // Click nos botões de navegação lateral
+  vDots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => goToScene(idx));
+  });
 
   // Listener de Scroll da Roda do Mouse
   window.addEventListener('wheel', (e) => {
@@ -1181,7 +1609,7 @@ function handleMobileSearch(query) {
 
   results.innerHTML = matches.map(p => `
     <div class="search-item" onclick="closeMobileSearch(); showCategoryPage('${p.category}');" style="padding:12px 16px;">
-      <img src="${p.imgPrimary}" alt="${p.name}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;">
+      <img src="${p.imgPrimary}" alt="${p.name}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;" onerror="handleImgError(this)">
       <div class="search-item-info">
         <div class="search-item-title">${p.name}</div>
         <div class="search-item-cat">${p.categoryName} &bull; ${p.collection}</div>

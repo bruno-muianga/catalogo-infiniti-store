@@ -1,0 +1,78 @@
+====================================================================
+💎 INFINITY STORE — GUIA RÁPIDO PARA ADICIONAR FOTOS NO SITE
+====================================================================
+
+Todas as pastas para você colocar as fotos já foram criadas:
+
+📁 Fotos - Pulseiras/  (ou assets/pulseiras/ ou pulseiras/)
+📁 Fotos - Aneis/      (ou assets/aneis/ ou aneis/)
+📁 Fotos - Colares/    (ou assets/colares/ ou colares/)
+📁 Fotos - Pingentes/  (ou assets/pingentes/ ou pingentes/)
+📁 Fotos - Brincos/    (ou assets/brincos/ ou brincos/)
+
+COMO FUNCIONA:
+1. Abra qualquer uma das pastas acima no seu computador.
+2. Cada pasta já contém fotos reais funcionando no site.
+3. Para colocar a sua própria foto de um produto, basta copiar a sua foto 
+   para dentro da pasta correspondente com o mesmo nome do arquivo 
+   (por exemplo: pulseira-1.jpg ou pulseira-studded.jpg).
+   Também pode rodar "python3 sync_photos.py" para associar fotos novas automaticamente!
+4. Assim que você colocar a foto na pasta, abra ou atualize o site no navegador 
+   (F5 ou Cmd+R) e a sua foto aparecerá na hora!
+
+NOMES DOS ARQUIVOS:
+
+--- 🌟 PULSEIRAS (Pasta: Fotos - Pulseiras) ---
+- pulseira-studded.jpg              (ou pulseira-1.jpg)
+- pulseira-infinity-knots.jpg       (ou pulseira-2.jpg)
+- pulseira-coracao-pedra-tripla.jpg (ou pulseira-3.jpg)
+- pulseira-ouro-fecho-coracao.jpg   (ou pulseira-4.jpg)
+- pulseira-corrente-caixa.jpg       (ou pulseira-5.jpg)
+- pulseira-couro-trancado.jpg       (ou pulseira-6.jpg)
+- pulseira-borboleta-azul.jpg       (ou pulseira-7.jpg)
+- pulseira-coroa-signature.jpg      (ou pulseira-8.jpg)
+- pulseira-moments-fecho-coracao.jpg(ou pulseira-9.jpg)
+- bracelete-rigido-barril.jpg       (ou pulseira-10.jpg)
+- pulseira-ouro-rosa.jpg            (ou pulseira-11.jpg)
+- pulseira-elos-pandora-me.jpg      (ou pulseira-12.jpg)
+
+--- 💍 ANÉIS (Pasta: Fotos - Aneis) ---
+- anel-coracao-rosa.jpg       (ou anel-1.jpg)
+- anel-coracao-rosa-pave.jpg  (ou anel-2.jpg)
+- anel-coracao-azul.jpg       (ou anel-3.jpg)
+- anel-sol-lua.jpg            (ou anel-4.jpg)
+- anel-floco-neve.jpg         (ou anel-5.jpg)
+- anel-tiara-princesa.jpg     (ou anel-6.jpg)
+- anel-solitario-rosa.jpg     (ou anel-7.jpg)
+- anel-onda-pave.jpg          (ou anel-8.jpg)
+- anel-infinito.jpg           (ou anel-9.jpg)
+- anel-tres-aros.jpg          (ou anel-10.jpg)
+
+--- 📿 COLARES (Pasta: Fotos - Colares) ---
+- colar-circulo-pave.jpg      (ou colar-1.jpg)
+- colar-ponto-de-luz.jpg      (ou colar-2.jpg)
+- colar-arvore-familia.jpg    (ou colar-3.jpg)
+- colar-halo-quadrado.jpg     (ou colar-4.jpg)
+- colar-coracao-elevado.jpg   (ou colar-5.jpg)
+- colar-infinito.jpg          (ou colar-6.jpg)
+- colar-circulo-ouro-rose.jpg (ou colar-7.jpg)
+- colar-elos-pandora-me.jpg   (ou colar-8.jpg)
+- colar-gota-radiante.jpg     (ou colar-9.jpg)
+- colar-perola-cultura.jpg    (ou colar-10.jpg)
+
+--- ✨ PINGENTES (Pasta: Fotos - Pingentes) ---
+- pingente-coracao-mae.jpg    (ou pingente-1.jpg)
+- pingente-murano-rosa.jpg    (ou pingente-2.jpg)
+- pingente-cadeado-chave.jpg  (ou pingente-3.jpg)
+- pingente-separador-azul.jpg (ou pingente-4.jpg)
+- pingente-trevo-sorte.jpg    (ou pingente-5.jpg)
+- pingente-disney-mickey.jpg  (ou pingente-6.jpg)
+
+--- 💎 BRINCOS (Pasta: Fotos - Brincos) ---
+- brinco-1.jpg (Brincos Coração Brilhante)
+- brinco-2.jpg (Brincos Argola Pavé Ouro Rosa)
+- brinco-3.jpg (Brincos Argola Dupla Signature)
+- brinco-4.jpg (Brincos Pendentes Gota Radiante)
+
+Formatos suportados: .jpg, .png, .jpeg, .webp.
+====================================================================

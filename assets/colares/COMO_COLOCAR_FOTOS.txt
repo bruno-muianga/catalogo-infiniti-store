@@ -1,0 +1,41 @@
+====================================================================
+💎 INFINITY STORE — COMO COLOCAR FOTOS DE COLARES
+====================================================================
+
+Basta colar suas fotos nesta pasta com qualquer um dos nomes abaixo:
+
+1. Colar Círculo Pavé:
+   Nome: colar-circulo-pave.jpg  (ou colar-1.jpg)
+
+2. Colar Ponto de Luz Solitário:
+   Nome: colar-ponto-de-luz.jpg  (ou colar-2.jpg)
+
+3. Colar Árvore da Família:
+   Nome: colar-arvore-familia.jpg  (ou colar-3.jpg)
+
+4. Colar Halo Quadrado Brilhante:
+   Nome: colar-halo-quadrado.jpg  (ou colar-4.jpg)
+
+5. Colar Coração Elevado:
+   Nome: colar-coracao-elevado.jpg  (ou colar-5.jpg)
+
+6. Colar Pendente Infinito:
+   Nome: colar-infinito.jpg  (ou colar-6.jpg)
+
+7. Colar Pavé em Ouro Rosa:
+   Nome: colar-circulo-ouro-rose.jpg  (ou colar-7.jpg)
+
+8. Colar Corrente de Elos Pandora ME:
+   Nome: colar-elos-pandora-me.jpg  (ou colar-8.jpg)
+
+9. Colar Gota Radiante:
+   Nome: colar-gota-radiante.jpg  (ou colar-9.jpg)
+
+10. Colar Pérola Barroca:
+    Nome: colar-perola-cultura.jpg  (ou colar-10.jpg)
+
+Formatos aceitos: .jpg, .png, .jpeg, .webp
+
+Dica: Se colar fotos com outros nomes (como fotos do WhatsApp), basta rodar:
+python3 sync_photos.py
+====================================================================

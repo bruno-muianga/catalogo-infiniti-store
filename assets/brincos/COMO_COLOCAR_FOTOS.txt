@@ -1,0 +1,23 @@
+====================================================================
+💎 INFINITY STORE — COMO COLOCAR FOTOS DE BRINCOS
+====================================================================
+
+Basta colar suas fotos nesta pasta com qualquer um dos nomes abaixo:
+
+1. Brincos de Espigão Coração Brilhante:
+   Nome: brinco-1.jpg
+
+2. Brincos de Argola Pavé em Ouro Rosa:
+   Nome: brinco-2.jpg
+
+3. Brincos de Argola Dupla Pandora Signature:
+   Nome: brinco-3.jpg
+
+4. Brincos Pendentes Gota Radiante:
+   Nome: brinco-4.jpg
+
+Formatos aceitos: .jpg, .png, .jpeg, .webp
+
+Dica: Se você colocar uma nova foto nesta pasta com o nome correspondente,
+basta recarregar a página do catálogo (F5) para ver a foto no site!
+====================================================================

@@ -1,0 +1,46 @@
+====================================================================
+💎 INFINITY STORE — PASTA DE FOTOS: ANÉIS
+====================================================================
+
+Como colocar as fotos para aparecerem no site:
+Basta colar a sua foto aqui dentro desta pasta substituindo o arquivo 
+correspondente, ou salvar a foto com qualquer um dos nomes abaixo:
+
+ANÉIS DISPONÍVEIS NO SITE:
+--------------------------------------------------------------------
+1. Anel Coração Elevado Rosa Pandora Timeless
+   Nome do arquivo: anel-coracao-rosa.jpg  (ou: anel-1.jpg)
+
+2. Anel Coração Elevado Rosa Pavê Pandora Timeless
+   Nome do arquivo: anel-coracao-rosa-pave.jpg  (ou: anel-2.jpg)
+
+3. Anel Coração Elevado Azul Pandora Timeless
+   Nome do arquivo: anel-coracao-azul.jpg  (ou: anel-3.jpg)
+
+4. Anel Sol & Lua Bicolor Pandora Celestial
+   Nome do arquivo: anel-sol-lua.jpg  (ou: anel-4.jpg)
+
+5. Anel Floco de Neve Cintilante Pandora Sparkling
+   Nome do arquivo: anel-floco-neve.jpg  (ou: anel-5.jpg)
+
+6. Anel Coroa Tiara de Princesa Brilhante
+   Nome do arquivo: anel-tiara-princesa.jpg  (ou: anel-6.jpg)
+
+7. Anel Solitário Rosa Radiante Pandora Timeless
+   Nome do arquivo: anel-solitario-rosa.jpg  (ou: anel-7.jpg)
+
+8. Anel Onda Polida e Pavé Pandora
+   Nome do arquivo: anel-onda-pave.jpg  (ou: anel-8.jpg)
+
+9. Anel Infinito Entrelaçado Pandora
+   Nome do arquivo: anel-infinito.jpg  (ou: anel-9.jpg)
+
+10. Aliança Três Aros Entrelaçados Pandora Crossover
+    Nome do arquivo: anel-tres-aros.jpg  (ou: anel-10.jpg)
+
+--------------------------------------------------------------------
+💡 DICA:
+- Formatos aceitos: .jpg, .jpeg, .png, .webp
+- Para trocar a foto de um anel, basta substituir o arquivo com o mesmo nome!
+- As fotos já aparecem instantaneamente no site!
+====================================================================

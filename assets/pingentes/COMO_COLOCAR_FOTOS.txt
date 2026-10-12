@@ -1,0 +1,34 @@
+====================================================================
+💎 INFINITY STORE — PASTA DE FOTOS: PINGENTES & CONTAS
+====================================================================
+
+Como colocar as fotos para aparecerem no site:
+Basta colar a sua foto aqui dentro desta pasta substituindo o arquivo 
+correspondente, ou salvar a foto com qualquer um dos nomes abaixo:
+
+PINGENTES DISPONÍVEIS NO SITE:
+--------------------------------------------------------------------
+1. Conta Pendente Coração Divisível Amor de Mãe
+   Nome do arquivo: pingente-coracao-mae.jpg  (ou: pingente-1.jpg)
+
+2. Conta em Vidro Murano Rosa Radiante Pandora
+   Nome do arquivo: pingente-murano-rosa.jpg  (ou: pingente-2.jpg)
+
+3. Conta Pendente Cadeado e Chave de Amor Pandora
+   Nome do arquivo: pingente-cadeado-chave.jpg  (ou: pingente-3.jpg)
+
+4. Conta Separadora Pavé de Cristais Azuis Celestiais
+   Nome do arquivo: pingente-separador-azul.jpg  (ou: pingente-4.jpg)
+
+5. Conta Pendente Trevo de Quatro Folhas da Sorte
+   Nome do arquivo: pingente-trevo-sorte.jpg  (ou: pingente-5.jpg)
+
+6. Conta Disney Mickey & Minnie Abraço de Amor
+   Nome do arquivo: pingente-disney-mickey.jpg  (ou: pingente-6.jpg)
+
+--------------------------------------------------------------------
+💡 DICA:
+- Formatos aceitos: .jpg, .jpeg, .png, .webp
+- Para trocar a foto de um pingente, basta substituir o arquivo com o mesmo nome!
+- As fotos já aparecem instantaneamente no site!
+====================================================================
