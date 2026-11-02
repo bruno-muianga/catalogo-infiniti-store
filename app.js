@@ -1813,6 +1813,7 @@ function refreshCatalogUI() {
   if (STATE.activeView === 'category' && STATE.currentCategory) {
     renderCategoryView();
   }
+  renderHomeCatalogGrid();
   refreshCarouselScenes();
   updateWishlistBadges();
   updateCartBadges();
@@ -1914,6 +1915,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateWishlistBadges();
   updateCartBadges();
   refreshCarouselScenes();
+  renderHomeCatalogGrid();
   updateAdminUIVisibility(); // Aplica visibilidade dos elementos de admin
 });
 
@@ -2061,6 +2063,209 @@ function renderCategoryView() {
 
   // Garante que elementos de admin são exibidos/ocultos de acordo com o estado de autenticação
   updateAdminUIVisibility();
+}
+
+// ==========================================================================
+// 4.1. VITRINE DE TODOS OS PRODUTOS NA PÁGINA PRINCIPAL
+// ==========================================================================
+
+let homeCatalogFilter = 'all';
+let homeCatalogSearch = '';
+let homeCatalogSort = 'featured';
+
+const CATEGORY_NAMES = {
+  pulseiras: "Pulseiras",
+  aneis: "Anéis",
+  colares: "Colares",
+  brincos: "Brincos",
+  pingentes: "Pingentes"
+};
+
+function renderHomeCatalogGrid() {
+  const grid = document.getElementById('home-products-grid');
+  if (!grid) return;
+
+  let items = [...CATALOG];
+
+  // 1. Filtro por categoria
+  if (homeCatalogFilter !== 'all') {
+    items = items.filter(p => p.category === homeCatalogFilter);
+  }
+
+  // 2. Filtro por busca de texto
+  const q = homeCatalogSearch.trim().toLowerCase();
+  if (q.length > 0) {
+    items = items.filter(p => 
+      (p.name && p.name.toLowerCase().includes(q)) ||
+      (p.collection && p.collection.toLowerCase().includes(q)) ||
+      (p.materialLabel && p.materialLabel.toLowerCase().includes(q)) ||
+      (p.description && p.description.toLowerCase().includes(q)) ||
+      String(p.id).includes(q)
+    );
+  }
+
+  // 3. Ordenação
+  if (homeCatalogSort === 'price-asc') {
+    items.sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
+  } else if (homeCatalogSort === 'price-desc') {
+    items.sort((a, b) => (Number(b.price) || 0) - (Number(a.price) || 0));
+  } else if (homeCatalogSort === 'name-asc') {
+    items.sort((a, b) => (a.name || '').localeCompare(b.name || '', 'pt'));
+  }
+  // 'featured' mantém a ordem do catálogo (novos adicionados no topo!)
+
+  // 4. Atualiza os contadores nas abas
+  updateHomeCategoryCounts();
+
+  // 5. Atualiza o texto de status
+  const statusEl = document.getElementById('home-catalog-status-text');
+  if (statusEl) {
+    const catLabel = homeCatalogFilter === 'all' ? 'todas as peças' : (CATEGORY_NAMES[homeCatalogFilter] || homeCatalogFilter);
+    statusEl.textContent = `Mostrando ${items.length} ${items.length === 1 ? 'joia' : 'joias'} em ${catLabel}${q ? ` para "${homeCatalogSearch}"` : ''}`;
+  }
+
+  // Card para adicionar joia rápida (modo admin)
+  const addNewCardHtml = `
+    <article class="product-card add-new-product-card admin-only-element" onclick="openProductEditor(null, event, homeCatalogFilter === 'all' ? 'pulseiras' : homeCatalogFilter)">
+      <div class="add-card-inner">
+        <div class="add-card-icon-wrap">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </div>
+        <h3 class="add-card-title">+ Adicionar Joia</h3>
+        <p class="add-card-desc">Coloque foto e preço de uma nova peça para aparecer agora mesmo no site.</p>
+        <span class="catalog-btn-secondary" style="pointer-events: none; padding: 6px 14px; font-size: 0.75rem;">+ Adicionar Peça</span>
+      </div>
+    </article>
+  `;
+
+  if (items.length === 0) {
+    grid.innerHTML = addNewCardHtml + `
+      <div class="home-catalog-empty" style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; color: var(--color-text-muted);">
+        <p style="font-size: 1.1rem; margin-bottom: 12px;">Nenhuma joia encontrada com estes filtros.</p>
+        <button class="btn-luxury btn-luxury-outline btn-sm" onclick="clearHomeCatalogSearch(); filterHomeCatalog('all')">Limpar Filtros e Ver Todas</button>
+      </div>
+    `;
+    updateAdminUIVisibility();
+    return;
+  }
+
+  grid.innerHTML = addNewCardHtml + items.map(product => {
+    const isFav = STATE.wishlist.includes(product.id);
+    const altPhoto = product.imgAlt || product.imgPrimary;
+    const priceText = product.price && Number(product.price) > 0 
+      ? `${Number(product.price).toLocaleString('pt-MZ')} MT` 
+      : 'Preço sob consulta';
+
+    return `
+      <article class="product-card" data-id="${product.id}">
+        <div class="product-media">
+          <span class="product-badge">${product.badge || 'Exclusivo'}</span>
+
+          <button class="product-edit-btn admin-only-element" onclick="openProductEditor(${product.id}, event)" title="Modificar foto e preço desta peça" aria-label="Editar">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20h9"></path>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+            </svg>
+            <span>📷 Mudar Foto / Preço</span>
+          </button>
+
+          <button class="product-wishlist-btn ${isFav ? 'active' : ''}" onclick="toggleWishlist(${product.id})" aria-label="Favoritar">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.8">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </button>
+          
+          <img src="${product.imgPrimary}" alt="${product.name}" class="product-img primary-img" loading="lazy" onerror="handleImgError(this)" onclick="openQuickView(${product.id})">
+          <img src="${altPhoto}" alt="${product.name}" class="product-img alt-img" loading="lazy" onerror="handleImgError(this)" onclick="openQuickView(${product.id})">
+          
+          <button class="product-quick-view-btn" onclick="openQuickView(${product.id})">
+            Espiar Detalhes
+          </button>
+        </div>
+
+        <div class="product-info">
+          <span class="product-cat-tag">${product.collection || 'Pandora Moments'} &bull; ${CATEGORY_NAMES[product.category] || product.category}</span>
+          <h3 class="product-title" onclick="openQuickView(${product.id})">${product.name}</h3>
+          <p class="product-material-text">${(product.specs && product.specs[0]) || product.materialLabel || 'Prata de Lei 925'}</p>
+          <p class="product-price">${priceText}</p>
+
+          <div class="product-card-actions">
+            <button class="product-whatsapp-btn" onclick="buyProductViaWhatsApp(${product.id})" title="Finalizar compra no WhatsApp">
+              ${WHATSAPP_SVG_ICON}
+              <span>Comprar no WhatsApp</span>
+            </button>
+            <button class="product-bag-add-btn" onclick="addToBag(${product.id})" title="Adicionar à Sacola">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+
+  updateAdminUIVisibility();
+}
+
+function updateHomeCategoryCounts() {
+  const countAll = document.getElementById('count-all');
+  if (countAll) countAll.textContent = CATALOG.length;
+
+  ['pulseiras', 'aneis', 'colares', 'brincos', 'pingentes'].forEach(cat => {
+    const el = document.getElementById(`count-${cat}`);
+    if (el) {
+      el.textContent = CATALOG.filter(p => p.category === cat).length;
+    }
+  });
+}
+
+function filterHomeCatalog(cat) {
+  homeCatalogFilter = cat;
+  document.querySelectorAll('.home-pill-btn').forEach(btn => {
+    btn.classList.toggle('is-active', btn.getAttribute('data-filter') === cat);
+  });
+  renderHomeCatalogGrid();
+}
+
+function onHomeCatalogSearch(val) {
+  homeCatalogSearch = val || '';
+  const clearBtn = document.getElementById('home-search-clear');
+  if (clearBtn) clearBtn.style.display = homeCatalogSearch.length > 0 ? 'block' : 'none';
+  renderHomeCatalogGrid();
+}
+
+function clearHomeCatalogSearch() {
+  homeCatalogSearch = '';
+  const input = document.getElementById('home-catalog-search');
+  if (input) input.value = '';
+  const clearBtn = document.getElementById('home-search-clear');
+  if (clearBtn) clearBtn.style.display = 'none';
+  renderHomeCatalogGrid();
+}
+
+function onHomeCatalogSort(sortVal) {
+  homeCatalogSort = sortVal;
+  renderHomeCatalogGrid();
+}
+
+function scrollToHomeCatalog(category) {
+  if (STATE.activeView !== 'immersive') {
+    showImmersiveHome();
+  }
+  if (category) {
+    filterHomeCatalog(category);
+  }
+  setTimeout(() => {
+    const target = document.getElementById('home-all-products');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 60);
 }
 
 // 5. MOTOR DE BUSCA EM TEMPO REAL
@@ -2430,11 +2635,21 @@ function setupStoryScroll() {
   // Listener de Scroll da Roda do Mouse
   window.addEventListener('wheel', (e) => {
     if (STATE.activeView !== 'immersive') return;
-    e.preventDefault();
+    
+    // Se o usuário já rolou para baixo além do topo (na vitrine de produtos), permite rolagem normal!
+    if (window.scrollY > 50) return;
+
     if (e.deltaY > 25) {
-      goToScene(currentScene + 1);
+      if (currentScene < scenes.length - 1) {
+        e.preventDefault();
+        goToScene(currentScene + 1);
+      }
+      // Se já está na última cena e roda para baixo, deixa a rolagem fluir naturalmente para o catálogo!
     } else if (e.deltaY < -25) {
-      goToScene(currentScene - 1);
+      if (currentScene > 0 && window.scrollY <= 10) {
+        e.preventDefault();
+        goToScene(currentScene - 1);
+      }
     }
   }, { passive: false });
 
@@ -2450,11 +2665,16 @@ function setupStoryScroll() {
 
     swipeArea.addEventListener('touchend', (e) => {
       if (STATE.activeView !== 'immersive') return;
+      if (window.scrollY > 40) return; // Permite rolagem normal pelos produtos no celular
       touchEndY = e.changedTouches[0].screenY;
       const diff = touchStartY - touchEndY;
       if (Math.abs(diff) < 40) return;
       if (diff > 0) {
-        goToScene(currentScene + 1);
+        if (currentScene < scenes.length - 1) {
+          goToScene(currentScene + 1);
+        } else {
+          scrollToHomeCatalog();
+        }
       } else {
         goToScene(currentScene - 1);
       }
@@ -2576,6 +2796,15 @@ window.closeQuickView = closeQuickView;
 window.closeAllDrawers = closeAllDrawers;
 window.showCategoryPage = showCategoryPage;
 window.showToast = showToast;
+
+// Home Catalog Showcase
+window.renderHomeCatalogGrid = renderHomeCatalogGrid;
+window.filterHomeCatalog = filterHomeCatalog;
+window.onHomeCatalogSearch = onHomeCatalogSearch;
+window.clearHomeCatalogSearch = clearHomeCatalogSearch;
+window.onHomeCatalogSort = onHomeCatalogSort;
+window.scrollToHomeCatalog = scrollToHomeCatalog;
+window.updateHomeCategoryCounts = updateHomeCategoryCounts;
 
 
 // Auth functions

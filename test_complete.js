@@ -283,6 +283,25 @@ assert(document.getElementById('product-editor-modal').classList.contains('is-op
 closeAllDrawers();
 assert(!document.getElementById('product-editor-modal').classList.contains('is-open'), 'Editor fechado por closeAllDrawers');
 
+// ----- TESTE 13: Vitrine de Todos os Produtos na Página Principal -----
+print('\n--- Teste 13: Vitrine de Produtos na Home ---');
+var renderHomeCatalogGrid = window.renderHomeCatalogGrid;
+var filterHomeCatalog = window.filterHomeCatalog;
+var onHomeCatalogSearch = window.onHomeCatalogSearch;
+
+renderHomeCatalogGrid();
+var homeGrid = document.getElementById('home-products-grid');
+assert(homeGrid !== null, 'Grade da página principal existe');
+assert(homeGrid.innerHTML.length > 500, 'Grade da home preenchida com produtos');
+
+// ----- TESTE 14: Filtragem e Busca na Home -----
+print('\n--- Teste 14: Filtro e busca na home ---');
+filterHomeCatalog('colares');
+assert(homeGrid.innerHTML.indexOf('Colar') !== -1, 'Filtro por colares funciona');
+
+onHomeCatalogSearch('Diamante');
+assert(homeGrid.innerHTML.indexOf('Diamante') !== -1, 'Busca por texto na home funciona');
+
 // ----- RESULTADO FINAL -----
 print('\n========================================');
 print('  RESULTADO: ' + passed + ' passaram, ' + failed + ' falharam');

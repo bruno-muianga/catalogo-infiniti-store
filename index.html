@@ -121,6 +121,11 @@
         <nav class="nav-categories-bar" aria-label="Categorias de Joias">
           <ul class="nav-categories-list">
             <li>
+              <a href="#todas" class="nav-category-link" data-category="todas" onclick="scrollToHomeCatalog('all'); event.preventDefault();">
+                ✨ Todas as Joias
+              </a>
+            </li>
+            <li>
               <a href="#pulseiras" class="nav-category-link" data-category="pulseiras">
                 Pulseiras
               </a>
@@ -195,8 +200,8 @@
               <h1 class="carousel-title">Pulseira com Tachas <em>Pandora Moments</em></h1>
               <p class="carousel-subtitle">Inovadora corrente com tachas piramidais, textura marcante e fecho infinito de esfera cravada.</p>
               <div class="carousel-actions">
-                <button class="btn-luxury btn-luxury-primary" onclick="showCategoryPage('pulseiras')">Explorar Pulseiras</button>
-                <button class="btn-luxury btn-luxury-outline" onclick="openQuickView(101)">Ver Detalhes</button>
+                <button class="btn-luxury btn-luxury-primary" onclick="scrollToHomeCatalog('pulseiras')">Explorar Pulseiras</button>
+                <button class="btn-luxury btn-luxury-outline" onclick="scrollToHomeCatalog('all')">Ver Todas as Joias</button>
               </div>
             </div>
           </div>
@@ -214,8 +219,8 @@
               <h2 class="carousel-title">Colar Círculo Pavé <em>Pandora Timeless</em></h2>
               <p class="carousel-subtitle">Pendente circular de dupla face em Prata de Lei 925 com zircónias cintilantes e corrente ajustável.</p>
               <div class="carousel-actions">
-                <button class="btn-luxury btn-luxury-primary" onclick="showCategoryPage('colares')">Ver Coleção de Colares</button>
-                <button class="btn-luxury btn-luxury-outline" onclick="openQuickView(301)">Ver Detalhes</button>
+                <button class="btn-luxury btn-luxury-primary" onclick="scrollToHomeCatalog('colares')">Ver Coleção de Colares</button>
+                <button class="btn-luxury btn-luxury-outline" onclick="scrollToHomeCatalog('all')">Ver Todas as Joias</button>
               </div>
             </div>
           </div>
@@ -233,8 +238,8 @@
               <h2 class="carousel-title">Anel Coração Elevado <em>Pandora Timeless</em></h2>
               <p class="carousel-subtitle">Zircónia rosa em corte coração cercada por um halo cintilante de cristais e aro refinado.</p>
               <div class="carousel-actions">
-                <button class="btn-luxury btn-luxury-primary" onclick="showCategoryPage('aneis')">Ver Todos os Anéis</button>
-                <button class="btn-luxury btn-luxury-outline" onclick="openQuickView(206)">Ver Detalhes</button>
+                <button class="btn-luxury btn-luxury-primary" onclick="scrollToHomeCatalog('aneis')">Ver Todos os Anéis</button>
+                <button class="btn-luxury btn-luxury-outline" onclick="scrollToHomeCatalog('all')">Ver Todas as Joias</button>
               </div>
             </div>
           </div>
@@ -252,8 +257,8 @@
               <h2 class="carousel-title">Brincos Coração Brilhante <em>Pandora Timeless</em></h2>
               <p class="carousel-subtitle">Brincos de botão em formato de coração em prata de lei 925 com zircónia central e aro perolado delicado.</p>
               <div class="carousel-actions">
-                <button class="btn-luxury btn-luxury-primary" onclick="showCategoryPage('brincos')">Explorar Brincos</button>
-                <button class="btn-luxury btn-luxury-outline" onclick="openQuickView(401)">Ver Detalhes</button>
+                <button class="btn-luxury btn-luxury-primary" onclick="scrollToHomeCatalog('brincos')">Explorar Brincos</button>
+                <button class="btn-luxury btn-luxury-outline" onclick="scrollToHomeCatalog('all')">Ver Todas as Joias</button>
               </div>
             </div>
           </div>
@@ -271,8 +276,8 @@
               <h2 class="carousel-title">Pendente Divisível <em>Amor de Mãe</em></h2>
               <p class="carousel-subtitle">Dois pendentes em formato de coração em prata 925 com esmalte rosa translúcido e gravações comemorativas.</p>
               <div class="carousel-actions">
-                <button class="btn-luxury btn-luxury-primary" onclick="showCategoryPage('pingentes')">Ver Coleção de Pingentes</button>
-                <button class="btn-luxury btn-luxury-outline" onclick="openQuickView(501)">Ver Detalhes</button>
+                <button class="btn-luxury btn-luxury-primary" onclick="scrollToHomeCatalog('pingentes')">Ver Coleção de Pingentes</button>
+                <button class="btn-luxury btn-luxury-outline" onclick="scrollToHomeCatalog('all')">Ver Todas as Joias</button>
               </div>
             </div>
           </div>
@@ -280,6 +285,92 @@
       </section>
 
     </div>
+
+    <!-- Indicador de Rolagem no Hero -->
+    <div class="hero-scroll-indicator" onclick="scrollToHomeCatalog('all')" role="button" aria-label="Rolar para ver todos os produtos">
+      <span>Ver todas as joias da loja</span>
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+
+    <!-- ==========================================
+         SEÇÃO PRINCIPAL: TODOS OS PRODUTOS (VITRINE COMPLETA)
+         ========================================== -->
+    <section class="home-catalog-section container" id="home-all-products">
+      
+      <div class="home-catalog-header">
+        <div class="home-catalog-header-text">
+          <span class="home-catalog-eyebrow">✨ Coleção Completa &bull; Prata de Lei 925 &bull; Infinity Store</span>
+          <h2 class="home-catalog-title">Todas as Nossas Joias</h2>
+          <p class="home-catalog-subtitle">Explore todas as peças exclusivas da nossa loja. Fotos reais e preços em Meticais (MT). Escolha sua joia e peça diretamente pelo WhatsApp!</p>
+        </div>
+
+        <div class="home-catalog-header-actions">
+          <button class="btn-luxury btn-luxury-primary admin-only-element" onclick="quickAddProduct()" style="display: none;">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>+ Adicionar Joia</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Barra de Filtros por Categoria e Busca Rápida -->
+      <div class="home-catalog-controls">
+        <div class="home-cat-pills" role="tablist" aria-label="Filtro de Categorias">
+          <button class="home-pill-btn is-active" data-filter="all" onclick="filterHomeCatalog('all')">
+            <span>✨ Todas as Peças</span>
+            <span class="home-pill-count" id="count-all">52</span>
+          </button>
+          <button class="home-pill-btn" data-filter="pulseiras" onclick="filterHomeCatalog('pulseiras')">
+            <span>📿 Pulseiras</span>
+            <span class="home-pill-count" id="count-pulseiras">12</span>
+          </button>
+          <button class="home-pill-btn" data-filter="aneis" onclick="filterHomeCatalog('aneis')">
+            <span>💍 Anéis</span>
+            <span class="home-pill-count" id="count-aneis">10</span>
+          </button>
+          <button class="home-pill-btn" data-filter="colares" onclick="filterHomeCatalog('colares')">
+            <span>💎 Colares</span>
+            <span class="home-pill-count" id="count-colares">10</span>
+          </button>
+          <button class="home-pill-btn" data-filter="brincos" onclick="filterHomeCatalog('brincos')">
+            <span>✨ Brincos</span>
+            <span class="home-pill-count" id="count-brincos">10</span>
+          </button>
+          <button class="home-pill-btn" data-filter="pingentes" onclick="filterHomeCatalog('pingentes')">
+            <span>🌸 Pingentes</span>
+            <span class="home-pill-count" id="count-pingentes">10</span>
+          </button>
+        </div>
+
+        <div class="home-search-sort-bar">
+          <div class="home-search-input-wrap">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="home-catalog-search" placeholder="Buscar joia por nome, material ou código..." oninput="onHomeCatalogSearch(this.value)">
+            <button class="home-search-clear-btn" id="home-search-clear" onclick="clearHomeCatalogSearch()" style="display: none;" title="Limpar busca">&times;</button>
+          </div>
+
+          <div class="home-sort-wrap">
+            <label for="home-catalog-sort">Ordenar:</label>
+            <select id="home-catalog-sort" onchange="onHomeCatalogSort(this.value)">
+              <option value="featured">Destaques / Novos</option>
+              <option value="price-asc">Menor Preço (MT)</option>
+              <option value="price-desc">Maior Preço (MT)</option>
+              <option value="name-asc">Nome (A &rarr; Z)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumo da Busca / Filtro Ativo -->
+      <div class="home-catalog-status-bar">
+        <span id="home-catalog-status-text">Mostrando todas as joias</span>
+      </div>
+
+      <!-- Grade de Produtos Completa -->
+      <div class="products-catalog-grid" id="home-products-grid">
+        <!-- Preenchido dinamicamente via renderHomeCatalogGrid() -->
+      </div>
+
+    </section>
   </main>
 
   <!-- ==========================================
@@ -653,6 +744,12 @@
         <button class="mobile-bottom-nav-btn active" id="mob-nav-home" onclick="showImmersiveHome(); setMobileActiveNav('mob-nav-home')" aria-label="Início">
           <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
           Início
+        </button>
+      </li>
+      <li>
+        <button class="mobile-bottom-nav-btn" id="mob-nav-catalog" onclick="scrollToHomeCatalog('all'); setMobileActiveNav('mob-nav-catalog')" aria-label="Catálogo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          Catálogo
         </button>
       </li>
       <li>
