@@ -1768,3 +1768,1551 @@ input:focus-visible {
     height: 30px;
   }
 }
+
+/* ==========================================================================
+   PRODUCT EDIT & CATALOG MANAGEMENT STYLES
+   ========================================================================== */
+
+/* Banner Action Bar in Category View */
+.category-banner-header-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.category-banner-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Edit button on product cards */
+.product-card {
+  position: relative;
+}
+
+.product-edit-btn {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 9999px;
+  padding: 5px 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 4;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: all var(--transition-fast);
+}
+
+.product-edit-btn:hover {
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.product-edit-btn svg {
+  stroke-width: 2;
+}
+
+/* Modals: Editor & Manager */
+.editor-modal-card {
+  max-width: 960px;
+  padding: 36px;
+  background: #ffffff;
+}
+
+.manager-modal-card {
+  max-width: 1080px;
+  padding: 36px;
+  background: #ffffff;
+}
+
+.editor-header,
+.manager-header {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.editor-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  margin-bottom: 6px;
+}
+
+.editor-title {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.editor-subtitle {
+  font-size: 0.86rem;
+  color: var(--color-text-muted);
+  margin-top: 6px;
+}
+
+/* Form Grid */
+.editor-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 36px;
+  margin-bottom: 28px;
+}
+
+.editor-section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-primary);
+  margin-bottom: 16px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--color-bg-secondary);
+}
+
+/* Photo Preview Box & Dropzone */
+.photo-preview-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-secondary);
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.photo-preview-wrap-sm {
+  aspect-ratio: 16 / 10;
+  max-height: 130px;
+}
+
+.photo-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.photo-preview-wrap:hover .photo-preview-img {
+  transform: scale(1.03);
+}
+
+.photo-preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.photo-preview-wrap:hover .photo-preview-overlay {
+  opacity: 1;
+}
+
+.photo-upload-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.btn-sm {
+  padding: 8px 14px;
+  font-size: 0.72rem;
+}
+
+/* Form Inputs & Controls */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.editor-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.editor-sublabel {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+
+.editor-input,
+.editor-select,
+.editor-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: var(--color-text-primary);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.editor-input:focus,
+.editor-select:focus,
+.editor-textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.12);
+}
+
+.editor-textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* Price Styling & Chips */
+.price-form-group {
+  background: #fbf9f6;
+  border: 1px solid #ebd9c3;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.price-live-badge {
+  background: var(--color-accent);
+  color: #ffffff;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.price-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currency-prefix {
+  position: absolute;
+  left: 14px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-accent);
+}
+
+.price-input {
+  padding-left: 48px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.price-chips-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.price-chips-label {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.price-chip {
+  background: #ffffff;
+  border: 1px solid #dfd3c3;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.price-chip:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+}
+
+/* Modal Footers */
+.editor-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+  flex-wrap: wrap;
+}
+
+.editor-footer-left,
+.editor-footer-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-danger-subtle {
+  border-color: #f1cfcf;
+  color: #c93b3b;
+}
+
+.btn-danger-subtle:hover {
+  background: #fff5f5;
+  border-color: #c93b3b;
+  color: #c93b3b;
+}
+
+.btn-danger {
+  background: #c93b3b;
+  color: #ffffff;
+  border-color: #c93b3b;
+}
+
+.btn-danger:hover {
+  background: #a82e2e;
+}
+
+/* Manager Modal Specifics */
+.manager-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.manager-quick-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.manager-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.manager-stat-item {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  padding: 14px 18px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+.manager-toolbar {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.manager-search-box {
+  position: relative;
+  flex: 1;
+  min-width: 240px;
+  display: flex;
+  align-items: center;
+}
+
+.manager-search-box svg {
+  position: absolute;
+  left: 12px;
+  color: var(--color-text-muted);
+}
+
+.manager-search-box input {
+  width: 100%;
+  padding: 9px 14px 9px 36px;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.manager-filter-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.manager-pill {
+  padding: 6px 14px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.manager-pill.active,
+.manager-pill:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+}
+
+/* Items List in Manager */
+.manager-items-container {
+  max-height: 520px;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.manager-item-row {
+  display: grid;
+  grid-template-columns: 56px 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--transition-fast);
+}
+
+.manager-item-row:last-child {
+  border-bottom: none;
+}
+
+.manager-item-row:hover {
+  background: #fcfbf9;
+}
+
+.manager-item-thumb {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.manager-item-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.manager-item-name {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.manager-item-sub {
+  font-size: 0.74rem;
+  color: var(--color-text-muted);
+}
+
+.manager-item-badges {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.badge-pill-custom {
+  background: #eef7ee;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+  font-size: 0.68rem;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.manager-item-price-col {
+  text-align: right;
+  min-width: 110px;
+}
+
+.manager-price-display {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-accent);
+}
+
+.manager-item-actions {
+  display: flex;
+  gap: 6px;
+}
+
+/* Bag Total & Price in Drawer */
+.drawer-item-price {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-top: 4px;
+}
+
+.bag-total-summary {
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--color-bg-secondary);
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+}
+
+.bag-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+}
+
+.bag-total-row strong {
+  font-size: 1.15rem;
+  color: var(--color-accent);
+  font-family: var(--font-serif);
+}
+
+/* Responsive Manager & Editor */
+@media (max-width: 768px) {
+  .editor-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .editor-modal-card,
+  .manager-modal-card {
+    padding: 24px 18px;
+    max-height: 94vh;
+  }
+
+  .manager-item-row {
+    grid-template-columns: 48px 1fr;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .manager-item-price-col {
+    text-align: left;
+    grid-column: 2 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed var(--color-border);
+    padding-top: 8px;
+    margin-top: 4px;
+  }
+
+  .manager-item-actions {
+    grid-column: 2 / -1;
+  }
+
+  .form-row-2 {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .category-banner-header-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .product-edit-btn {
+    top: 8px;
+    left: 8px;
+    padding: 4px 9px;
+    font-size: 0.68rem;
+  }
+}
+
+/* ==========================================================================
+   SUPER EASY & INTERACTIVE LAYPERSON INTERFACE
+   ========================================================================== */
+
+/* Header Standout Pill */
+.header-admin-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #181818 0%, #2b2b2b 100%);
+  color: #f7e6c4;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.header-admin-pill-btn:hover {
+  background: linear-gradient(135deg, var(--color-accent) 0%, #8f6a09 100%);
+  color: #ffffff;
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(184, 134, 11, 0.35);
+}
+
+.admin-pill-icon {
+  font-size: 0.95rem;
+}
+
+/* Botão Admin Login — sempre visível para não-autenticados */
+#btn-admin-login-header {
+  border: 1.5px solid var(--color-gold) !important;
+  animation: admin-pulse 2.5s ease-in-out infinite;
+}
+
+#btn-admin-login-header:hover {
+  animation: none;
+  background: linear-gradient(135deg, var(--color-gold), #8f6a09) !important;
+  color: #fff !important;
+}
+
+@keyframes admin-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(184, 134, 11, 0); }
+  50%       { box-shadow: 0 0 0 5px rgba(184, 134, 11, 0.22); }
+}
+
+/* Always Visible Floating Action Bar */
+.floating-quick-actions {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 99;
+}
+
+.fab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  transition: all var(--transition-fast);
+  border: none;
+}
+
+.fab-btn-primary {
+  background: linear-gradient(135deg, var(--color-accent) 0%, #8c670b 100%);
+  color: #ffffff;
+}
+
+.fab-btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(184, 134, 11, 0.35);
+}
+
+.fab-btn-secondary {
+  background: #ffffff;
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+}
+
+.fab-btn-secondary:hover {
+  background: #f7f5f0;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .floating-quick-actions {
+    bottom: 74px;
+    right: 14px;
+  }
+  .fab-btn {
+    padding: 9px 15px;
+    font-size: 0.78rem;
+  }
+}
+
+/* Dotted Add Card in Products Grid */
+.add-new-product-card {
+  border: 2px dashed #d1c4b2;
+  background: linear-gradient(180deg, #fdfbf7 0%, #f7f3ed 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  min-height: 380px;
+  border-radius: 14px;
+}
+
+.add-new-product-card:hover {
+  border-color: var(--color-accent);
+  background: #faf6ef;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(184, 134, 11, 0.12);
+}
+
+.add-card-inner {
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-card-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #ecdccb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: var(--color-accent);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform var(--transition-fast);
+}
+
+.add-new-product-card:hover .add-card-icon-wrap {
+  transform: scale(1.1) rotate(90deg);
+  background: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+}
+
+.add-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.add-card-desc {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  max-width: 220px;
+  line-height: 1.4;
+  margin-bottom: 18px;
+}
+
+/* Easy Step Boxes Inside the Modal */
+.easy-step-box {
+  background: #fbf9f6;
+  border: 1px solid #ebd9c3;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.easy-step-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.easy-step-badge {
+  background: var(--color-accent);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.easy-step-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Big Interactive Photo Dropzone */
+.easy-upload-dropzone {
+  border: 2px dashed #cbb69d;
+  border-radius: 12px;
+  padding: 24px 16px;
+  text-align: center;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.easy-upload-dropzone:hover {
+  border-color: var(--color-accent);
+  background: #fdfaf5;
+  transform: scale(1.01);
+}
+
+.easy-upload-icon {
+  font-size: 2.2rem;
+}
+
+.easy-upload-text {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+}
+
+.easy-upload-hint {
+  font-size: 0.76rem;
+  color: var(--color-text-muted);
+}
+
+.photo-preview-success-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #eef7ee;
+  border: 1px solid #c8e6c9;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+/* Big Price Row */
+.easy-price-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.easy-price-symbol {
+  position: absolute;
+  left: 16px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--color-accent);
+}
+
+.easy-price-input {
+  width: 100%;
+  padding: 14px 14px 14px 54px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  border: 2px solid #dfcfbe;
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--color-text-primary);
+}
+
+.easy-price-input:focus {
+  border-color: var(--color-accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
+}
+
+/* Category Visual Tap Grid */
+.category-tap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.cat-tap-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 6px;
+  background: #ffffff;
+  border: 2px solid var(--color-border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  gap: 6px;
+}
+
+.cat-tap-btn:hover {
+  border-color: var(--color-accent);
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.cat-tap-btn.is-selected {
+  border-color: var(--color-accent);
+  background: #fdf6ec;
+  box-shadow: 0 0 0 2px var(--color-accent);
+}
+
+.cat-tap-icon {
+  font-size: 1.5rem;
+}
+
+.cat-tap-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.cat-tap-btn.is-selected .cat-tap-label {
+  color: var(--color-accent);
+}
+
+/* Optional Accordion for Advanced Fields */
+.advanced-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.advanced-toggle-btn:hover {
+  color: var(--color-accent);
+}
+
+/* Big Green Save Button */
+.big-save-button {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #27ae60 0%, #1e8449 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 16px rgba(39, 174, 96, 0.3);
+  transition: all var(--transition-fast);
+}
+
+.big-save-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+}
+
+/* ==========================================================================
+   ADMIN LOGIN MODAL — PIN KEYPAD
+   ========================================================================== */
+
+.admin-login-card {
+  max-width: 360px;
+  width: 94vw;
+  text-align: center;
+  padding: 36px 28px 28px;
+}
+
+.admin-login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.admin-login-logo {
+  font-size: 3rem;
+  margin-bottom: 8px;
+  animation: adminLogoFloat 3s ease-in-out infinite;
+}
+
+@keyframes adminLogoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.admin-pin-display-box {
+  background: #f9f6f0;
+  border: 2px solid #e8d9c5;
+  border-radius: 14px;
+  padding: 16px 24px;
+  margin-bottom: 22px;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.admin-pin-display-box:focus-within {
+  border-color: var(--color-accent);
+}
+
+.admin-pin-display {
+  font-size: 2.2rem;
+  letter-spacing: 14px;
+  color: var(--color-text-primary);
+  font-family: var(--font-serif);
+  min-width: 120px;
+  word-break: break-all;
+  /* Convert typed characters to bullet dots visually */
+  -webkit-text-security: disc;
+  text-security: disc;
+}
+
+@keyframes pinShake {
+  0%, 100% { transform: translateX(0); }
+  15%  { transform: translateX(-8px); }
+  30%  { transform: translateX(8px); }
+  45%  { transform: translateX(-6px); }
+  60%  { transform: translateX(6px); }
+  75%  { transform: translateX(-4px); }
+  90%  { transform: translateX(4px); }
+}
+
+.admin-pin-display-box.pin-shake {
+  animation: pinShake 0.45s ease;
+  border-color: #c0392b;
+  background: #fff5f5;
+}
+
+.admin-pin-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.pin-key {
+  aspect-ratio: 1;
+  border: 1.5px solid #ecdecf;
+  border-radius: 12px;
+  background: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  font-family: var(--font-body);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pin-key:hover {
+  background: #fdf6ee;
+  border-color: var(--color-accent);
+  transform: scale(1.04);
+}
+
+.pin-key:active {
+  transform: scale(0.94);
+  background: #f5e9d8;
+}
+
+.pin-key-del {
+  background: #fff5f5;
+  color: #c0392b;
+  border-color: #fad1d1;
+  font-size: 1.1rem;
+}
+
+.pin-key-del:hover {
+  background: #ffe8e8;
+  border-color: #c0392b;
+}
+
+.pin-key-ok {
+  background: linear-gradient(135deg, #27ae60 0%, #1e8449 100%);
+  color: #ffffff;
+  border-color: transparent;
+  font-size: 1.35rem;
+  box-shadow: 0 4px 12px rgba(39,174,96,0.3);
+}
+
+.pin-key-ok:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(39,174,96,0.4);
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+}
+
+
+/* ==========================================================================
+   OPTIMIZAÇÃO MOBILE — ADMIN & GESTÃO DE PRODUTOS
+   ========================================================================== */
+
+/* --- BOTÃO ADMIN NO HEADER — mobile mais compacto e claro --- */
+@media (max-width: 768px) {
+
+  /* Esconder texto "Editar Fotos & Preços" no mobile, mostrar só ícone */
+  .header-admin-pill-btn .admin-pill-text {
+    display: none;
+  }
+
+  .header-admin-pill-btn {
+    padding: 9px 13px;
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  .admin-pill-icon {
+    font-size: 1.2rem;
+  }
+
+  /* Botão Admin Login — mostrar texto no mobile para clareza */
+  #btn-admin-login-header .admin-pill-text {
+    display: inline;
+    font-size: 0.8rem;
+  }
+
+  #btn-admin-login-header {
+    padding: 9px 14px;
+    gap: 6px;
+  }
+
+  /* --- MODAL ADMIN — full sheet bottom sheet no mobile --- */
+  .manager-modal-card,
+  .editor-modal-card {
+    border-radius: 20px 20px 0 0 !important;
+    max-height: 96vh !important;
+    padding: 20px 16px 32px !important;
+  }
+
+  /* --- CABEÇALHO DO MANAGER — stack vertical no mobile --- */
+  .manager-header {
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .manager-quick-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .manager-quick-actions .btn-luxury {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    font-size: 0.8rem;
+    padding: 10px 12px;
+  }
+
+  /* Botão "Adicionar Nova Joia" — destaque especial, largura total */
+  .manager-quick-actions .btn-luxury-primary {
+    grid-column: 1 / -1;
+    min-height: 54px;
+    font-size: 0.95rem;
+    border-radius: 12px;
+  }
+
+  /* --- STATS BAR --- */
+  .manager-stats-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .manager-stat-item {
+    flex: 1;
+    min-width: 90px;
+    padding: 12px 10px;
+  }
+
+  .stat-number {
+    font-size: 1.6rem;
+  }
+
+  /* --- BARRA DE FILTRO — scroll horizontal --- */
+  .manager-filter-pills {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .manager-filter-pills::-webkit-scrollbar { display: none; }
+
+  .manager-pill {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    font-size: 0.82rem;
+    min-height: 38px;
+    white-space: nowrap;
+  }
+
+  /* --- TOOLBAR --- */
+  .manager-toolbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .manager-search-box {
+    width: 100%;
+  }
+
+  .manager-search-box input {
+    font-size: 0.95rem;
+    padding: 12px 14px 12px 38px;
+    min-height: 46px;
+  }
+
+  /* --- LISTA DE PRODUTOS — cards maiores e mais fáceis de tocar --- */
+  .manager-item-row {
+    grid-template-columns: 68px 1fr !important;
+    gap: 14px !important;
+    padding: 14px 12px !important;
+    align-items: start;
+    border-radius: 12px;
+  }
+
+  .manager-item-thumb {
+    width: 68px !important;
+    height: 68px !important;
+    border-radius: 10px !important;
+  }
+
+  .manager-item-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .manager-item-meta {
+    font-size: 0.74rem;
+    margin-top: 3px;
+  }
+
+  /* Preço + botões — coluna abaixo do nome no mobile */
+  .manager-item-price-col {
+    grid-column: 2 / -1;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding-top: 10px !important;
+    margin-top: 6px !important;
+    border-top: 1px solid var(--color-border) !important;
+  }
+
+  .manager-item-price {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--color-accent);
+  }
+
+  .manager-item-actions {
+    display: flex !important;
+    gap: 8px !important;
+    grid-column: 2 / -1 !important;
+    margin-top: 4px;
+  }
+
+  .manager-item-actions .btn-luxury {
+    flex: 1;
+    justify-content: center;
+    min-height: 42px;
+    font-size: 0.78rem;
+    padding: 8px 10px;
+  }
+
+  /* --- MODAL EDITOR DE PRODUTO --- */
+  .easy-step-box {
+    padding: 16px 14px;
+    margin-bottom: 14px;
+  }
+
+  .easy-upload-dropzone {
+    padding: 28px 14px;
+    min-height: 100px;
+  }
+
+  .easy-upload-icon { font-size: 2.8rem; }
+  .easy-upload-text { font-size: 1rem; }
+
+  .easy-price-input {
+    font-size: 1.5rem;
+    min-height: 58px;
+  }
+
+  .price-chips-row {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .price-chip {
+    min-height: 42px;
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    border-radius: 9999px;
+  }
+
+  .cat-tap-btn {
+    padding: 14px 6px;
+    min-height: 72px;
+  }
+
+  .cat-tap-icon { font-size: 1.8rem; }
+  .cat-tap-label { font-size: 0.8rem; }
+
+  .big-save-button {
+    min-height: 58px;
+    font-size: 1.1rem;
+    border-radius: 14px;
+  }
+
+  /* --- PIN KEYPAD — teclas maiores no mobile --- */
+  .admin-login-card {
+    padding: 28px 20px 24px;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 20px 20px 0 0 !important;
+  }
+
+  .admin-pin-keypad {
+    gap: 12px;
+  }
+
+  .pin-key {
+    min-height: 64px;
+    font-size: 1.5rem;
+    border-radius: 14px;
+  }
+
+  .pin-key-del,
+  .pin-key-ok {
+    font-size: 1.3rem;
+  }
+
+  /* --- FLOATING ACTION BUTTON — mais visível --- */
+  .floating-quick-actions {
+    bottom: calc(var(--bottom-nav-height) + 12px);
+    right: 12px;
+    gap: 10px;
+  }
+
+  .fab-btn {
+    padding: 13px 20px;
+    font-size: 0.9rem;
+    min-height: 50px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+
+  /* --- BOTÃO WHATSAPP --- */
+  .product-whatsapp-btn {
+    min-height: 46px;
+    font-size: 0.85rem !important;
+  }
+
+  /* --- QUICK VIEW --- */
+  .qv-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .qv-actions .btn-luxury {
+    width: 100%;
+    min-height: 50px;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  /* --- PRODUTO CARD — botões de acção sempre visíveis --- */
+  .product-add-btn,
+  .product-whatsapp-btn {
+    display: flex !important;
+    min-height: 44px;
+    font-size: 0.8rem;
+  }
+
+  .product-edit-btn {
+    font-size: 0.72rem !important;
+    padding: 5px 10px !important;
+    min-height: 32px !important;
+  }
+
+  /* --- CATEGORIA BANNER — admin btns empilhados --- */
+  .category-banner-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .category-admin-btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 46px;
+  }
+}
+
+/* ==========================================================================
+   OPTIMIZAÇÃO MOBILE — EXTRA PEQUENO (≤ 390px)
+   ========================================================================== */
+@media (max-width: 390px) {
+  .manager-quick-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .pin-key {
+    min-height: 58px;
+    font-size: 1.4rem;
+  }
+
+  .manager-item-row {
+    grid-template-columns: 58px 1fr !important;
+  }
+
+  .manager-item-thumb {
+    width: 58px !important;
+    height: 58px !important;
+  }
+}
+
+/* ==========================================================================
+   MELHORIAS GERAIS — ACESSIBILIDADE & TOUCH
+   ========================================================================== */
+
+/* Áreas de toque mínimas em toda a app */
+button, [role="button"], a, input, select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Scrollbar mais suave no mobile */
+.manager-items-container,
+.drawer-body,
+.modal-card {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Safe area padding para iPhones com notch */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .mobile-bottom-nav {
+    padding-bottom: env(safe-area-inset-bottom);
+    height: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom));
+  }
+
+  #category-page-view {
+    padding-bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom) + 20px);
+  }
+
+  .floating-quick-actions {
+    bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom) + 12px);
+  }
+}
+
+
+/* Ajuste fino visual para os botões do Gerenciador de Catálogo */
+.manager-item-actions {
+  display: flex;
+  align-items: center;
+}
+
+.manager-item-actions .btn-luxury-primary {
+  background: linear-gradient(135deg, var(--color-accent) 0%, #8c670b 100%) !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.25);
+  font-size: 0.8rem !important;
+}
+
+.manager-item-actions .btn-luxury-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(184, 134, 11, 0.35);
+}
+
+
+/* ===== PRODUCT EDITOR MODAL — BULLETPROOF OVERLAY ===== */
+#product-editor-modal {
+  z-index: 1200 !important;
+  pointer-events: none;
+}
+#product-editor-modal.is-open {
+  pointer-events: all;
+}
+#product-editor-modal .modal-card {
+  pointer-events: all;
+}
+
+/* Admin login modal — always on top of everything */
+#admin-login-modal {
+  z-index: 1300 !important;
+  pointer-events: none;
+}
+#admin-login-modal.is-open {
+  pointer-events: all;
+}

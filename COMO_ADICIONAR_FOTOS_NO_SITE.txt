@@ -1,78 +1,65 @@
 ====================================================================
-💎 INFINITY STORE — GUIA RÁPIDO PARA ADICIONAR FOTOS NO SITE
+💎 INFINITY STORE — GUIA ULTRA FÁCIL: FOTOS E PREÇOS DAS JOIAS
 ====================================================================
 
-Todas as pastas para você colocar as fotos já foram criadas:
+A interface foi criada especialmente para que qualquer pessoa (mesmo sem nenhum
+conhecimento de informática ou programação) consiga adicionar fotos e preços em segundos!
 
-📁 Fotos - Pulseiras/  (ou assets/pulseiras/ ou pulseiras/)
-📁 Fotos - Aneis/      (ou assets/aneis/ ou aneis/)
-📁 Fotos - Colares/    (ou assets/colares/ ou colares/)
-📁 Fotos - Pingentes/  (ou assets/pingentes/ ou pingentes/)
-📁 Fotos - Brincos/    (ou assets/brincos/ ou brincos/)
+--------------------------------------------------------------------
+✨ ONDE CLICAR NO SITE (MUITO FÁCIL):
+--------------------------------------------------------------------
 
-COMO FUNCIONA:
-1. Abra qualquer uma das pastas acima no seu computador.
-2. Cada pasta já contém fotos reais funcionando no site.
-3. Para colocar a sua própria foto de um produto, basta copiar a sua foto 
-   para dentro da pasta correspondente com o mesmo nome do arquivo 
-   (por exemplo: pulseira-1.jpg ou pulseira-studded.jpg).
-   Também pode rodar "python3 sync_photos.py" para associar fotos novas automaticamente!
-4. Assim que você colocar a foto na pasta, abra ou atualize o site no navegador 
-   (F5 ou Cmd+R) e a sua foto aparecerá na hora!
+1. NO TOPO DO SITE (Menu Superior):
+   👉 Botão dourado: [✨ Editar Fotos & Preços]
+   Abre a lista completa de todas as 52 joias para você ver e alterar o que quiser.
 
-NOMES DOS ARQUIVOS:
+2. NO CANTO INFERIOR DIREITO DA TELA (Em qualquer página):
+   👉 Botão verde flutuante: [+ Adicionar Joia] (abre na hora o assistente rápido)
+   👉 Botão dourado flutuante: [📋 Ver / Alterar Todas]
 
---- 🌟 PULSEIRAS (Pasta: Fotos - Pulseiras) ---
-- pulseira-studded.jpg              (ou pulseira-1.jpg)
-- pulseira-infinity-knots.jpg       (ou pulseira-2.jpg)
-- pulseira-coracao-pedra-tripla.jpg (ou pulseira-3.jpg)
-- pulseira-ouro-fecho-coracao.jpg   (ou pulseira-4.jpg)
-- pulseira-corrente-caixa.jpg       (ou pulseira-5.jpg)
-- pulseira-couro-trancado.jpg       (ou pulseira-6.jpg)
-- pulseira-borboleta-azul.jpg       (ou pulseira-7.jpg)
-- pulseira-coroa-signature.jpg      (ou pulseira-8.jpg)
-- pulseira-moments-fecho-coracao.jpg(ou pulseira-9.jpg)
-- bracelete-rigido-barril.jpg       (ou pulseira-10.jpg)
-- pulseira-ouro-rosa.jpg            (ou pulseira-11.jpg)
-- pulseira-elos-pandora-me.jpg      (ou pulseira-12.jpg)
+3. DENTRO DE QUALQUER CATEGORIA (Pulseiras, Anéis, Colares, etc.):
+   👉 O primeiro cartão da grade é um cartão grande com sinal [+]:
+      "+ Adicionar Joia — Clique aqui para colocar foto e preço em 10 segundos"
+   👉 Em cima de cada joia que já existe:
+      Há um botão [📷 Mudar Foto / Preço]. Basta clicar nele para trocar a foto ou o valor!
 
---- 💍 ANÉIS (Pasta: Fotos - Aneis) ---
-- anel-coracao-rosa.jpg       (ou anel-1.jpg)
-- anel-coracao-rosa-pave.jpg  (ou anel-2.jpg)
-- anel-coracao-azul.jpg       (ou anel-3.jpg)
-- anel-sol-lua.jpg            (ou anel-4.jpg)
-- anel-floco-neve.jpg         (ou anel-5.jpg)
-- anel-tiara-princesa.jpg     (ou anel-6.jpg)
-- anel-solitario-rosa.jpg     (ou anel-7.jpg)
-- anel-onda-pave.jpg          (ou anel-8.jpg)
-- anel-infinito.jpg           (ou anel-9.jpg)
-- anel-tres-aros.jpg          (ou anel-10.jpg)
+--------------------------------------------------------------------
+🪄 COMO FUNCIONA O ASSISTENTE EM 3 PASSOS SIMPLES:
+--------------------------------------------------------------------
+Quando você clica para adicionar ou alterar, abre uma janela dividida em 3 passos óbvios:
 
---- 📿 COLARES (Pasta: Fotos - Colares) ---
-- colar-circulo-pave.jpg      (ou colar-1.jpg)
-- colar-ponto-de-luz.jpg      (ou colar-2.jpg)
-- colar-arvore-familia.jpg    (ou colar-3.jpg)
-- colar-halo-quadrado.jpg     (ou colar-4.jpg)
-- colar-coracao-elevado.jpg   (ou colar-5.jpg)
-- colar-infinito.jpg          (ou colar-6.jpg)
-- colar-circulo-ouro-rose.jpg (ou colar-7.jpg)
-- colar-elos-pandora-me.jpg   (ou colar-8.jpg)
-- colar-gota-radiante.jpg     (ou colar-9.jpg)
-- colar-perola-cultura.jpg    (ou colar-10.jpg)
+📸 PASSO 1: FOTO DA JOIA
+   - Clique na grande caixa de upload com o ícone de câmera.
+   - Escolha a foto no seu computador ou telemóvel.
+   - A foto aparece na hora na pré-visualização!
+   - (A imagem é reduzida automaticamente para carregar super rápido no site).
 
---- ✨ PINGENTES (Pasta: Fotos - Pingentes) ---
-- pingente-coracao-mae.jpg    (ou pingente-1.jpg)
-- pingente-murano-rosa.jpg    (ou pingente-2.jpg)
-- pingente-cadeado-chave.jpg  (ou pingente-3.jpg)
-- pingente-separador-azul.jpg (ou pingente-4.jpg)
-- pingente-trevo-sorte.jpg    (ou pingente-5.jpg)
-- pingente-disney-mickey.jpg  (ou pingente-6.jpg)
+💰 PASSO 2: PREÇO EM METICAIS (MT)
+   - Digite o preço em Meticais (ex: 2500).
+   - Ou se preferir, dê apenas um toque nos botões de preços comuns:
+     [2.000 MT] [2.500 MT] [2.600 MT] [2.650 MT] [2.700 MT] [3.000 MT]
 
---- 💎 BRINCOS (Pasta: Fotos - Brincos) ---
-- brinco-1.jpg (Brincos Coração Brilhante)
-- brinco-2.jpg (Brincos Argola Pavé Ouro Rosa)
-- brinco-3.jpg (Brincos Argola Dupla Signature)
-- brinco-4.jpg (Brincos Pendentes Gota Radiante)
+🏷️ PASSO 3: NOME E CATEGORIA
+   - Digite o nome da joia (ex: "Pulseira Coração Brilhante").
+   - Toque na categoria com ícone visual:
+     📿 Pulseiras | 💍 Anéis | 💎 Colares | ✨ Brincos | 🌸 Pingentes
 
-Formatos suportados: .jpg, .png, .jpeg, .webp.
+🚀 FINALIZAR:
+   - Clique no grande botão verde: [💾 Salvar e Mostrar no Site Agora].
+   - Pronto! O site atualiza na mesma hora e fica salvo mesmo se desligar o computador.
+
+--------------------------------------------------------------------
+📲 WHATSAPP AUTOMÁTICO:
+--------------------------------------------------------------------
+- Todo preço e foto alterados entram automaticamente no botão "Comprar no WhatsApp".
+- Na Sacola de Compras, o total é somado com os novos preços e enviado detalhado
+  para o WhatsApp com um só clique!
+
+--------------------------------------------------------------------
+💾 GUARDAR CÓPIA DE SEGURANÇA (BACKUP):
+--------------------------------------------------------------------
+No menu "✨ Editar Fotos & Preços", você tem 2 botões muito úteis:
+- [📥 Baixar Backup]: Salva um arquivo com todas as suas fotos e preços editados.
+- [📤 Restaurar Backup]: Carrega o arquivo caso mude de computador.
+- [↺ Restaurar Catálogo de Fábrica]: Volta tudo ao estado original se precisar.
 ====================================================================

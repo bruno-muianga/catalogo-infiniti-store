@@ -2,7 +2,10 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <title>Infinity Store &bull; Alta Joalheria &bull; Coleções Exclusivas</title>
   <meta name="description" content="Explore as coleções de alta joalheria da Infinity Store. Pulseiras, Anéis, Colares, Brincos e Pingentes em Prata de Lei 925 e Ouro Rosé.">
   
@@ -58,7 +61,7 @@
           <div class="search-results-dropdown" id="search-dropdown"></div>
         </div>
 
-        <!-- Right: Utility Actions (Account, Wishlist, Cart) -->
+        <!-- Right: Utility Actions (Account, Wishlist, Cart, Admin) -->
         <div class="header-actions">
           <!-- Mobile: Search icon trigger -->
           <button class="icon-btn" id="mobile-search-trigger" onclick="openMobileSearch()" title="Buscar" aria-label="Abrir busca">
@@ -68,6 +71,22 @@
             </svg>
             <span class="icon-label">Buscar</span>
           </button>
+          
+          <!-- Botão de Acesso Admin — sempre visível, muda conforme autenticação -->
+          <button class="header-admin-pill-btn admin-only-element" onclick="openCatalogManager()" title="Gerenciar Fotos &amp; Preços das Joias" aria-label="Gerir Catálogo">
+            <span class="admin-pill-icon">✨</span>
+            <span class="admin-pill-text">Editar Fotos &amp; Preços</span>
+          </button>
+          <button class="header-admin-pill-btn admin-only-element" onclick="adminLogout()" title="Terminar sessão de administrador" style="background:linear-gradient(135deg,#5a0a0a,#7d1212);" aria-label="Logout Admin">
+            <span class="admin-pill-icon">🔒</span>
+            <span class="admin-pill-text">Sair</span>
+          </button>
+          <!-- Botão LOGIN ADMIN — visível apenas quando NÃO autenticado -->
+          <button class="header-admin-pill-btn guest-only-element" id="btn-admin-login-header" onclick="openAdminLoginModal()" title="Entrar como Administrador" aria-label="Acesso Admin" style="background:linear-gradient(135deg,#2c2c2c,#1a1a1a);border:1.5px solid var(--color-gold);">
+            <span class="admin-pill-icon">🔐</span>
+            <span class="admin-pill-text">Admin</span>
+          </button>
+
           <button class="icon-btn" onclick="showToast('Área exclusiva do cliente Infinity.');" title="Minha Conta">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -276,8 +295,22 @@
         <span>/</span>
         <span id="breadcrumb-current">PULSEIRAS</span>
       </div>
-      <h1 class="category-banner-title" id="cat-banner-title">Coleção Pulseiras</h1>
-      <p class="category-banner-desc" id="cat-banner-desc">Bases estruturadas em prata 925 e ouro rosé, perfeitas para expressar sua essência.</p>
+      <div class="category-banner-header-wrap">
+        <div>
+          <h1 class="category-banner-title" id="cat-banner-title">Coleção Pulseiras</h1>
+          <p class="category-banner-desc" id="cat-banner-desc">Bases estruturadas em prata 925 e ouro rosé, perfeitas para expressar sua essência.</p>
+        </div>
+        <div class="category-banner-actions">
+          <button class="btn-luxury btn-luxury-primary category-admin-btn admin-only-element" onclick="openProductEditor(null, event, STATE.currentCategory)">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>+ Adicionar Joia</span>
+          </button>
+          <button class="btn-luxury btn-luxury-outline category-admin-btn admin-only-element" onclick="openCatalogManager()">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            <span>Gerir Fotos &amp; Preços</span>
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- Category Products Grid -->
@@ -329,6 +362,269 @@
     </div>
   </div>
 
+  <!-- ==========================================
+       MODAL 1: ASSISTENTE SUPER FÁCIL PARA ADICIONAR / MODIFICAR JOIAS
+       ========================================== -->
+  <div class="modal-wrapper" id="product-editor-modal" role="dialog" aria-modal="true" aria-labelledby="editor-modal-title">
+    <div class="modal-card editor-modal-card" style="max-width: 720px;">
+      <button class="modal-close-btn" onclick="closeProductEditor()" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <div class="editor-header" style="text-align: center;">
+        <span class="editor-eyebrow">✨ Assistente Fácil &bull; Infinity Store</span>
+        <h2 class="editor-title" id="editor-modal-title">Adicionar ou Mudar Joia</h2>
+        <p class="editor-subtitle">Basta escolher a foto e o preço. O site atualiza na mesma hora!</p>
+      </div>
+
+      <form id="product-editor-form" onsubmit="handleProductEditorSubmit(event)" novalidate>
+        <input type="hidden" id="edit-product-id" value="">
+
+        <!-- PASSO 1: FOTO DA JOIA -->
+        <div class="easy-step-box">
+          <div class="easy-step-header">
+            <span class="easy-step-badge">Passo 1</span>
+            <h3 class="easy-step-title">Foto da Joia</h3>
+          </div>
+
+          <div class="easy-upload-dropzone" onclick="document.getElementById('edit-file-primary').click()">
+            <div class="easy-upload-icon">📸</div>
+            <div class="easy-upload-text">Toque aqui para Tirar Foto ou Escolher da Galeria</div>
+            <div class="easy-upload-hint">Basta carregar a foto da joia. O site faz tudo automaticamente!</div>
+            <div style="display: flex; gap: 8px; margin-top: 8px;">
+              <button type="button" class="btn-luxury btn-luxury-primary btn-sm" style="pointer-events: none;">
+                📷 Câmera / Galeria
+              </button>
+            </div>
+          </div>
+
+          <input type="file" id="edit-file-primary" accept="image/*, .png, .jpg, .jpeg, .webp" style="display: none;" onchange="onFileSelected(this, 'edit-input-primary', 'edit-preview-primary')">
+
+          <!-- Pré-visualização da Foto -->
+          <div style="margin-top: 14px; display: flex; align-items: center; gap: 14px; background: #fff; padding: 12px; border-radius: 10px; border: 1px solid var(--color-border);">
+            <img id="edit-preview-primary" src="assets/pulseiras/pulseira-1.jpg" alt="Foto Atual" style="width: 70px; height: 70px; object-fit: cover; border-radius: 8px; border: 1px solid var(--color-border);" onerror="handleImgError(this)">
+            <div style="flex: 1;">
+              <div style="font-weight: 700; font-size: 0.88rem; color: #27ae60;">Foto pronta para o site ✅</div>
+              <div style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 2px;">Clique na foto acima ou no botão para trocar quando quiser.</div>
+            </div>
+            <button type="button" class="btn-luxury btn-luxury-outline btn-sm" onclick="document.getElementById('edit-file-primary').click()">
+              Trocar
+            </button>
+          </div>
+
+          <input type="hidden" id="edit-input-primary" value="">
+          <img id="edit-preview-alt" src="assets/pulseiras/pulseira-1.jpg" alt="" style="display:none;" onerror="handleImgError(this)">
+        </div>
+
+        <!-- PASSO 2: PREÇO DE VENDA -->
+        <div class="easy-step-box">
+          <div class="easy-step-header">
+            <span class="easy-step-badge">Passo 2</span>
+            <h3 class="easy-step-title">Preço de Venda em Meticais (MT)</h3>
+          </div>
+
+          <div class="easy-price-box">
+            <span class="easy-price-symbol">MT</span>
+            <input type="number" id="edit-input-price" class="easy-price-input" placeholder="2500" step="10" min="0" oninput="updatePriceBadge(this.value)">
+            <span class="price-live-badge" id="price-live-badge" style="position: absolute; right: 14px; font-size: 1rem; padding: 6px 14px;">2.500 MT</span>
+          </div>
+
+          <div class="price-chips-row">
+            <span class="price-chips-label">Toque para valor rápido:</span>
+            <button type="button" class="price-chip" onclick="setPriceValue(2000)">2.000 MT</button>
+            <button type="button" class="price-chip" onclick="setPriceValue(2500)">2.500 MT</button>
+            <button type="button" class="price-chip" onclick="setPriceValue(2600)">2.600 MT</button>
+            <button type="button" class="price-chip" onclick="setPriceValue(2700)">2.700 MT</button>
+            <button type="button" class="price-chip" onclick="setPriceValue(3000)">3.000 MT</button>
+            <button type="button" class="price-chip" onclick="setPriceValue(3500)">3.500 MT</button>
+          </div>
+        </div>
+
+        <!-- PASSO 3: NOME E CATEGORIA -->
+        <div class="easy-step-box">
+          <div class="easy-step-header">
+            <span class="easy-step-badge">Passo 3</span>
+            <h3 class="easy-step-title">Nome &amp; Categoria da Joia</h3>
+          </div>
+
+          <div class="form-group">
+            <label class="editor-label" for="edit-input-name">Nome da Peça (opcional)</label>
+            <input type="text" id="edit-input-name" class="editor-input" placeholder="ex: Pulseira Coração de Prata" style="font-size: 1rem; padding: 12px 14px;">
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="editor-label">Selecione a Categoria (toque na sua opção):</label>
+            
+            <input type="hidden" id="edit-select-category" value="pulseiras">
+
+            <div class="category-tap-grid">
+              <button type="button" class="cat-tap-btn is-selected" data-cat="pulseiras" onclick="selectEasyCategory('pulseiras')">
+                <span class="cat-tap-icon">📿</span>
+                <span class="cat-tap-label">Pulseiras</span>
+              </button>
+              <button type="button" class="cat-tap-btn" data-cat="aneis" onclick="selectEasyCategory('aneis')">
+                <span class="cat-tap-icon">💍</span>
+                <span class="cat-tap-label">Anéis</span>
+              </button>
+              <button type="button" class="cat-tap-btn" data-cat="colares" onclick="selectEasyCategory('colares')">
+                <span class="cat-tap-icon">💎</span>
+                <span class="cat-tap-label">Colares</span>
+              </button>
+              <button type="button" class="cat-tap-btn" data-cat="brincos" onclick="selectEasyCategory('brincos')">
+                <span class="cat-tap-icon">✨</span>
+                <span class="cat-tap-label">Brincos</span>
+              </button>
+              <button type="button" class="cat-tap-btn" data-cat="pingentes" onclick="selectEasyCategory('pingentes')">
+                <span class="cat-tap-icon">🌸</span>
+                <span class="cat-tap-label">Pingentes</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- OPÇÕES AVANÇADAS (OPCIONAL, RECOLHIDO) -->
+        <div style="margin-bottom: 20px;">
+          <button type="button" class="advanced-toggle-btn" id="btn-toggle-advanced" onclick="toggleAdvancedOptions()">
+            ▼ Mais detalhes opcionais (descrição, material, foto secundária)...
+          </button>
+
+          <div id="easy-advanced-panel" style="display: none; background: #fff; border: 1px solid var(--color-border); border-radius: 12px; padding: 16px; margin-top: 8px;">
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="editor-label" for="edit-input-collection">Coleção</label>
+                <input type="text" id="edit-input-collection" class="editor-input" placeholder="ex: Pandora Moments">
+              </div>
+              <div class="form-group">
+                <label class="editor-label" for="edit-input-material">Material</label>
+                <input type="text" id="edit-input-material" class="editor-input" placeholder="ex: Prata de Lei 925">
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="editor-label" for="edit-input-badge">Selo de Destaque</label>
+                <input type="text" id="edit-input-badge" class="editor-input" placeholder="ex: Nova Coleção, Mais Vendido">
+              </div>
+              <div class="form-group">
+                <label class="editor-label" for="edit-input-alt">Foto Secundária (Verso)</label>
+                <input type="text" id="edit-input-alt" class="editor-input" placeholder="caminho ou link da foto">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="editor-label" for="edit-input-desc">Descrição Detalhada</label>
+              <textarea id="edit-input-desc" class="editor-textarea" rows="2" placeholder="Detalhes adicionais sobre a peça..."></textarea>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="editor-label" for="edit-input-specs">Especificações (uma por linha)</label>
+              <textarea id="edit-input-specs" class="editor-textarea" rows="2" placeholder="Metal: Prata de Lei 925&#10;Fecho: Sistema de Trava"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botão Grande de Salvar e Ações -->
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <button type="submit" class="big-save-button" onclick="handleProductEditorSubmit(event)">
+            <span>💾 Salvar e Mostrar no Site Agora</span>
+          </button>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px;">
+            <div>
+              <button type="button" id="btn-restore-product" class="btn-luxury btn-luxury-outline btn-danger-subtle btn-sm" onclick="onRestoreCurrentProduct()">
+                Restaurar Foto e Preço Originais
+              </button>
+              <button type="button" id="btn-delete-product" class="btn-luxury btn-luxury-outline btn-danger btn-sm" onclick="onDeleteCurrentProduct()" style="display: none;">
+                Excluir Peça
+              </button>
+            </div>
+            <button type="button" class="btn-luxury btn-luxury-outline btn-sm" onclick="closeProductEditor()">
+              Cancelar
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 2: GERENCIADOR COMPLETO DO CATÁLOGO
+       ========================================== -->
+  <div class="modal-wrapper" id="catalog-manager-modal" role="dialog" aria-modal="true" aria-labelledby="manager-modal-title">
+    <div class="modal-card manager-modal-card">
+      <button class="modal-close-btn" onclick="closeCatalogManager()" aria-label="Fechar Gerenciador">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <div class="manager-header">
+        <div>
+          <span class="editor-eyebrow">Painel Administrativo &bull; Infinity Store</span>
+          <h2 class="editor-title" id="manager-modal-title">Gerenciador de Artigos, Fotos &amp; Preços</h2>
+          <p class="editor-subtitle">Veja todas as joias do catálogo, altere fotos ou preços rapidamente e faça backup dos seus dados.</p>
+        </div>
+
+        <div class="manager-quick-actions">
+          <button type="button" class="btn-luxury btn-luxury-primary" onclick="openProductEditor(null, event)" title="Adicionar Nova Joia">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            + Adicionar Nova Joia
+          </button>
+          <button class="btn-luxury btn-luxury-outline" onclick="exportCatalogBackup()" title="Baixar arquivo JSON com todas as personalizações">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Exportar Backup
+          </button>
+          <label class="btn-luxury btn-luxury-outline" style="cursor: pointer;" title="Restaurar backup a partir de arquivo JSON">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            Importar
+            <input type="file" accept=".json" style="display: none;" onchange="importCatalogBackup(this)">
+          </label>
+          <button class="btn-luxury btn-luxury-outline btn-danger-subtle" onclick="resetAllCatalogToDefault()" title="Voltar todas as peças ao estado original de fábrica">
+            Restaurar Fábrica
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="manager-stats-bar">
+        <div class="manager-stat-item">
+          <span class="stat-number" id="manager-stat-total">52</span>
+          <span class="stat-label">Total de Peças</span>
+        </div>
+        <div class="manager-stat-item">
+          <span class="stat-number" id="manager-stat-priced">52</span>
+          <span class="stat-label">Com Preço Definido</span>
+        </div>
+        <div class="manager-stat-item">
+          <span class="stat-number" id="manager-stat-custom">0</span>
+          <span class="stat-label">Personalizadas</span>
+        </div>
+      </div>
+
+      <!-- Controls & Filter Toolbar -->
+      <div class="manager-toolbar">
+        <div class="manager-search-box">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="manager-search-input" placeholder="Buscar por nome, material, código ou coleção..." oninput="filterManagerList()">
+        </div>
+
+        <div class="manager-filter-pills">
+          <button class="manager-pill active" data-cat="all" onclick="setManagerCategoryFilter('all', this)">Todas</button>
+          <button class="manager-pill" data-cat="pulseiras" onclick="setManagerCategoryFilter('pulseiras', this)">Pulseiras</button>
+          <button class="manager-pill" data-cat="aneis" onclick="setManagerCategoryFilter('aneis', this)">Anéis</button>
+          <button class="manager-pill" data-cat="colares" onclick="setManagerCategoryFilter('colares', this)">Colares</button>
+          <button class="manager-pill" data-cat="brincos" onclick="setManagerCategoryFilter('brincos', this)">Brincos</button>
+          <button class="manager-pill" data-cat="pingentes" onclick="setManagerCategoryFilter('pingentes', this)">Pingentes</button>
+        </div>
+      </div>
+
+      <!-- Items List -->
+      <div class="manager-items-container" id="manager-items-list">
+        <!-- Rendered dynamically -->
+      </div>
+
+    </div>
+  </div>
+
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toast-container"></div>
 
@@ -365,6 +661,18 @@
           Buscar
         </button>
       </li>
+          <li id="mob-nav-admin-li" class="admin-only-element">
+            <button class="mobile-bottom-nav-btn" id="mob-nav-admin" onclick="openCatalogManager(); setMobileActiveNav('mob-nav-admin')" aria-label="Gerir Catálogo">
+              <svg viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+              Gerir
+            </button>
+          </li>
+          <li id="mob-nav-login-li" class="guest-only-element">
+            <button class="mobile-bottom-nav-btn" id="mob-nav-login" onclick="openAdminLoginModal()" aria-label="Entrar como Administrador" style="color: var(--color-accent); font-weight: 600;">
+              <svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              Admin
+            </button>
+          </li>
       <li>
         <button class="mobile-bottom-nav-btn" id="mob-nav-wish" onclick="openWishlistDrawer(); setMobileActiveNav('mob-nav-wish')" aria-label="Favoritos">
           <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
@@ -381,6 +689,58 @@
       </li>
     </ul>
   </nav>
+
+  <!-- Floating Quick Action Bar for Layperson/Admin -->
+  <div class="floating-quick-actions admin-only-element" id="floating-quick-actions">
+    <button class="fab-btn fab-btn-primary" onclick="openProductEditor(null, event)" title="Adicionar Nova Joia com Foto e Preço">
+      <span class="fab-icon">✨</span>
+      <span class="fab-text">+ Adicionar Joia</span>
+    </button>
+    <button class="fab-btn fab-btn-secondary" onclick="openCatalogManager()" title="Ver e Alterar Todas as Joias">
+      <span class="fab-icon">📋</span>
+      <span class="fab-text">Ver / Alterar Todas</span>
+    </button>
+  </div>
+
+  <!-- Admin Login Modal -->
+  <div class="modal-wrapper" id="admin-login-modal" role="dialog" aria-modal="true" aria-labelledby="admin-login-title">
+    <div class="modal-card admin-login-card">
+      <div class="admin-login-header">
+        <div class="admin-login-logo">🔐</div>
+        <span class="editor-eyebrow">Infinity Store • Área Restrita</span>
+        <h2 class="editor-title" id="admin-login-title">Acesso de Administrador</h2>
+        <p class="editor-subtitle">Introduza a senha para gerir fotos e preços do catálogo.</p>
+      </div>
+
+      <div id="admin-pin-display-box" class="admin-pin-display-box">
+        <div id="admin-pin-display" class="admin-pin-display" aria-live="polite" aria-label="Dígitos introduzidos"><!--dots added by JS--></div>
+        <input id="admin-pin-hidden" type="password" inputmode="numeric" autocomplete="off"
+          style="position:absolute;opacity:0;width:1px;height:1px;pointer-events:none;"
+          oninput="document.getElementById('admin-pin-display').textContent=this.value;"
+          onkeydown="if(event.key==='Enter'){adminLoginSubmit();}"
+        >
+      </div>
+
+      <div class="admin-pin-keypad">
+        <button class="pin-key" onclick="adminPinKey('1')">1</button>
+        <button class="pin-key" onclick="adminPinKey('2')">2</button>
+        <button class="pin-key" onclick="adminPinKey('3')">3</button>
+        <button class="pin-key" onclick="adminPinKey('4')">4</button>
+        <button class="pin-key" onclick="adminPinKey('5')">5</button>
+        <button class="pin-key" onclick="adminPinKey('6')">6</button>
+        <button class="pin-key" onclick="adminPinKey('7')">7</button>
+        <button class="pin-key" onclick="adminPinKey('8')">8</button>
+        <button class="pin-key" onclick="adminPinKey('9')">9</button>
+        <button class="pin-key pin-key-del" onclick="adminPinKey('DEL')">⌫</button>
+        <button class="pin-key" onclick="adminPinKey('0')">0</button>
+        <button class="pin-key pin-key-ok" onclick="adminPinKey('OK')">✓</button>
+      </div>
+
+      <button class="btn-luxury btn-luxury-outline btn-sm" style="margin-top:12px;width:100%;" onclick="closeAdminLoginModal()">
+        Cancelar
+      </button>
+    </div>
+  </div>
 
   <!-- Application Logic -->
   <script src="app.js"></script>

@@ -36,7 +36,7 @@ window.handleImgError = function(img) {
 };
 
 // 1. CATÁLOGO DE JOIAS PANDORA (Sem Exibição de Preços)
-const CATALOG = [
+const DEFAULT_CATALOG = [
   // --------------------------------------------------------------------------
   // 1. PULSEIRAS & BRACELETES (PANDORA MOMENTS, PANDORA ME, TIMELESS, STUDDED)
   // --------------------------------------------------------------------------
@@ -49,6 +49,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Nova Coleção",
+    price: 2500,
     description: "A inovadora corrente de tachas piramidais da Pandora. Uma textura marcante e flexível esculpida em prata de lei 925 com fecho infinito de esfera cravada, dividida em três secções para pendentes e contas.",
     specs: [
       "Coleção: Pandora Moments Studded",
@@ -69,6 +70,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Amor Eterno",
+    price: 2500,
     description: "Inspirada no nó que nunca se desfaz. Apresenta o icónico fecho com nó do infinito em relevo assimétrico e malha snake flexível em prata 925.",
     specs: [
       "Símbolo: Nó do Infinito",
@@ -88,6 +90,7 @@ const CATALOG = [
     material: "cristais",
     materialLabel: "Prata 925 & Zircónias",
     badge: "Timeless",
+    price: 2500,
     description: "Corrente delicada em prata de lei 925 com três zircónias em corte coração no centro e fecho deslizante com esfera de silicone para ajuste sob medida.",
     specs: [
       "Coleção: Pandora Timeless",
@@ -107,6 +110,7 @@ const CATALOG = [
     material: "ouro-amarelo",
     materialLabel: "Revestimento de Ouro 14k",
     badge: "Ouro Radiante",
+    price: 2500,
     description: "O clássico modelo Moments com requintado revestimento a ouro 14k em toda a malha snake e fecho de coração polido com gravação oficial Pandora.",
     specs: [
       "Coleção: Pandora Moments Ouro",
@@ -126,6 +130,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata 925 & Tecido",
     badge: "Versátil",
+    price: 2500,
     description: "Design casual e moderno que combina corrente veneziana em prata de lei com cordão acetinado durável e terminais em prata gravados.",
     specs: [
       "Estilo: Cordão & Corrente de Caixa",
@@ -145,6 +150,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Couro Legítimo & Prata 925",
     badge: "Couro Genuíno",
+    price: 2500,
     description: "Couro legítimo trançado em duas voltas com fecho esférico em prata de lei 925. Pode ser usada como pulseira de duas voltas ou como gargantilha choker.",
     specs: [
       "Material: Couro Genuíno Preto Trançado",
@@ -163,6 +169,7 @@ const CATALOG = [
     material: "cristais",
     materialLabel: "Prata 925 & Esmalte",
     badge: "Primavera",
+    price: 2500,
     description: "Fecho em formato de borboleta em voo com asas esmaltadas em degradê azul celeste e zircónias transparentes cravejadas nas pontas.",
     specs: [
       "Coleção: Pandora Garden",
@@ -181,6 +188,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Signature",
+    price: 2500,
     description: "Apresenta o icónico fecho circular com a coroa O da Pandora gravada e aro cravejado em micro pavé de cristais reluzentes.",
     specs: [
       "Coleção: Pandora Signature",
@@ -199,6 +207,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Ícone Pandora",
+    price: 2500,
     description: "O clássico supremo da Pandora. Confeccionada em prata de lei 925 com a icónica malha snake flexível e fecho em formato de coração gravado com a assinatura Pandora.",
     specs: [
       "Coleção: Pandora Moments",
@@ -217,6 +226,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Mais Vendido",
+    price: 2500,
     description: "Bracelete rígido estruturado em prata de lei 925 com o tradicional fecho cilíndrico tipo barril gravado Pandora.",
     specs: [
       "Metal: Prata 925 Polida",
@@ -235,6 +245,7 @@ const CATALOG = [
     material: "ouro-rose",
     materialLabel: "Ouro Rosa 14k",
     badge: "Edição Especial",
+    price: 2500,
     description: "Acabamento luminoso numa liga única de metais com revestimento nobre a ouro rosa 14k com fecho esférico contrastante.",
     specs: [
       "Coleção: Pandora Moments Ouro Rosa",
@@ -253,6 +264,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Tendência",
+    price: 2500,
     description: "Corrente de elos largos em prata 925 com elos articulados que podem ser abertos para personalizar com mini-medalhões e links.",
     specs: [
       "Coleção: Pandora ME",
@@ -380,6 +392,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Mais Procurado",
+    price: 2500,
     description: "O anel mais desejado da Pandora. Inspirado numa tiara real de conto de fadas, esculpido em prata de lei 925 com microcravejamento de zircónias cúbicas e pequenas esferas no topo das pontas.",
     specs: [
       "Coleção: Pandora Princess Tiara",
@@ -399,6 +412,7 @@ const CATALOG = [
     material: "ouro-rose",
     materialLabel: "Ouro Rosa 14k",
     badge: "Assinatura",
+    price: 2500,
     description: "Uma zircónia cúbica central elevada em garras clássicas, envolvida por um aro fino e polido com acabamento a ouro rosa 14k. O solitário perfeito para ocasiões inesquecíveis.",
     specs: [
       "Coleção: Pandora Timeless Elegance",
@@ -418,6 +432,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Lançamento",
+    price: 2500,
     description: "Inspirado no movimento orgânico das ondas oceânicas. Apresenta uma metade com acabamento liso e espelhado e a outra metade cintilante com pavé de zircónias.",
     specs: [
       "Metal: Prata de Lei 925",
@@ -436,6 +451,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Amor Eterno",
+    price: 2500,
     description: "Símbolos do infinito entrelaçados em padrão contínuo ao redor de todo o aro, celebrando laços eternos e amizades incondicionais.",
     specs: [
       "Símbolo: Infinito Contínuo 360°",
@@ -454,6 +470,7 @@ const CATALOG = [
     material: "ouro-rose",
     materialLabel: "Bicolor (Prata & Ouro Rosa)",
     badge: "Destaque",
+    price: 2500,
     description: "Três aros sobrepostos que se cruzam harmoniosamente: um em prata de lei 925 lisa, um com banho de ouro rosa e o terceiro cravejado com pavé de cristais.",
     specs: [
       "Coleção: Pandora Signature",
@@ -476,6 +493,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Essencial",
+    price: 2500,
     description: "Pendente circular de dupla face em prata de lei 925, com uma face em pavé reluzente de zircónias e o verso vazado com corações comemorativos. Acompanha corrente ajustável.",
     specs: [
       "Coleção: Pandora Timeless Circle",
@@ -495,6 +513,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Mais Vendido",
+    price: 2500,
     description: "Um ponto de luz solitário que irradia luminosidade pura sobre o colo. Cravação clássica de 4 garras segurando uma zircónia de lapidação brilhante.",
     specs: [
       "Pedra: Zircónia Cúbica Transparente 5mm",
@@ -513,6 +532,7 @@ const CATALOG = [
     material: "ouro-rose",
     materialLabel: "Ouro Rosa 14k & Prata",
     badge: "Família",
+    price: 2500,
     description: "Medalhão vazado com uma árvore genealógica estilizada em ouro rosa 14k, com pequenas folhas decoradas com zircónias e detalhes em filigrana de prata.",
     specs: [
       "Significado: Raízes, União e Família",
@@ -531,6 +551,7 @@ const CATALOG = [
     material: "cristais",
     materialLabel: "Prata 925 & Zircónias",
     badge: "Elegância",
+    price: 2500,
     description: "Inspirado nas peças vintage de alta joalharia. Apresenta uma gema central com corte cushion cercada por uma auréola quadrada de zircónias minúsculas.",
     specs: [
       "Lapidação: Cushion Cut com Halo Quadrado",
@@ -549,6 +570,7 @@ const CATALOG = [
     material: "cristais",
     materialLabel: "Prata 925 & Zircónias",
     badge: "Romântico",
+    price: 2500,
     description: "Pendente em formato de coração elevado cravado com zircónia cintilante e aro pavé em prata de lei 925 com corrente ajustável.",
     specs: [
       "Coleção: Pandora Timeless Heart",
@@ -568,6 +590,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Amor Eterno",
+    price: 2500,
     description: "Símbolo do infinito com metade cravada em zircónias transparentes e metade em prata polida, simbolizando laços indestrutíveis.",
     specs: [
       "Símbolo: Nó do Infinito",
@@ -586,6 +609,7 @@ const CATALOG = [
     material: "ouro-rose",
     materialLabel: "Ouro Rosa 14k",
     badge: "Dourado Nobre",
+    price: 2500,
     description: "Pendente requintado em revestimento de ouro rosa 14k cravejado com pavé reluzente e corrente de elos finos com fecho mosquetão.",
     specs: [
       "Metal: Revestimento de Ouro Rosa 14k",
@@ -604,6 +628,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Urbano & Trendy",
+    price: 2500,
     description: "Corrente de elos grossos em prata de lei 925 com elos de abrir para personalizar com mini pendentes e medalhões Pandora ME.",
     specs: [
       "Coleção: Pandora ME",
@@ -622,6 +647,7 @@ const CATALOG = [
     material: "cristais",
     materialLabel: "Prata 925 & Zircónias",
     badge: "Elegância Clássica",
+    price: 2500,
     description: "Pendente de gota facetada cercado por uma auréola de micro zircónias brilhantes, refletindo luz a cada movimento.",
     specs: [
       "Pedra: Gota Facetada (Pear Cut)",
@@ -640,6 +666,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata 925 & Pérola",
     badge: "Alta Joalharia",
+    price: 2500,
     description: "Pérola de cultura de água doce natural suspensa num pendente delicado em prata de lei 925 polida.",
     specs: [
       "Pérola: Pérola Natural de Cultura de Água Doce",
@@ -662,6 +689,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Clássico",
+    price: 2500,
     description: "Brincos de botão em formato de coração em prata de lei 925, cada um cravado com uma zircónia em corte coração e aro perolado.",
     specs: [
       "Coleção: Pandora Timeless Heart",
@@ -681,6 +709,7 @@ const CATALOG = [
     material: "ouro-rose",
     materialLabel: "Ouro Rosa 14k",
     badge: "Mais Procurado",
+    price: 2500,
     description: "Argolas clássicas de 15mm com fecho click articulado, cravejadas em pavé na parte frontal e interna para brilho total em qualquer ângulo.",
     specs: [
       "Diâmetro: 15mm",
@@ -699,6 +728,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Design Geométrico",
+    price: 2500,
     description: "Dois círculos interligados em prata 925, um com zircónias pavé cintilantes e outro com o logotipo gravado da Pandora.",
     specs: [
       "Coleção: Pandora Signature",
@@ -717,6 +747,7 @@ const CATALOG = [
     material: "cristais",
     materialLabel: "Prata 925 & Zircónias",
     badge: "Festa & Gala",
+    price: 2500,
     description: "Gotas de zircónia facetadas suspensas numa base de espigão cravejada, conferindo movimento fluido e reflexos luminosos.",
     specs: [
       "Formato: Gota Facetada (Pear Cut)",
@@ -735,6 +766,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Amor Eterno",
+    price: 2500,
     description: "Argolas assimétricas com o formato do símbolo infinito esculpido em prata de lei 925 polida com fecho articulado seguro.",
     specs: [
       "Símbolo: Nó do Infinito",
@@ -753,6 +785,7 @@ const CATALOG = [
     material: "cristais",
     materialLabel: "Prata 925 & Zircónias",
     badge: "Brilho Puro",
+    price: 2500,
     description: "Clássicos brincos solitários com cravação em 4 garras segurando zircónias cúbicas de lapidação brilhante.",
     specs: [
       "Pedra: Zircónia Cúbica Lapidação Redonda",
@@ -771,6 +804,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Delicado",
+    price: 2500,
     description: "Argolas compactas huggie com fileira frontal de micro zircónias cravadas em pavé, ideais para o dia a dia ou segundo furo.",
     specs: [
       "Diâmetro: 11mm",
@@ -789,6 +823,7 @@ const CATALOG = [
     material: "cristais",
     materialLabel: "Prata 925 & Zircónias",
     badge: "Elegância Clássica",
+    price: 2500,
     description: "Pendente circular de zircónia facetada envolvida por auréola brilhante em base de prata de lei 925.",
     specs: [
       "Lapidação: Brilliant Cut com Halo",
@@ -807,6 +842,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Símbolos",
+    price: 2500,
     description: "Design moderno em espigão com entrelaçamento do infinito em prata polida, simbolizando conexão e afeto.",
     specs: [
       "Símbolo: Nó do Infinito",
@@ -825,6 +861,7 @@ const CATALOG = [
     material: "ouro-amarelo",
     materialLabel: "Revestimento de Ouro 14k",
     badge: "Ouro Radiante",
+    price: 2500,
     description: "Argolas clássicas e elegantes com acabamento espelhado em revestimento de ouro 14k de alta durabilidade.",
     specs: [
       "Metal: Revestimento de Ouro 14k",
@@ -847,6 +884,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Amor de Mãe",
+    price: 2500,
     description: "Dois pendentes em formato de coração em prata de lei 925 com esmalte rosa suave e zircónias. Um para si e o outro para a sua mãe, com as gravações 'Mother' e 'Daughter'.",
     specs: [
       "Coleção: Pandora Moments Amor Familiar",
@@ -866,6 +904,7 @@ const CATALOG = [
     material: "cristais",
     materialLabel: "Vidro Murano & Prata",
     badge: "Vidro Italiano",
+    price: 2500,
     description: "Vidro Murano veneziano moldado artesanalmente com inclusão de folha metálica luminescente e núcleo em prata 925 gravado com o logótipo Pandora.",
     specs: [
       "Material: Vidro de Murano Autêntico",
@@ -884,6 +923,7 @@ const CATALOG = [
     material: "ouro-rose",
     materialLabel: "Bicolor (Prata & Ouro Rosa)",
     badge: "Amor & Laços",
+    price: 2500,
     description: "Cadeado em prata 925 com coração vazado e chave independente em ouro rosa 14k. A chave pode ser usada dentro do cadeado ou pendurada separadamente.",
     specs: [
       "Mecanismo: Chave articulada removível",
@@ -902,6 +942,7 @@ const CATALOG = [
     material: "cristais",
     materialLabel: "Prata 925 & Cristais",
     badge: "Cores & Céu",
+    price: 2500,
     description: "Conta separadora em prata 925 cravejada com um degradê de cristais azuis e zircónias transparentes, com travão de silicone interno para manter as contas no lugar.",
     specs: [
       "Função: Separador e Clipe com Silicone Interno",
@@ -920,6 +961,7 @@ const CATALOG = [
     material: "ouro-rose",
     materialLabel: "Ouro Rosa 14k & Cristais",
     badge: "Sorte & Proteção",
+    price: 2500,
     description: "Amuleto em ouro rosa 14k com quatro folhas em formato de coração, uma delas cravejada com cristais verdes cintilantes para atrair prosperidade.",
     specs: [
       "Símbolo: Trevo de 4 Folhas e Prosperidade",
@@ -938,6 +980,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata 925 & Esmalte",
     badge: "Disney Oficial",
+    price: 2500,
     description: "O casal mais famoso da Disney esculpido em prata de lei 925 abraçado em torno de um coração esmaltado em vermelho radiante aplicado à mão.",
     specs: [
       "Colaboração: Disney x Pandora Oficial",
@@ -956,6 +999,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Proteção & Fé",
+    price: 2500,
     description: "Asas de anjo esculpidas em prata de lei 925 abraçando um coração central cravado com pavé de zircónias cintilantes.",
     specs: [
       "Símbolo: Asas de Anjo e Coração",
@@ -974,6 +1018,7 @@ const CATALOG = [
     material: "prata-925",
     materialLabel: "Prata de Lei 925",
     badge: "Família & Raízes",
+    price: 2500,
     description: "Conta esférica aberta com padrão rendado de ramos e folhas da árvore genealógica em filigrana de prata polida.",
     specs: [
       "Símbolo: Árvore da Vida e Genealogia",
@@ -992,6 +1037,7 @@ const CATALOG = [
     material: "ouro-rose",
     materialLabel: "Ouro Rosa 14k & Cristais",
     badge: "Real & Nobre",
+    price: 2500,
     description: "Coroa majestosa esculpida com revestimento a ouro rosa 14k e detalhes em zircónias na base e pontas.",
     specs: [
       "Símbolo: Coroa Real de Princesa",
@@ -1010,6 +1056,7 @@ const CATALOG = [
     material: "cristais",
     materialLabel: "Prata 925 & Cristais",
     badge: "Místico & Céu",
+    price: 2500,
     description: "Conta dupla articulada com sol radiante em relevo e lua crescente cravada com pedras azuis e gravura 'You are my sunshine'.",
     specs: [
       "Símbolo: Sol e Lua Crescente",
@@ -1045,27 +1092,806 @@ const CATEGORY_META = {
   }
 };
 
-// 2. CONFIGURAÇÃO DE CONTATO & ESTADO
+// 2. CONFIGURAÇÃO DE CONTATO, ESTADO & STORAGE
 const WHATSAPP_PHONE = "5511999999999";
 const WHATSAPP_SVG_ICON = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-5.805 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>`;
 
-// Função para finalizar compra de produto individual diretamente no WhatsApp
+const STORAGE_KEYS = {
+  OVERRIDES: 'infinity_store_overrides_v1',
+  CUSTOM_ITEMS: 'infinity_store_custom_items_v1'
+};
+
+// ==========================================================================
+// AUTENTICAÇÃO DE ADMINISTRADOR
+// Apenas quem souber a senha (PIN) pode adicionar ou alterar joias.
+// Mude o valor de ADMIN_PIN abaixo para a senha que desejar.
+// ==========================================================================
+const ADMIN_PIN = '1234';               // ← MUDE AQUI PARA A SUA SENHA
+const ADMIN_SESSION_KEY = 'infinity_admin_session';
+
+function isAdminAuthenticated() {
+  return sessionStorage.getItem(ADMIN_SESSION_KEY) === 'ok';
+}
+
+// Verifica autenticação antes de qualquer ação protegida.
+// Se não estiver logado, abre o modal de login e devolve false.
+function requireAdminAuth(onSuccess) {
+  if (isAdminAuthenticated()) {
+    onSuccess();
+    return true;
+  }
+  // Guarda o callback para executar após login bem-sucedido
+  window._adminPendingAction = onSuccess;
+  openAdminLoginModal();
+  return false;
+}
+
+function openAdminLoginModal() {
+  const modal = document.getElementById('admin-login-modal');
+  if (!modal) return;
+  // Limpar pin display
+  const display = document.getElementById('admin-pin-display');
+  if (display) display.textContent = '';
+  modal.classList.add('is-open');
+  document.body.classList.add('no-scroll');
+  // Focar no campo invisível para teclado mobile
+  const hiddenInput = document.getElementById('admin-pin-hidden');
+  if (hiddenInput) { hiddenInput.value = ''; setTimeout(() => { if (typeof hiddenInput.focus === 'function') hiddenInput.focus(); }, 100); }
+}
+
+function closeAdminLoginModal() {
+  const modal = document.getElementById('admin-login-modal');
+  if (modal) modal.classList.remove('is-open');
+  document.body.classList.remove('no-scroll');
+  // NÃO anular _adminPendingAction aqui — adminLoginSubmit() precisa dele logo após esta chamada
+}
+
+function adminPinKey(char) {
+  const display = document.getElementById('admin-pin-display');
+  if (!display) return;
+  if (char === 'DEL') {
+    display.textContent = display.textContent.slice(0, -1);
+  } else if (char === 'OK') {
+    adminLoginSubmit();
+  } else {
+    if (display.textContent.length >= 8) return;
+    display.textContent += char;
+  }
+  // Shake feedback se campo vazio ao tentar apagar
+}
+
+function adminLoginSubmit() {
+  const display = document.getElementById('admin-pin-display');
+  if (!display) return;
+  const entered = display.textContent.trim();
+  if (entered === ADMIN_PIN) {
+    sessionStorage.setItem(ADMIN_SESSION_KEY, 'ok');
+    // Salvar callback ANTES de fechar o modal (que pode destruí-lo)
+    const pendingAction = window._adminPendingAction;
+    window._adminPendingAction = null;
+    closeAdminLoginModal();
+    updateAdminUIVisibility();
+    showToast('✅ Acesso de administrador concedido!');
+    // Executar a ação pendente (ex: abrir editor de produto)
+    if (typeof pendingAction === 'function') {
+      try {
+        pendingAction();
+      } catch (err) {
+        console.error('[adminLoginSubmit] erro ao executar ação pendente:', err);
+      }
+    }
+  } else {
+    display.textContent = '';
+    // Shake animation
+    const pinBox = document.getElementById('admin-pin-display-box');
+    if (pinBox) {
+      pinBox.classList.add('pin-shake');
+      setTimeout(() => pinBox.classList.remove('pin-shake'), 500);
+    }
+    showToast('❌ Senha incorrecta. Tente novamente.');
+  }
+}
+
+function adminLogout() {
+  sessionStorage.removeItem(ADMIN_SESSION_KEY);
+  updateAdminUIVisibility();
+  showToast('🔒 Sessão de administrador encerrada.');
+}
+
+// Mostra/oculta os elementos de admin conforme o estado de autenticação
+function updateAdminUIVisibility() {
+  const isAdmin = isAdminAuthenticated();
+  // Header pill — elementos apenas visíveis para admin
+  document.querySelectorAll('.admin-only-element').forEach(el => {
+    el.style.display = isAdmin ? '' : 'none';
+  });
+  // Botão de login — visível apenas quando NÃO é admin
+  document.querySelectorAll('.guest-only-element').forEach(el => {
+    el.style.display = isAdmin ? 'none' : '';
+  });
+  // Floating action bar
+  const fab = document.getElementById('floating-quick-actions');
+  if (fab) fab.style.display = isAdmin ? 'flex' : 'none';
+  // Botões Editar em cada card
+  document.querySelectorAll('.product-edit-btn').forEach(btn => {
+    btn.style.display = isAdmin ? '' : 'none';
+  });
+  // Botões de add na categoria banner
+  document.querySelectorAll('.category-admin-btn').forEach(btn => {
+    btn.style.display = isAdmin ? '' : 'none';
+  });
+  // Card de adicionar na grade
+  document.querySelectorAll('.add-new-product-card').forEach(el => {
+    el.style.display = isAdmin ? '' : 'none';
+  });
+  // Botão editar no quick-view
+  document.querySelectorAll('.qv-edit-btn').forEach(btn => {
+    btn.style.display = isAdmin ? '' : 'none';
+  });
+  // Botão gerir no mobile bottom nav
+  const mobAdmin = document.getElementById('mob-nav-admin-li');
+  if (mobAdmin) mobAdmin.style.display = isAdmin ? '' : 'none';
+}
+
+let CATALOG = [];
+let managerFilterCategory = 'all';
+
+// Inicializa o catálogo sincronizando padrões com edições do usuário
+function initCatalog() {
+  try {
+    const rawOverrides = localStorage.getItem(STORAGE_KEYS.OVERRIDES);
+    const overrides = rawOverrides ? JSON.parse(rawOverrides) : {};
+
+    const rawCustom = localStorage.getItem(STORAGE_KEYS.CUSTOM_ITEMS);
+    const customItems = rawCustom ? JSON.parse(rawCustom) : [];
+
+    const defaultItems = DEFAULT_CATALOG.map(item => {
+      const copy = { ...item, specs: Array.isArray(item.specs) ? [...item.specs] : [] };
+      if (overrides[copy.id]) {
+        Object.assign(copy, overrides[copy.id]);
+        copy._isCustomized = true;
+      }
+      return copy;
+    });
+
+    const customFormatted = customItems.map(item => ({ ...item, _isNewProduct: true }));
+    // Coloca os itens adicionados pelo usuário no início do catálogo para ficarem no topo da sua categoria!
+    CATALOG = [...customFormatted, ...defaultItems];
+  } catch (err) {
+    console.error("Erro ao ler catálogo:", err);
+    CATALOG = DEFAULT_CATALOG.map(i => ({ ...i, specs: [...i.specs] }));
+  }
+  window.CATALOG = CATALOG;
+}
+
+// Salva modificação ou novo produto
+function saveProductData(productData) {
+  const isExisting = productData.id && CATALOG.some(p => p.id === productData.id);
+  const isDefault = productData.id && DEFAULT_CATALOG.some(p => p.id === productData.id);
+
+  if (isExisting) {
+    if (isDefault) {
+      const raw = localStorage.getItem(STORAGE_KEYS.OVERRIDES);
+      const overrides = raw ? JSON.parse(raw) : {};
+      overrides[productData.id] = {
+        name: productData.name,
+        price: Number(productData.price) || 0,
+        imgPrimary: productData.imgPrimary,
+        imgAlt: productData.imgAlt || productData.imgPrimary,
+        category: productData.category,
+        categoryName: productData.categoryName,
+        collection: productData.collection,
+        material: productData.material,
+        materialLabel: productData.materialLabel,
+        badge: productData.badge,
+        description: productData.description,
+        specs: productData.specs
+      };
+      try {
+        localStorage.setItem(STORAGE_KEYS.OVERRIDES, JSON.stringify(overrides));
+      } catch (e) {
+        console.warn("Storage warning:", e);
+      }
+    } else {
+      const raw = localStorage.getItem(STORAGE_KEYS.CUSTOM_ITEMS);
+      let custom = raw ? JSON.parse(raw) : [];
+      const idx = custom.findIndex(p => p.id === productData.id);
+      if (idx >= 0) custom[idx] = { ...productData };
+      else custom.unshift(productData);
+      try {
+        localStorage.setItem(STORAGE_KEYS.CUSTOM_ITEMS, JSON.stringify(custom));
+      } catch (e) {
+        console.warn("Storage warning:", e);
+      }
+    }
+    showToast(`✨ Joia "${productData.name}" atualizada com sucesso!`);
+  } else {
+    productData.id = Date.now();
+    productData._isNewProduct = true;
+    const raw = localStorage.getItem(STORAGE_KEYS.CUSTOM_ITEMS);
+    let custom = raw ? JSON.parse(raw) : [];
+    custom.unshift(productData);
+    try {
+      localStorage.setItem(STORAGE_KEYS.CUSTOM_ITEMS, JSON.stringify(custom));
+    } catch (quotaErr) {
+      console.warn("Storage quota exceeded, keeping most recent items...", quotaErr);
+      try {
+        localStorage.setItem(STORAGE_KEYS.CUSTOM_ITEMS, JSON.stringify(custom.slice(0, 15)));
+      } catch (e2) {
+        console.warn("Storage fallback error:", e2);
+      }
+    }
+    showToast(`✨ Nova joia "${productData.name}" adicionada no topo do catálogo!`);
+  }
+
+  initCatalog();
+  refreshCatalogUI();
+}
+
+function resetProductToDefault(productId) {
+  const raw = localStorage.getItem(STORAGE_KEYS.OVERRIDES);
+  const overrides = raw ? JSON.parse(raw) : {};
+  if (overrides[productId]) {
+    delete overrides[productId];
+    localStorage.setItem(STORAGE_KEYS.OVERRIDES, JSON.stringify(overrides));
+    initCatalog();
+    refreshCatalogUI();
+    showToast("Joia restaurada para a foto e preço originais!");
+  }
+}
+
+function deleteCustomProduct(productId) {
+  if (!confirm("Tem certeza que deseja excluir esta joia do catálogo?")) return;
+  const raw = localStorage.getItem(STORAGE_KEYS.CUSTOM_ITEMS);
+  let custom = raw ? JSON.parse(raw) : [];
+  custom = custom.filter(p => p.id !== productId);
+  localStorage.setItem(STORAGE_KEYS.CUSTOM_ITEMS, JSON.stringify(custom));
+  initCatalog();
+  refreshCatalogUI();
+  showToast("Joia removida do catálogo.");
+}
+
+function resetAllCatalogToDefault() {
+  if (!confirm("Tem certeza que deseja restaurar todo o catálogo original de fábrica? Todas as fotos e preços personalizados serão removidos.")) return;
+  localStorage.removeItem(STORAGE_KEYS.OVERRIDES);
+  localStorage.removeItem(STORAGE_KEYS.CUSTOM_ITEMS);
+  initCatalog();
+  refreshCatalogUI();
+  renderCatalogManagerList();
+  showToast("Catálogo 100% restaurado para o estado de fábrica!");
+}
+
+function exportCatalogBackup() {
+  const backup = {
+    exportDate: new Date().toISOString(),
+    overrides: JSON.parse(localStorage.getItem(STORAGE_KEYS.OVERRIDES) || '{}'),
+    customItems: JSON.parse(localStorage.getItem(STORAGE_KEYS.CUSTOM_ITEMS) || '[]')
+  };
+  const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `infinity_store_catalogo_${new Date().toISOString().slice(0, 10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast("Backup do catálogo baixado com sucesso!");
+}
+
+function importCatalogBackup(fileInput) {
+  const file = fileInput.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (data.overrides || data.customItems) {
+        if (data.overrides) localStorage.setItem(STORAGE_KEYS.OVERRIDES, JSON.stringify(data.overrides));
+        if (data.customItems) localStorage.setItem(STORAGE_KEYS.CUSTOM_ITEMS, JSON.stringify(data.customItems));
+        initCatalog();
+        refreshCatalogUI();
+        renderCatalogManagerList();
+        showToast("Backup importado e catálogo atualizado!");
+      } else {
+        showToast("Arquivo de backup inválido.");
+      }
+    } catch (err) {
+      showToast("Erro ao processar arquivo de backup.");
+    }
+  };
+  reader.readAsText(file);
+  fileInput.value = '';
+}
+
+// Otimiza e converte foto do usuário via Canvas para Base64 leve
+function compressAndReadImage(file, callback) {
+  if (!file) return;
+
+  let objectUrl = null;
+  try {
+    objectUrl = URL.createObjectURL(file);
+  } catch (e) {}
+
+  const processImg = (src, isBlob) => {
+    const img = new Image();
+    img.onload = function() {
+      if (isBlob && objectUrl) URL.revokeObjectURL(objectUrl);
+
+      const maxDim = 720;
+      let w = img.width;
+      let h = img.height;
+      if (w > maxDim || h > maxDim) {
+        if (w > h) {
+          h = Math.round((h * maxDim) / w);
+          w = maxDim;
+        } else {
+          w = Math.round((w * maxDim) / h);
+          h = maxDim;
+        }
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+
+      const isPng = (file.type && file.type.indexOf('png') !== -1) || (file.name && file.name.toLowerCase().endsWith('.png'));
+
+      let dataUrl;
+      try {
+        if (isPng) {
+          ctx.clearRect(0, 0, w, h);
+          ctx.drawImage(img, 0, 0, w, h);
+          dataUrl = canvas.toDataURL('image/png');
+          if (dataUrl.length > 500000) {
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, w, h);
+            ctx.drawImage(img, 0, 0, w, h);
+            dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+          }
+        } else {
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, w, h);
+          ctx.drawImage(img, 0, 0, w, h);
+          dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+        }
+      } catch (err) {
+        dataUrl = src;
+      }
+      callback(dataUrl);
+    };
+
+    img.onerror = function() {
+      if (isBlob && objectUrl) URL.revokeObjectURL(objectUrl);
+      const reader = new FileReader();
+      reader.onload = function(e) { callback(e.target.result); };
+      reader.onerror = function() { showToast('Não foi possível ler a foto.'); };
+      reader.readAsDataURL(file);
+    };
+
+    img.src = src;
+  };
+
+  if (objectUrl) {
+    processImg(objectUrl, true);
+  } else {
+    const reader = new FileReader();
+    reader.onload = function(e) { processImg(e.target.result, false); };
+    reader.onerror = function() { showToast('Erro ao ler arquivo.'); };
+    reader.readAsDataURL(file);
+  }
+}
+
+function onFileSelected(fileInput, targetInputId, previewImgId) {
+  const file = fileInput.files[0];
+  if (!file) return;
+  compressAndReadImage(file, (dataUrl) => {
+    const input = document.getElementById(targetInputId);
+    const preview = document.getElementById(previewImgId);
+    if (input) input.value = dataUrl;
+    if (preview) preview.src = dataUrl;
+    showToast("Foto carregada com sucesso!");
+  });
+}
+
+function updatePreviewFromInput(inputId, previewImgId) {
+  const input = document.getElementById(inputId);
+  const preview = document.getElementById(previewImgId);
+  if (input && preview) {
+    preview.src = input.value.trim() || 'assets/ring_pink_heart.jpg';
+  }
+}
+
+function updatePriceBadge(val) {
+  const badge = document.getElementById('price-live-badge');
+  if (badge) {
+    const num = Number(val) || 0;
+    badge.textContent = num > 0 ? `${num.toLocaleString('pt-MZ')} MT` : 'Sem preço';
+  }
+}
+
+function setPriceValue(val) {
+  const input = document.getElementById('edit-input-price');
+  if (input) {
+    input.value = val;
+    updatePriceBadge(val);
+  }
+}
+
+function selectEasyCategory(cat) {
+  const input = document.getElementById('edit-select-category');
+  if (input) input.value = cat;
+  document.querySelectorAll('.cat-tap-btn').forEach(btn => {
+    btn.classList.toggle('is-selected', btn.getAttribute('data-cat') === cat);
+  });
+}
+
+function toggleAdvancedOptions() {
+  const panel = document.getElementById('easy-advanced-panel');
+  const btn = document.getElementById('btn-toggle-advanced');
+  if (!panel || !btn) return;
+  const isHidden = panel.style.display === 'none';
+  panel.style.display = isHidden ? 'block' : 'none';
+  btn.innerHTML = isHidden ? '▲ Recolher detalhes adicionais' : '▼ Mais detalhes opcionais (descrição, material, foto secundária)...';
+}
+
+// Modal do Editor de Produto
+function openProductEditor(productId, event, defaultCategory) {
+  console.log('[openProductEditor] chamado. productId:', productId, 'admin:', isAdminAuthenticated(), 'defaultCategory:', defaultCategory);
+  if (event) {
+    try { event.stopPropagation(); } catch (e) {}
+  }
+  if (!isAdminAuthenticated()) {
+    console.log('[openProductEditor] não autenticado, abrindo login...');
+    requireAdminAuth(() => openProductEditor(productId, null, defaultCategory));
+    return;
+  }
+
+  // Fecha outros modais sem atrasos para evitar conflito de overlay
+  const catModal = document.getElementById('catalog-manager-modal');
+  if (catModal) catModal.classList.remove('is-open');
+
+  const qvModal = document.getElementById('quick-view-modal');
+  if (qvModal) qvModal.classList.remove('is-open');
+
+  const modal = document.getElementById('product-editor-modal');
+  if (!modal) return;
+
+  const product = productId ? CATALOG.find(p => p.id === productId) : null;
+  const isNew = !product;
+
+  document.getElementById('edit-product-id').value = isNew ? '' : product.id;
+  document.getElementById('editor-modal-title').textContent = isNew ? 'Adicionar Nova Joia ao Catálogo' : `Modificar Joia: ${product.name}`;
+
+  const priceVal = isNew ? 2500 : (product.price || 0);
+  document.getElementById('edit-input-price').value = priceVal;
+  updatePriceBadge(priceVal);
+
+  document.getElementById('edit-input-name').value = isNew ? '' : product.name;
+  
+  const cat = isNew ? (defaultCategory || STATE.currentCategory || 'pulseiras') : product.category;
+  selectEasyCategory(cat);
+
+  const advPanel = document.getElementById('easy-advanced-panel');
+  if (advPanel) advPanel.style.display = 'none';
+  const advBtn = document.getElementById('btn-toggle-advanced');
+  if (advBtn) advBtn.innerHTML = '▼ Mais detalhes opcionais (descrição, material, foto secundária)...';
+  
+  document.getElementById('edit-input-collection').value = isNew ? 'Pandora Moments' : (product.collection || '');
+  document.getElementById('edit-input-material').value = isNew ? 'Prata de Lei 925' : (product.materialLabel || '');
+  document.getElementById('edit-input-badge').value = isNew ? 'Nova Coleção' : (product.badge || '');
+  document.getElementById('edit-input-desc').value = isNew ? '' : (product.description || '');
+  document.getElementById('edit-input-specs').value = isNew ? 'Metal: Prata de Lei 925\nAcabamento: Polido de Alta Joalheria' : (product.specs ? product.specs.join('\n') : '');
+
+  const defImg = `assets/${cat}/${cat === 'pulseiras' ? 'pulseira' : cat === 'aneis' ? 'anel' : cat === 'colares' ? 'colar' : cat === 'brincos' ? 'brinco' : 'pingente'}-1.jpg`;
+  const primaryImg = isNew ? defImg : product.imgPrimary;
+  const altImg = isNew ? defImg : (product.imgAlt || product.imgPrimary);
+
+  document.getElementById('edit-input-primary').value = primaryImg;
+  const previewPrimary = document.getElementById('edit-preview-primary');
+  if (previewPrimary) previewPrimary.src = primaryImg;
+
+  document.getElementById('edit-input-alt').value = altImg;
+  const previewAlt = document.getElementById('edit-preview-alt');
+  if (previewAlt) previewAlt.src = altImg;
+
+  // Botões de restaurar / excluir
+  const btnRestore = document.getElementById('btn-restore-product');
+  const btnDelete = document.getElementById('btn-delete-product');
+
+  if (isNew) {
+    if (btnRestore) btnRestore.style.display = 'none';
+    if (btnDelete) btnDelete.style.display = 'none';
+  } else if (product._isNewProduct) {
+    if (btnRestore) btnRestore.style.display = 'none';
+    if (btnDelete) btnDelete.style.display = 'inline-flex';
+  } else {
+    if (btnDelete) btnDelete.style.display = 'none';
+    if (btnRestore) btnRestore.style.display = product._isCustomized ? 'inline-flex' : 'none';
+  }
+
+  modal.classList.add('is-open');
+  console.log('[openProductEditor] modal aberto! classes:', modal.className);
+  document.getElementById('drawer-overlay')?.classList.add('is-active');
+  document.body.classList.add('no-scroll');
+}
+
+function closeProductEditor() {
+  document.getElementById('product-editor-modal')?.classList.remove('is-open');
+  const mgrOpen = document.getElementById('catalog-manager-modal')?.classList.contains('is-open');
+  if (!mgrOpen) {
+    document.getElementById('drawer-overlay')?.classList.remove('is-active');
+    document.body.classList.remove('no-scroll');
+  }
+}
+
+function handleProductEditorSubmit(event) {
+  console.log('[handleProductEditorSubmit] chamado!');
+  if (event) event.preventDefault();
+
+  const idVal = document.getElementById('edit-product-id').value;
+  const categoryVal = document.getElementById('edit-select-category').value || 'pulseiras';
+  
+  const catNames = {
+    pulseiras: "Pulseiras",
+    aneis: "Anéis",
+    colares: "Colares",
+    brincos: "Brincos",
+    pingentes: "Pingentes"
+  };
+
+  const rawName = document.getElementById('edit-input-name').value.trim();
+  const defaultCategoryName = catNames[categoryVal] || categoryVal;
+  const finalName = rawName || `Joia ${defaultCategoryName} #${Math.floor(100 + Math.random() * 900)}`;
+
+  const specsText = document.getElementById('edit-input-specs').value.trim();
+  const specsArr = specsText ? specsText.split('\n').map(s => s.trim()).filter(Boolean) : [];
+
+  const defImg = `assets/${categoryVal}/${categoryVal === 'pulseiras' ? 'pulseira' : categoryVal === 'aneis' ? 'anel' : categoryVal === 'colares' ? 'colar' : categoryVal === 'brincos' ? 'brinco' : 'pingente'}-1.jpg`;
+  const primaryImg = document.getElementById('edit-input-primary').value.trim() || defImg;
+
+  const productData = {
+    id: idVal ? (isNaN(Number(idVal)) ? idVal : Number(idVal)) : null,
+    name: finalName,
+    price: Number(document.getElementById('edit-input-price').value) || 0,
+    category: categoryVal,
+    categoryName: defaultCategoryName,
+    collection: document.getElementById('edit-input-collection').value.trim() || 'Pandora Moments',
+    material: 'prata-925',
+    materialLabel: document.getElementById('edit-input-material').value.trim() || 'Prata de Lei 925',
+    badge: document.getElementById('edit-input-badge').value.trim() || 'Nova Joia',
+    description: document.getElementById('edit-input-desc').value.trim() || `Peça exclusiva da coleção ${defaultCategoryName}.`,
+    specs: specsArr.length > 0 ? specsArr : ['Metal: Prata de Lei 925', 'Acabamento: Polido de Alta Joalheria'],
+    imgPrimary: primaryImg,
+    imgAlt: document.getElementById('edit-input-alt').value.trim() || primaryImg
+  };
+
+  const isNew = !productData.id;
+  console.log('[handleProductEditorSubmit] salvando...', 'isNew:', isNew, 'name:', productData.name, 'price:', productData.price, 'category:', productData.category);
+  saveProductData(productData);
+  console.log('[handleProductEditorSubmit] salvo! CATALOG.length:', CATALOG.length, 'productData.id:', productData.id);
+  closeProductEditor();
+
+  // Navega para a categoria da joia para mostrá-la imediatamente no topo com destaque visual
+  if (isNew) {
+    showCategoryPage(productData.category);
+    setTimeout(() => {
+      const newCard = document.querySelector(`.product-card[data-id="${productData.id}"]`);
+      if (newCard) {
+        newCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        newCard.style.outline = '3px solid var(--color-accent)';
+        newCard.style.boxShadow = '0 0 25px rgba(184, 134, 11, 0.5)';
+        newCard.style.transition = 'all 0.5s ease';
+        setTimeout(() => {
+          newCard.style.outline = '';
+          newCard.style.boxShadow = '';
+        }, 3500);
+      }
+    }, 350);
+  }
+}
+
+function onRestoreCurrentProduct() {
+  const idVal = document.getElementById('edit-product-id').value;
+  if (!idVal) return;
+  const pid = isNaN(Number(idVal)) ? idVal : Number(idVal);
+  resetProductToDefault(pid);
+  closeProductEditor();
+}
+
+function onDeleteCurrentProduct() {
+  const idVal = document.getElementById('edit-product-id').value;
+  if (!idVal) return;
+  const pid = isNaN(Number(idVal)) ? idVal : Number(idVal);
+  deleteCustomProduct(pid);
+  closeProductEditor();
+}
+
+// Modal do Gerenciador do Catálogo
+function openCatalogManager() {
+  if (!isAdminAuthenticated()) {
+    requireAdminAuth(() => openCatalogManager());
+    return;
+  }
+  closeAllDrawers();
+  const modal = document.getElementById('catalog-manager-modal');
+  if (!modal) return;
+  
+  modal.classList.add('is-open');
+  document.getElementById('drawer-overlay')?.classList.add('is-active');
+  document.body.classList.add('no-scroll');
+  renderCatalogManagerList();
+}
+
+function closeCatalogManager() {
+  document.getElementById('catalog-manager-modal')?.classList.remove('is-open');
+  const editorOpen = document.getElementById('product-editor-modal')?.classList.contains('is-open');
+  if (!editorOpen) {
+    document.getElementById('drawer-overlay')?.classList.remove('is-active');
+    document.body.classList.remove('no-scroll');
+  }
+}
+
+function renderCatalogManagerList() {
+  const container = document.getElementById('manager-items-list');
+  if (!container) return;
+
+  const q = (document.getElementById('manager-search-input')?.value || '').toLowerCase().trim();
+
+  let items = CATALOG;
+  if (managerFilterCategory !== 'all') {
+    items = items.filter(p => p.category === managerFilterCategory);
+  }
+  if (q.length > 0) {
+    items = items.filter(p => 
+      p.name.toLowerCase().includes(q) ||
+      p.collection.toLowerCase().includes(q) ||
+      p.materialLabel.toLowerCase().includes(q) ||
+      String(p.id).includes(q)
+    );
+  }
+
+  // Atualiza estatísticas
+  const totalCount = CATALOG.length;
+  const pricedCount = CATALOG.filter(p => p.price && Number(p.price) > 0).length;
+  const customCount = CATALOG.filter(p => p._isCustomized || p._isNewProduct).length;
+
+  const statTotal = document.getElementById('manager-stat-total');
+  const statPriced = document.getElementById('manager-stat-priced');
+  const statCustom = document.getElementById('manager-stat-custom');
+
+  if (statTotal) statTotal.textContent = totalCount;
+  if (statPriced) statPriced.textContent = pricedCount;
+  if (statCustom) statCustom.textContent = customCount;
+
+  if (items.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 40px 20px; color: var(--color-text-muted);">
+        <p>Nenhuma joia encontrada com os filtros atuais.</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = items.map(p => {
+    const isCustom = p._isCustomized || p._isNewProduct;
+    return `
+      <div class="manager-item-row" data-id="${p.id}">
+        <img src="${p.imgPrimary}" alt="${p.name}" class="manager-item-thumb" onerror="handleImgError(this)">
+        <div class="manager-item-meta">
+          <div class="manager-item-name">${p.name}</div>
+          <div class="manager-item-sub">#${p.id} &bull; ${p.categoryName} &bull; ${p.collection}</div>
+          <div class="manager-item-badges">
+            <span style="font-size: 0.68rem; color: var(--color-text-muted);">${p.materialLabel}</span>
+            ${isCustom ? `<span class="badge-pill-custom">${p._isNewProduct ? 'Nova Peça' : 'Modificado'}</span>` : ''}
+          </div>
+        </div>
+        <div class="manager-item-price-col">
+          <div class="manager-price-display">${p.price ? Number(p.price).toLocaleString('pt-MZ') + ' MT' : 'Sem preço'}</div>
+        </div>
+        <div class="manager-item-actions">
+          <button class="btn-luxury btn-luxury-primary btn-sm" onclick="openProductEditor(${p.id}, event)" title="Editar foto e preço desta peça" style="padding: 8px 14px; font-weight: 700; gap: 6px;">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            Editar Foto &amp; Preço
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function filterManagerList() {
+  renderCatalogManagerList();
+}
+
+function setManagerCategoryFilter(cat, btn) {
+  managerFilterCategory = cat;
+  document.querySelectorAll('.manager-pill').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderCatalogManagerList();
+}
+
+function refreshCatalogUI() {
+  if (STATE.activeView === 'category' && STATE.currentCategory) {
+    renderCategoryView();
+  }
+  refreshCarouselScenes();
+  updateWishlistBadges();
+  updateCartBadges();
+  if (document.getElementById('catalog-manager-modal')?.classList.contains('is-open')) {
+    renderCatalogManagerList();
+  }
+}
+
+// Sincroniza fotos e preços nos slides da página inicial
+function refreshCarouselScenes() {
+  const sceneMap = [
+    { sceneId: 'scene-1', prodId: 101 },
+    { sceneId: 'scene-2', prodId: 301 },
+    { sceneId: 'scene-3', prodId: 206 },
+    { sceneId: 'scene-4', prodId: 401 },
+    { sceneId: 'scene-5', prodId: 501 }
+  ];
+
+  sceneMap.forEach(({ sceneId, prodId }) => {
+    const p = CATALOG.find(item => item.id === prodId);
+    const scene = document.getElementById(sceneId);
+    if (!p || !scene) return;
+
+    const img = scene.querySelector('.carousel-img');
+    if (img && p.imgPrimary) img.src = p.imgPrimary;
+
+    const eyebrow = scene.querySelector('.carousel-eyebrow');
+    if (eyebrow && p.price) {
+      eyebrow.innerHTML = `${p.badge} &bull; ${p.materialLabel} &bull; <strong style="color:var(--color-accent); font-weight:700;">${Number(p.price).toLocaleString('pt-MZ')} MT</strong>`;
+    }
+  });
+}
+
+// Finalizar compra individual no WhatsApp com inclusão de preço
 function buyProductViaWhatsApp(productId) {
   const product = CATALOG.find(p => p.id === productId);
   if (!product) return;
-  const msg = `Olá, Infinity Store! 💎\n\nGostaria de finalizar a compra da seguinte joia:\n\n• *Produto:* ${product.name}\n• *Coleção:* ${product.collection}\n• *Material:* ${product.materialLabel}\n• *Código:* #${product.id}\n\nPoderiam me informar sobre prazos de entrega e dados para pagamento?`;
+  const priceLine = product.price ? `
+• *Preço:* ${Number(product.price).toLocaleString('pt-MZ')} MT` : '';
+  const msg = `Olá, Infinity Store! 💎
+
+Gostaria de finalizar a compra da seguinte joia:
+
+• *Produto:* ${product.name}${priceLine}
+• *Coleção:* ${product.collection}
+• *Material:* ${product.materialLabel}
+• *Código:* #${product.id}
+
+Poderiam me informar sobre disponibilidade e dados para pagamento?`;
   const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
   window.open(url, '_blank');
 }
 
-// Função para finalizar sacola com múltiplos produtos no WhatsApp
+// Finalizar sacola no WhatsApp com soma dos preços
 function checkoutBagViaWhatsApp() {
   if (STATE.cart.length === 0) {
     showToast('Sua sacola está vazia.');
     return;
   }
-  const itemsSummary = STATE.cart.map(i => `• ${i.qty}x *${i.name}* (${i.materialLabel}) - Cód #${i.id}`).join('\n');
-  const msg = `Olá, Infinity Store! 💎\n\nGostaria de finalizar meu pedido com as seguintes joias selecionadas:\n\n${itemsSummary}\n\nComo posso prosseguir com o pagamento e a entrega?`;
+  let total = 0;
+  const itemsSummary = STATE.cart.map(i => {
+    const prod = CATALOG.find(p => p.id === i.id);
+    const unitPrice = prod && prod.price ? Number(prod.price) : 0;
+    const subtotal = unitPrice * i.qty;
+    total += subtotal;
+    const priceText = unitPrice > 0 ? ` - ${unitPrice.toLocaleString('pt-MZ')} MT` : '';
+    return `• ${i.qty}x *${i.name}* (${i.materialLabel})${priceText} - Cód #${i.id}`;
+  }).join('\n');
+
+  const totalLine = total > 0 ? `
+
+*Total Estimado:* ${total.toLocaleString('pt-MZ')} MT` : '';
+  const msg = `Olá, Infinity Store! 💎
+
+Gostaria de finalizar meu pedido com as seguintes joias selecionadas:
+
+${itemsSummary}${totalLine}
+
+Como posso prosseguir com o pagamento e a entrega?`;
   const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
   window.open(url, '_blank');
   closeBagDrawer();
@@ -1080,12 +1906,15 @@ const STATE = {
 
 // 3. INICIALIZAÇÃO
 document.addEventListener('DOMContentLoaded', () => {
+  initCatalog();
   setupNavigation();
   setupSearch();
   setupDrawersAndModals();
   setupStoryScroll();
   updateWishlistBadges();
   updateCartBadges();
+  refreshCarouselScenes();
+  updateAdminUIVisibility(); // Aplica visibilidade dos elementos de admin
 });
 
 // 4. NAVEGAÇÃO ENTRE CATEGORIAS
@@ -1128,7 +1957,9 @@ function showCategoryPage(categoryKey) {
 
   // Renderiza produtos da categoria
   renderCategoryView();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (typeof window.scrollTo === 'function') {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
 
 function showImmersiveHome() {
@@ -1142,6 +1973,7 @@ function showImmersiveHome() {
   document.getElementById('category-page-view').classList.remove('active-view');
 
   document.querySelectorAll('.nav-category-link').forEach(link => link.classList.remove('active'));
+  refreshCarouselScenes();
 }
 
 function renderCategoryView() {
@@ -1159,12 +1991,37 @@ function renderCategoryView() {
   const grid = document.getElementById('products-catalog-grid');
   if (!grid) return;
 
-  grid.innerHTML = items.map(product => {
+  const addNewCardHtml = `
+    <article class="product-card add-new-product-card" onclick="openProductEditor(null, event, STATE.currentCategory)">
+      <div class="add-card-inner">
+        <div class="add-card-icon-wrap">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </div>
+        <h3 class="add-card-title">+ Adicionar Joia</h3>
+        <p class="add-card-desc">Clique aqui para colocar uma foto e preço nesta categoria em 10 segundos.</p>
+        <span class="catalog-btn-secondary" style="pointer-events: none; padding: 6px 14px; font-size: 0.75rem;">+ Adicionar Peça</span>
+      </div>
+    </article>
+  `;
+
+  grid.innerHTML = addNewCardHtml + items.map(product => {
     const isFav = STATE.wishlist.includes(product.id);
     return `
       <article class="product-card" data-id="${product.id}">
         <div class="product-media">
           <span class="product-badge">${product.badge}</span>
+
+          <button class="product-edit-btn" onclick="openProductEditor(${product.id}, event)" title="Modificar foto e preço desta peça" aria-label="Editar">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20h9"></path>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+            </svg>
+            <span>📷 Mudar Foto / Preço</span>
+          </button>
+
           <button class="product-wishlist-btn ${isFav ? 'active' : ''}" onclick="toggleWishlist(${product.id})" aria-label="Favoritar">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.8">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -1183,7 +2040,7 @@ function renderCategoryView() {
           <span class="product-cat-tag">${product.collection} &bull; ${product.materialLabel}</span>
           <h3 class="product-title" onclick="openQuickView(${product.id})">${product.name}</h3>
           <p class="product-material-text">${product.specs[0] || ''}</p>
-          ${product.price ? `<p class="product-price">${product.price.toLocaleString('pt-MZ')} MT</p>` : ''}
+          <p class="product-price">${product.price ? Number(product.price).toLocaleString('pt-MZ') + ' MT' : 'Preço sob consulta'}</p>
 
           <div class="product-card-actions">
             <button class="product-whatsapp-btn" onclick="buyProductViaWhatsApp(${product.id})" title="Finalizar compra no WhatsApp">
@@ -1201,6 +2058,9 @@ function renderCategoryView() {
       </article>
     `;
   }).join('');
+
+  // Garante que elementos de admin são exibidos/ocultos de acordo com o estado de autenticação
+  updateAdminUIVisibility();
 }
 
 // 5. MOTOR DE BUSCA EM TEMPO REAL
@@ -1225,13 +2085,13 @@ function setupSearch() {
 
     if (matches.length > 0) {
       dropdown.innerHTML = `
-        <div class="search-results-header">Produtos Pandora Encontrados (${matches.length})</div>
+        <div class="search-results-header">Joias Infinity Encontradas (${matches.length})</div>
         ${matches.map(p => `
           <div class="search-item" onclick="openQuickView(${p.id}); document.getElementById('search-dropdown').classList.remove('active');">
             <img src="${p.imgPrimary}" alt="${p.name}" onerror="handleImgError(this)">
             <div class="search-item-info">
               <div class="search-item-title">${p.name}</div>
-              <div class="search-item-cat">${p.collection} &bull; ${p.categoryName}</div>
+              <div class="search-item-cat">${p.collection} &bull; ${p.categoryName} &bull; <strong style="color:var(--color-accent); font-weight:700;">${p.price ? Number(p.price).toLocaleString('pt-MZ') + ' MT' : ''}</strong></div>
             </div>
           </div>
         `).join('')}
@@ -1271,14 +2131,14 @@ function openQuickView(productId) {
       <div class="qv-details">
         <span class="qv-tag">${product.collection} &bull; ${product.badge}</span>
         <h2 class="qv-title">${product.name}</h2>
-        ${product.price ? `<p class="qv-price">${product.price.toLocaleString('pt-MZ')} MT</p>` : ''}
+        <p class="qv-price">${product.price ? Number(product.price).toLocaleString('pt-MZ') + ' MT' : 'Preço sob consulta'}</p>
         <p class="qv-desc">${product.description}</p>
         
         <div class="qv-specs">
           ${product.specs.map(s => `<div>&bull; ${s}</div>`).join('')}
         </div>
 
-        <div style="margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap;">
+        <div style="margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap; padding-top: 16px;">
           <button class="btn-luxury btn-luxury-whatsapp" style="flex: 1;" onclick="buyProductViaWhatsApp(${product.id}); closeQuickView();">
             ${WHATSAPP_SVG_ICON}
             Finalizar Compra no WhatsApp
@@ -1289,12 +2149,20 @@ function openQuickView(productId) {
               <line x1="3" y1="6" x2="21" y2="6"></line>
             </svg>
           </button>
+          <button class="btn-luxury btn-luxury-outline qv-edit-btn" style="padding: 12px 18px;" onclick="closeQuickView(); openProductEditor(${product.id});" title="Modificar Foto e Preço">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20h9"></path>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+            </svg>
+            Editar
+          </button>
         </div>
       </div>
     </div>
   `;
 
   modal.classList.add('is-open');
+  console.log('[openProductEditor] modal aberto! classes:', modal.className);
   document.getElementById('drawer-overlay')?.classList.add('is-active');
   document.body.classList.add('no-scroll');
 }
@@ -1332,6 +2200,7 @@ function addToBag(productId) {
       name: product.name,
       materialLabel: product.materialLabel,
       img: product.imgPrimary,
+      price: product.price || 0,
       qty: 1
     });
   }
@@ -1349,24 +2218,58 @@ function renderBagItems() {
     body.innerHTML = `
       <div style="text-align: center; padding: 60px 20px; color: var(--color-text-muted);">
         <h3 style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--color-text-primary);">Sua sacola está vazia</h3>
-        <p style="font-size: 0.85rem; margin-top: 8px;">Explore as categorias para adicionar joias Pandora.</p>
+        <p style="font-size: 0.85rem; margin-top: 8px;">Explore as categorias para adicionar joias Infinity.</p>
       </div>
     `;
+    const footer = document.querySelector('#bag-drawer .drawer-footer');
+    if (footer) footer.style.display = 'none';
     return;
   }
 
-  body.innerHTML = STATE.cart.map(item => `
-    <div class="drawer-item">
-      <img src="${item.img}" alt="${item.name}">
-      <div class="drawer-item-info">
-        <h4 class="drawer-item-title">${item.name}</h4>
-        <span class="drawer-item-meta">${item.materialLabel} &bull; Qtd: ${item.qty}</span>
-        <div class="drawer-item-controls">
-          <button style="font-size: 0.75rem; color: var(--color-accent); text-decoration: underline;" onclick="removeFromBag(${item.id})">Remover</button>
+  let total = 0;
+  const itemsHtml = STATE.cart.map(item => {
+    const prod = CATALOG.find(p => p.id === item.id) || item;
+    const price = prod.price ? Number(prod.price) : 0;
+    const subtotal = price * item.qty;
+    total += subtotal;
+
+    return `
+      <div class="drawer-item">
+        <img src="${prod.imgPrimary || item.img}" alt="${item.name}" onerror="handleImgError(this)">
+        <div class="drawer-item-info">
+          <h4 class="drawer-item-title">${item.name}</h4>
+          <span class="drawer-item-meta">${item.materialLabel} &bull; Qtd: ${item.qty}</span>
+          ${price > 0 ? `<div class="drawer-item-price">${price.toLocaleString('pt-MZ')} MT <span style="font-size:0.75rem; color:var(--color-text-muted); font-weight:normal;">(Sub: ${subtotal.toLocaleString('pt-MZ')} MT)</span></div>` : ''}
+          <div class="drawer-item-controls">
+            <button style="font-size: 0.75rem; color: var(--color-accent); text-decoration: underline;" onclick="removeFromBag(${item.id})">Remover</button>
+          </div>
         </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
+
+  body.innerHTML = `
+    ${itemsHtml}
+    ${total > 0 ? `
+      <div class="bag-total-summary">
+        <div class="bag-total-row">
+          <span>Subtotal estimado:</span>
+          <strong>${total.toLocaleString('pt-MZ')} MT</strong>
+        </div>
+      </div>
+    ` : ''}
+  `;
+
+  const footer = document.querySelector('#bag-drawer .drawer-footer');
+  if (footer) {
+    footer.style.display = 'block';
+    footer.innerHTML = `
+      <button class="btn-luxury btn-luxury-whatsapp" style="width: 100%;" onclick="checkoutBagViaWhatsApp()">
+        ${WHATSAPP_SVG_ICON}
+        Finalizar Pedido no WhatsApp (${total > 0 ? total.toLocaleString('pt-MZ') + ' MT' : 'Sacola'})
+      </button>
+    `;
+  }
 }
 
 function removeFromBag(productId) {
@@ -1442,6 +2345,7 @@ function renderWishlistItems() {
       <div class="drawer-item-info">
         <h4 class="drawer-item-title">${product.name}</h4>
         <span class="drawer-item-meta">${product.categoryName} &bull; ${product.materialLabel}</span>
+        ${product.price ? `<div class="drawer-item-price">${Number(product.price).toLocaleString('pt-MZ')} MT</div>` : ''}
         <div class="drawer-item-controls" style="margin-top: 10px; display: flex; gap: 8px; align-items: center;">
           <button class="product-whatsapp-btn" style="padding: 6px 12px; font-size: 0.72rem;" onclick="buyProductViaWhatsApp(${product.id})">
             ${WHATSAPP_SVG_ICON}
@@ -1472,6 +2376,8 @@ function closeAllDrawers() {
   document.getElementById('bag-drawer')?.classList.remove('is-open');
   document.getElementById('wishlist-drawer')?.classList.remove('is-open');
   document.getElementById('quick-view-modal')?.classList.remove('is-open');
+  document.getElementById('product-editor-modal')?.classList.remove('is-open');
+  document.getElementById('catalog-manager-modal')?.classList.remove('is-open');
   document.getElementById('drawer-overlay')?.classList.remove('is-active');
   document.body.classList.remove('no-scroll');
 }
@@ -1546,7 +2452,7 @@ function setupStoryScroll() {
       if (STATE.activeView !== 'immersive') return;
       touchEndY = e.changedTouches[0].screenY;
       const diff = touchStartY - touchEndY;
-      if (Math.abs(diff) < 40) return; // ignore small swipes
+      if (Math.abs(diff) < 40) return;
       if (diff > 0) {
         goToScene(currentScene + 1);
       } else {
@@ -1572,13 +2478,11 @@ function openMobileSearch() {
 
 /** Close the mobile search overlay */
 function closeMobileSearch(event) {
-  // If called from the backdrop click, only close when clicking the backdrop itself
   if (event && event.target !== document.getElementById('mobile-search-overlay')) return;
   const overlay = document.getElementById('mobile-search-overlay');
   if (!overlay) return;
   overlay.classList.remove('active');
   document.body.classList.remove('no-scroll');
-  // Reset
   const input = document.getElementById('mobile-search-input');
   const results = document.getElementById('mobile-search-results');
   if (input) input.value = '';
@@ -1608,11 +2512,11 @@ function handleMobileSearch(query) {
   }
 
   results.innerHTML = matches.map(p => `
-    <div class="search-item" onclick="closeMobileSearch(); showCategoryPage('${p.category}');" style="padding:12px 16px;">
+    <div class="search-item" onclick="closeMobileSearch(); openQuickView(${p.id});" style="padding:12px 16px;">
       <img src="${p.imgPrimary}" alt="${p.name}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;" onerror="handleImgError(this)">
       <div class="search-item-info">
         <div class="search-item-title">${p.name}</div>
-        <div class="search-item-cat">${p.categoryName} &bull; ${p.collection}</div>
+        <div class="search-item-cat">${p.categoryName} &bull; ${p.collection} &bull; <strong style="color:var(--color-accent); font-weight:700;">${p.price ? Number(p.price).toLocaleString('pt-MZ') + ' MT' : ''}</strong></div>
       </div>
     </div>
   `).join('');
@@ -1625,9 +2529,61 @@ function setMobileActiveNav(activeId) {
   });
 }
 
-// Also set home active when returning to immersive
+// Retornar para immersive ativa home no bottom nav
 const _origShowImmersiveHome = window.showImmersiveHome;
 window.showImmersiveHome = function() {
   if (typeof _origShowImmersiveHome === 'function') _origShowImmersiveHome();
   setMobileActiveNav('mob-nav-home');
 };
+
+// ==========================================================================
+// EXPOSIÇÃO GLOBAL DE FUNÇÕES PARA O HTML
+// ==========================================================================
+window.initCatalog = initCatalog;
+window.saveProductData = saveProductData;
+window.resetProductToDefault = resetProductToDefault;
+window.deleteCustomProduct = deleteCustomProduct;
+window.resetAllCatalogToDefault = resetAllCatalogToDefault;
+window.exportCatalogBackup = exportCatalogBackup;
+window.importCatalogBackup = importCatalogBackup;
+window.openProductEditor = openProductEditor;
+window.closeProductEditor = closeProductEditor;
+window.handleProductEditorSubmit = handleProductEditorSubmit;
+window.selectEasyCategory = selectEasyCategory;
+window.toggleAdvancedOptions = toggleAdvancedOptions;
+window.onFileSelected = onFileSelected;
+window.updatePreviewFromInput = updatePreviewFromInput;
+window.updatePriceBadge = updatePriceBadge;
+window.setPriceValue = setPriceValue;
+window.onRestoreCurrentProduct = onRestoreCurrentProduct;
+window.onDeleteCurrentProduct = onDeleteCurrentProduct;
+window.openCatalogManager = openCatalogManager;
+window.closeCatalogManager = closeCatalogManager;
+window.renderCatalogManagerList = renderCatalogManagerList;
+window.filterManagerList = filterManagerList;
+window.setManagerCategoryFilter = setManagerCategoryFilter;
+window.buyProductViaWhatsApp = buyProductViaWhatsApp;
+window.checkoutBagViaWhatsApp = checkoutBagViaWhatsApp;
+window.addToBag = addToBag;
+window.removeFromBag = removeFromBag;
+window.openBagDrawer = openBagDrawer;
+window.closeBagDrawer = closeBagDrawer;
+window.toggleWishlist = toggleWishlist;
+window.openWishlistDrawer = openWishlistDrawer;
+window.closeWishlistDrawer = closeWishlistDrawer;
+window.openQuickView = openQuickView;
+window.closeQuickView = closeQuickView;
+window.closeAllDrawers = closeAllDrawers;
+window.showCategoryPage = showCategoryPage;
+window.showToast = showToast;
+
+
+// Auth functions
+window.isAdminAuthenticated = isAdminAuthenticated;
+window.requireAdminAuth = requireAdminAuth;
+window.openAdminLoginModal = openAdminLoginModal;
+window.closeAdminLoginModal = closeAdminLoginModal;
+window.adminPinKey = adminPinKey;
+window.adminLoginSubmit = adminLoginSubmit;
+window.adminLogout = adminLogout;
+window.updateAdminUIVisibility = updateAdminUIVisibility;
