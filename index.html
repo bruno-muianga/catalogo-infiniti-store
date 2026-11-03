@@ -72,19 +72,19 @@
             <span class="icon-label">Buscar</span>
           </button>
           
-          <!-- Botão de Acesso Admin — sempre visível, muda conforme autenticação -->
-          <button class="header-admin-pill-btn admin-only-element" onclick="openCatalogManager()" title="Gerenciar Fotos &amp; Preços das Joias" aria-label="Gerir Catálogo">
-            <span class="admin-pill-icon">✨</span>
-            <span class="admin-pill-text">Editar Fotos &amp; Preços</span>
+          <!-- Acesso Admin Discreto -->
+          <button class="icon-btn admin-discreet-btn admin-only-element" onclick="openCatalogManager()" title="Gerenciar Catálogo" aria-label="Gerir Catálogo">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+            <span class="icon-label">Gerir</span>
           </button>
-          <button class="header-admin-pill-btn admin-only-element" onclick="adminLogout()" title="Terminar sessão de administrador" style="background:linear-gradient(135deg,#5a0a0a,#7d1212);" aria-label="Logout Admin">
-            <span class="admin-pill-icon">🔒</span>
-            <span class="admin-pill-text">Sair</span>
+          <button class="icon-btn admin-discreet-btn admin-only-element" onclick="adminLogout()" title="Sair do modo administrador" aria-label="Sair">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <span class="icon-label">Sair</span>
           </button>
-          <!-- Botão LOGIN ADMIN — visível apenas quando NÃO autenticado -->
-          <button class="header-admin-pill-btn guest-only-element" id="btn-admin-login-header" onclick="openAdminLoginModal()" title="Entrar como Administrador" aria-label="Acesso Admin" style="background:linear-gradient(135deg,#2c2c2c,#1a1a1a);border:1.5px solid var(--color-gold);">
-            <span class="admin-pill-icon">🔐</span>
-            <span class="admin-pill-text">Admin</span>
+          <!-- Botão Discreto de Login Admin (visível quando não autenticado) -->
+          <button class="icon-btn admin-discreet-btn guest-only-element" id="btn-admin-login-header" onclick="openAdminLoginModal()" title="Acesso Lojista" aria-label="Acesso Lojista">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span class="icon-label">Admin</span>
           </button>
 
           <button class="icon-btn" onclick="showToast('Área exclusiva do cliente Infinity.');" title="Minha Conta">
@@ -122,7 +122,7 @@
           <ul class="nav-categories-list">
             <li>
               <a href="#todas" class="nav-category-link" data-category="todas" onclick="scrollToHomeCatalog('all'); event.preventDefault();">
-                ✨ Todas as Joias
+                Todas as Joias
               </a>
             </li>
             <li>
@@ -299,7 +299,7 @@
       
       <div class="home-catalog-header">
         <div class="home-catalog-header-text">
-          <span class="home-catalog-eyebrow">✨ Coleção Completa &bull; Prata de Lei 925 &bull; Infinity Store</span>
+          <span class="home-catalog-eyebrow">Coleção Completa &bull; Prata de Lei 925 &bull; Infinity Store</span>
           <h2 class="home-catalog-title">Todas as Nossas Joias</h2>
           <p class="home-catalog-subtitle">Explore todas as peças exclusivas da nossa loja. Fotos reais e preços em Meticais (MT). Escolha sua joia e peça diretamente pelo WhatsApp!</p>
         </div>
@@ -316,27 +316,27 @@
       <div class="home-catalog-controls">
         <div class="home-cat-pills" role="tablist" aria-label="Filtro de Categorias">
           <button class="home-pill-btn is-active" data-filter="all" onclick="filterHomeCatalog('all')">
-            <span>✨ Todas as Peças</span>
+            <span>Todas as Peças</span>
             <span class="home-pill-count" id="count-all">52</span>
           </button>
           <button class="home-pill-btn" data-filter="pulseiras" onclick="filterHomeCatalog('pulseiras')">
-            <span>📿 Pulseiras</span>
+            <span>Pulseiras</span>
             <span class="home-pill-count" id="count-pulseiras">12</span>
           </button>
           <button class="home-pill-btn" data-filter="aneis" onclick="filterHomeCatalog('aneis')">
-            <span>💍 Anéis</span>
+            <span>Anéis</span>
             <span class="home-pill-count" id="count-aneis">10</span>
           </button>
           <button class="home-pill-btn" data-filter="colares" onclick="filterHomeCatalog('colares')">
-            <span>💎 Colares</span>
+            <span>Colares</span>
             <span class="home-pill-count" id="count-colares">10</span>
           </button>
           <button class="home-pill-btn" data-filter="brincos" onclick="filterHomeCatalog('brincos')">
-            <span>✨ Brincos</span>
+            <span>Brincos</span>
             <span class="home-pill-count" id="count-brincos">10</span>
           </button>
           <button class="home-pill-btn" data-filter="pingentes" onclick="filterHomeCatalog('pingentes')">
-            <span>🌸 Pingentes</span>
+            <span>Pingentes</span>
             <span class="home-pill-count" id="count-pingentes">10</span>
           </button>
         </div>
@@ -412,6 +412,53 @@
   </main>
 
   <!-- ==========================================
+       FOOTER LUXO MINIMALISTA
+       ========================================== -->
+  <footer class="site-luxury-footer" role="contentinfo">
+    <div class="container footer-content-wrap">
+      <div class="footer-top-brand">
+        <h3 class="footer-brand-title">INFINITY STORE</h3>
+        <p class="footer-brand-sub">Alta Joalheria em Prata de Lei 925 &bull; Maputo, Moçambique</p>
+      </div>
+
+      <div class="footer-links-grid">
+        <div class="footer-col">
+          <span class="footer-col-title">Coleções</span>
+          <ul class="footer-col-links">
+            <li><a href="#pulseiras" onclick="showCategoryPage('pulseiras'); event.preventDefault();">Pulseiras</a></li>
+            <li><a href="#aneis" onclick="showCategoryPage('aneis'); event.preventDefault();">Anéis</a></li>
+            <li><a href="#colares" onclick="showCategoryPage('colares'); event.preventDefault();">Colares</a></li>
+            <li><a href="#brincos" onclick="showCategoryPage('brincos'); event.preventDefault();">Brincos</a></li>
+            <li><a href="#pingentes" onclick="showCategoryPage('pingentes'); event.preventDefault();">Pingentes</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-col-title">Atendimento</span>
+          <ul class="footer-col-links">
+            <li><a href="https://wa.me/258840000000" target="_blank" rel="noopener">WhatsApp Direto</a></li>
+            <li><a href="javascript:void(0)" onclick="openWishlistDrawer()">Meus Favoritos</a></li>
+            <li><a href="javascript:void(0)" onclick="openBagDrawer()">Sacola de Compras</a></li>
+            <li><a href="javascript:void(0)" onclick="showToast('Garantia vitalícia da autenticidade da Prata 925.')">Certificado de Autenticidade</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-col-title">Sobre a Joalheria</span>
+          <p class="footer-about-text">Peças refinadas com acabamento de alta precisão. Atendimento sob medida com entrega segura em Moçambique.</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <p class="footer-copy">&copy; 2026 Infinity Store. Todos os direitos reservados.</p>
+        <div class="footer-discreet-access">
+          <a href="javascript:void(0)" onclick="openAdminLoginModal()" class="footer-quiet-admin-link" title="Acesso Lojista">Acesso Lojista</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
        DRAWERS & MODALS (CART, WISHLIST, QUICK VIEW)
        ========================================== -->
   <div class="drawer-overlay" id="drawer-overlay"></div>
@@ -463,9 +510,9 @@
       </button>
 
       <div class="editor-header" style="text-align: center;">
-        <span class="editor-eyebrow">✨ Assistente Fácil &bull; Infinity Store</span>
+        <span class="editor-eyebrow">Gestão do Catálogo &bull; Infinity Store</span>
         <h2 class="editor-title" id="editor-modal-title">Adicionar ou Mudar Joia</h2>
-        <p class="editor-subtitle">Basta escolher a foto e o preço. O site atualiza na mesma hora!</p>
+        <p class="editor-subtitle">Escolha a foto e o preço. As alterações ficam visíveis imediatamente.</p>
       </div>
 
       <form id="product-editor-form" onsubmit="handleProductEditorSubmit(event)" novalidate>
@@ -479,12 +526,14 @@
           </div>
 
           <div class="easy-upload-dropzone" onclick="document.getElementById('edit-file-primary').click()">
-            <div class="easy-upload-icon">📸</div>
-            <div class="easy-upload-text">Toque aqui para Tirar Foto ou Escolher da Galeria</div>
-            <div class="easy-upload-hint">Basta carregar a foto da joia. O site faz tudo automaticamente!</div>
+            <div class="easy-upload-icon">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            </div>
+            <div class="easy-upload-text">Toque aqui para escolher a foto</div>
+            <div class="easy-upload-hint">Aceita formatos PNG e JPEG da sua galeria ou câmera.</div>
             <div style="display: flex; gap: 8px; margin-top: 8px;">
               <button type="button" class="btn-luxury btn-luxury-primary btn-sm" style="pointer-events: none;">
-                📷 Câmera / Galeria
+                Selecionar Imagem
               </button>
             </div>
           </div>
@@ -495,7 +544,7 @@
           <div style="margin-top: 14px; display: flex; align-items: center; gap: 14px; background: #fff; padding: 12px; border-radius: 10px; border: 1px solid var(--color-border);">
             <img id="edit-preview-primary" src="assets/pulseiras/pulseira-1.jpg" alt="Foto Atual" style="width: 70px; height: 70px; object-fit: cover; border-radius: 8px; border: 1px solid var(--color-border);" onerror="handleImgError(this)">
             <div style="flex: 1;">
-              <div style="font-weight: 700; font-size: 0.88rem; color: #27ae60;">Foto pronta para o site ✅</div>
+              <div style="font-weight: 700; font-size: 0.88rem; color: #27ae60;">Foto pronta para o site</div>
               <div style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 2px;">Clique na foto acima ou no botão para trocar quando quiser.</div>
             </div>
             <button type="button" class="btn-luxury btn-luxury-outline btn-sm" onclick="document.getElementById('edit-file-primary').click()">
@@ -550,23 +599,18 @@
 
             <div class="category-tap-grid">
               <button type="button" class="cat-tap-btn is-selected" data-cat="pulseiras" onclick="selectEasyCategory('pulseiras')">
-                <span class="cat-tap-icon">📿</span>
                 <span class="cat-tap-label">Pulseiras</span>
               </button>
               <button type="button" class="cat-tap-btn" data-cat="aneis" onclick="selectEasyCategory('aneis')">
-                <span class="cat-tap-icon">💍</span>
                 <span class="cat-tap-label">Anéis</span>
               </button>
               <button type="button" class="cat-tap-btn" data-cat="colares" onclick="selectEasyCategory('colares')">
-                <span class="cat-tap-icon">💎</span>
                 <span class="cat-tap-label">Colares</span>
               </button>
               <button type="button" class="cat-tap-btn" data-cat="brincos" onclick="selectEasyCategory('brincos')">
-                <span class="cat-tap-icon">✨</span>
                 <span class="cat-tap-label">Brincos</span>
               </button>
               <button type="button" class="cat-tap-btn" data-cat="pingentes" onclick="selectEasyCategory('pingentes')">
-                <span class="cat-tap-icon">🌸</span>
                 <span class="cat-tap-label">Pingentes</span>
               </button>
             </div>
@@ -576,7 +620,7 @@
         <!-- OPÇÕES AVANÇADAS (OPCIONAL, RECOLHIDO) -->
         <div style="margin-bottom: 20px;">
           <button type="button" class="advanced-toggle-btn" id="btn-toggle-advanced" onclick="toggleAdvancedOptions()">
-            ▼ Mais detalhes opcionais (descrição, material, foto secundária)...
+            Mais detalhes opcionais (descrição, material, foto secundária)...
           </button>
 
           <div id="easy-advanced-panel" style="display: none; background: #fff; border: 1px solid var(--color-border); border-radius: 12px; padding: 16px; margin-top: 8px;">
@@ -617,7 +661,7 @@
         <!-- Botão Grande de Salvar e Ações -->
         <div style="display: flex; flex-direction: column; gap: 12px;">
           <button type="submit" class="big-save-button" onclick="handleProductEditorSubmit(event)">
-            <span>💾 Salvar e Mostrar no Site Agora</span>
+            <span>Salvar Joia no Catálogo</span>
           </button>
 
           <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px;">
@@ -764,12 +808,6 @@
               Gerir
             </button>
           </li>
-          <li id="mob-nav-login-li" class="guest-only-element">
-            <button class="mobile-bottom-nav-btn" id="mob-nav-login" onclick="openAdminLoginModal()" aria-label="Entrar como Administrador" style="color: var(--color-accent); font-weight: 600;">
-              <svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              Admin
-            </button>
-          </li>
       <li>
         <button class="mobile-bottom-nav-btn" id="mob-nav-wish" onclick="openWishlistDrawer(); setMobileActiveNav('mob-nav-wish')" aria-label="Favoritos">
           <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
@@ -787,15 +825,15 @@
     </ul>
   </nav>
 
-  <!-- Floating Quick Action Bar for Layperson/Admin -->
+  <!-- Floating Quick Action Bar for Admin (Discreet) -->
   <div class="floating-quick-actions admin-only-element" id="floating-quick-actions">
-    <button class="fab-btn fab-btn-primary" onclick="openProductEditor(null, event)" title="Adicionar Nova Joia com Foto e Preço">
-      <span class="fab-icon">✨</span>
-      <span class="fab-text">+ Adicionar Joia</span>
+    <button class="fab-btn fab-btn-primary" onclick="openProductEditor(null, event)" title="Adicionar Nova Joia">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+      <span class="fab-text">Adicionar Joia</span>
     </button>
-    <button class="fab-btn fab-btn-secondary" onclick="openCatalogManager()" title="Ver e Alterar Todas as Joias">
-      <span class="fab-icon">📋</span>
-      <span class="fab-text">Ver / Alterar Todas</span>
+    <button class="fab-btn fab-btn-secondary" onclick="openCatalogManager()" title="Gerenciar Catálogo">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+      <span class="fab-text">Gerenciar</span>
     </button>
   </div>
 
@@ -803,8 +841,10 @@
   <div class="modal-wrapper" id="admin-login-modal" role="dialog" aria-modal="true" aria-labelledby="admin-login-title">
     <div class="modal-card admin-login-card">
       <div class="admin-login-header">
-        <div class="admin-login-logo">🔐</div>
-        <span class="editor-eyebrow">Infinity Store • Área Restrita</span>
+        <div class="admin-login-logo">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        </div>
+        <span class="editor-eyebrow">Infinity Store &bull; Área Restrita</span>
         <h2 class="editor-title" id="admin-login-title">Acesso de Administrador</h2>
         <p class="editor-subtitle">Introduza a senha para gerir fotos e preços do catálogo.</p>
       </div>
@@ -828,9 +868,13 @@
         <button class="pin-key" onclick="adminPinKey('7')">7</button>
         <button class="pin-key" onclick="adminPinKey('8')">8</button>
         <button class="pin-key" onclick="adminPinKey('9')">9</button>
-        <button class="pin-key pin-key-del" onclick="adminPinKey('DEL')">⌫</button>
+        <button class="pin-key pin-key-del" onclick="adminPinKey('DEL')" aria-label="Apagar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path><line x1="18" y1="9" x2="12" y2="15"></line><line x1="12" y1="9" x2="18" y2="15"></line></svg>
+        </button>
         <button class="pin-key" onclick="adminPinKey('0')">0</button>
-        <button class="pin-key pin-key-ok" onclick="adminPinKey('OK')">✓</button>
+        <button class="pin-key pin-key-ok" onclick="adminPinKey('OK')" aria-label="Confirmar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </button>
       </div>
 
       <button class="btn-luxury btn-luxury-outline btn-sm" style="margin-top:12px;width:100%;" onclick="closeAdminLoginModal()">

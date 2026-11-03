@@ -1171,7 +1171,7 @@ function adminLoginSubmit() {
     window._adminPendingAction = null;
     closeAdminLoginModal();
     updateAdminUIVisibility();
-    showToast('✅ Acesso de administrador concedido!');
+    showToast('Acesso de administrador concedido.');
     // Executar a ação pendente (ex: abrir editor de produto)
     if (typeof pendingAction === 'function') {
       try {
@@ -1188,19 +1188,26 @@ function adminLoginSubmit() {
       pinBox.classList.add('pin-shake');
       setTimeout(() => pinBox.classList.remove('pin-shake'), 500);
     }
-    showToast('❌ Senha incorrecta. Tente novamente.');
+    showToast('Senha incorreta. Tente novamente.');
   }
 }
 
 function adminLogout() {
   sessionStorage.removeItem(ADMIN_SESSION_KEY);
   updateAdminUIVisibility();
-  showToast('🔒 Sessão de administrador encerrada.');
+  showToast('Sessão de administrador encerrada.');
 }
 
 // Mostra/oculta os elementos de admin conforme o estado de autenticação
 function updateAdminUIVisibility() {
   const isAdmin = isAdminAuthenticated();
+  if (typeof document !== 'undefined' && document.body && document.body.classList) {
+    if (isAdmin) {
+      document.body.classList.add('is-admin');
+    } else {
+      document.body.classList.remove('is-admin');
+    }
+  }
   // Header pill — elementos apenas visíveis para admin
   document.querySelectorAll('.admin-only-element').forEach(el => {
     el.style.display = isAdmin ? '' : 'none';
@@ -1304,7 +1311,7 @@ function saveProductData(productData) {
         console.warn("Storage warning:", e);
       }
     }
-    showToast(`✨ Joia "${productData.name}" atualizada com sucesso!`);
+    showToast(`Joia "${productData.name}" atualizada com sucesso.`);
   } else {
     productData.id = Date.now();
     productData._isNewProduct = true;
@@ -1321,7 +1328,7 @@ function saveProductData(productData) {
         console.warn("Storage fallback error:", e2);
       }
     }
-    showToast(`✨ Nova joia "${productData.name}" adicionada no topo do catálogo!`);
+    showToast(`Nova joia "${productData.name}" adicionada ao catálogo.`);
   }
 
   initCatalog();
@@ -1530,7 +1537,7 @@ function toggleAdvancedOptions() {
   if (!panel || !btn) return;
   const isHidden = panel.style.display === 'none';
   panel.style.display = isHidden ? 'block' : 'none';
-  btn.innerHTML = isHidden ? '▲ Recolher detalhes adicionais' : '▼ Mais detalhes opcionais (descrição, material, foto secundária)...';
+  btn.innerHTML = isHidden ? 'Recolher detalhes adicionais' : 'Mais detalhes opcionais (descrição, material, foto secundária)...';
 }
 
 // Modal do Editor de Produto
@@ -1573,7 +1580,7 @@ function openProductEditor(productId, event, defaultCategory) {
   const advPanel = document.getElementById('easy-advanced-panel');
   if (advPanel) advPanel.style.display = 'none';
   const advBtn = document.getElementById('btn-toggle-advanced');
-  if (advBtn) advBtn.innerHTML = '▼ Mais detalhes opcionais (descrição, material, foto secundária)...';
+  if (advBtn) advBtn.innerHTML = 'Mais detalhes opcionais (descrição, material, foto secundária)...';
   
   document.getElementById('edit-input-collection').value = isNew ? 'Pandora Moments' : (product.collection || '');
   document.getElementById('edit-input-material').value = isNew ? 'Prata de Lei 925' : (product.materialLabel || '');
@@ -1853,7 +1860,7 @@ function buyProductViaWhatsApp(productId) {
   if (!product) return;
   const priceLine = product.price ? `
 • *Preço:* ${Number(product.price).toLocaleString('pt-MZ')} MT` : '';
-  const msg = `Olá, Infinity Store! 💎
+  const msg = `Olá, Infinity Store!
 
 Gostaria de finalizar a compra da seguinte joia:
 
@@ -1886,7 +1893,7 @@ function checkoutBagViaWhatsApp() {
   const totalLine = total > 0 ? `
 
 *Total Estimado:* ${total.toLocaleString('pt-MZ')} MT` : '';
-  const msg = `Olá, Infinity Store! 💎
+  const msg = `Olá, Infinity Store!
 
 Gostaria de finalizar meu pedido com as seguintes joias selecionadas:
 
@@ -2016,12 +2023,12 @@ function renderCategoryView() {
         <div class="product-media">
           <span class="product-badge">${product.badge}</span>
 
-          <button class="product-edit-btn" onclick="openProductEditor(${product.id}, event)" title="Modificar foto e preço desta peça" aria-label="Editar">
+          <button class="product-edit-btn admin-only-element" onclick="openProductEditor(${product.id}, event)" title="Modificar foto e preço desta peça" aria-label="Editar">
             <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 20h9"></path>
               <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
             </svg>
-            <span>📷 Mudar Foto / Preço</span>
+            <span>Alterar Foto / Preço</span>
           </button>
 
           <button class="product-wishlist-btn ${isFav ? 'active' : ''}" onclick="toggleWishlist(${product.id})" aria-label="Favoritar">
@@ -2169,7 +2176,7 @@ function renderHomeCatalogGrid() {
               <path d="M12 20h9"></path>
               <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
             </svg>
-            <span>📷 Mudar Foto / Preço</span>
+            <span>Alterar Foto / Preço</span>
           </button>
 
           <button class="product-wishlist-btn ${isFav ? 'active' : ''}" onclick="toggleWishlist(${product.id})" aria-label="Favoritar">
